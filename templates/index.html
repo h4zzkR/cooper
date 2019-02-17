@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'patterns/header.html' %}
+
+<body>
+    <div class="section-title">
+        <h2>CooperationDevelopmentService - coDev</h2>
+        <p>Шаблон дизайна для наглядности, внизу лого</p>
+    </div>
+
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+    <div class="section-title">
+    <img src="{{ MEDIA_URL }}logo.png" alt="это наше лого, познакомьтесь">
+    </div>
+	<!-- Header section -->
+    <div class="section-title">
+        <h3>Тут что-нибудь красивое для заголовка, мы же профессионалы</h3>
+        <p>JS не трогать - убью.</p>
+    </div>
+
+
+
+	<!-- Features section -->
+	<section class="features-section spad">
+		<div class="container">
+			<div class="section-title">
+				<img src="./img/section-title-icon.png" alt="#">
+                {#тут иконки в кружках#}
+				<p>Все, о чем вы могли мечтать</p>
+				<h2>Возможности</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6 feature-item">
+					<div class="ft-icon">
+						<i class="flaticon-domain-registration"></i>
+					</div>
+					<h4>Потрать свои денежки</h4>
+					<p>Купи подписку, пупсик.</p>
+				</div>
+				<div class="col-lg-4 col-md-6 feature-item fi-center-top">
+					<div class="ft-icon">
+						<i class="flaticon-server"></i>
+					</div>
+					<h4>Саня, редачь css</h4>
+					<p>Нужен свой неповторимый дизайн</p>
+				</div>
+				<div class="col-lg-4 col-md-6 feature-item">
+					<div class="ft-icon">
+						<i class="flaticon-devices"></i>
+					</div>
+					<h4>Вот еще</h4>
+					<p>Сайт для лентяев </p>
+				</div>
+				<div class="col-lg-4 col-md-6 feature-item">
+					<div class="ft-icon">
+						<i class="flaticon-smartphone"></i>
+					</div>
+					<h4>навальный2019</h4>
+					<p>фу таким быть.</p>
+				</div>
+				<div class="col-lg-4 col-md-6 feature-item">
+					<div class="ft-icon">
+						<i class="flaticon-folder"></i>
+					</div>
+					<h4>Бесплатный код здесь</h4>
+					<p>Обращайтесь к Сане</p>
+				</div>
+				<div class="col-lg-4 col-md-6 feature-item">
+					<div class="ft-icon">
+						<i class="flaticon-viral-marketing"></i>
+					</div>
+					<h4>Точка поменьше</h4>
+					<p>Вот это вот все - фичи</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Features section end -->
+
+
+
+	<!-- Domain search section -->
+	<section class="domain-search-section spad set-bg" data-setbg="img/domain-bg.jpg">
+		<div class="container">
+			<div class="section-title st-white">
+				<img src="./img/section-title-icon.png" alt="#">
+				<p>Search форма</p>
+				<h2>See our features</h2>
+			</div>
+			<div class="domain-form-warp">
+				<form class="domain-search-form">
+					<input type="text" placeholder="Enter something">
+					<button class="site-btn">Search!</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- Domain search section end -->
+
+
+	<section class="skills-and-testimonials-section spad">
+		<div class="container">
+			<div class="row">
+				<!-- Skills -->
+				<div class="col-lg-6">
+					<div class="single-progress-item">
+						<p>Example</p>
+						<div class="progress-bar-style" data-progress="80"  data-bgcolor="#eb2b63"></div>
+					</div>
+					<div class="single-progress-item">
+						<p>of</p>
+						<div class="progress-bar-style" data-progress="90"  data-bgcolor="#eb2bae"></div>
+					</div>
+					<div class="single-progress-item">
+						<p>visualizing</p>
+						<div class="progress-bar-style" data-progress="80"  data-bgcolor="#d22beb"></div>
+					</div>
+					<div class="single-progress-item">
+						<p>your</p>
+						<div class="progress-bar-style" data-progress="60"  data-bgcolor="#972beb"></div>
+					</div>
+					<div class="single-progress-item">
+						<p>data</p>
+						<div class="progress-bar-style" data-progress="70"  data-bgcolor="#732beb"></div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </section>
+
+
+	<!-- Pricing section -->
+    <div class="row">
+        <div class="col-lg-4 col-md-8 offset-md-2 offset-lg-0">
+            <div class="pricing-plan">
+                <div class="pricing-title">
+                    <h4>This is hight text</h4>
+                </div>
+                <div class="pricing-body">
+                    <h2>Lower<span>/addings</span></h2>
+                    <ul>
+                        <li>list1</li>
+                        <li>list2</li>
+                        <li>list3</li>
+                        <li>list4</li>
+                        <li>list5</li>
+                    </ul>
+                    <a href="" class="site-btn">BIG BUTTON</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% include 'patterns/footer.html' %}
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+	<script src="../static/js/owl.carousel.min.js"></script>
+	<script src="../static/js/circle-progress.min.js"></script>
+	<script src="../static/js/main.js"></script>
+
+	</body>
+</html>
+

@@ -17,7 +17,9 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+	background-color: #0c0e1c;
 }
+
 
 h1,
 h2,
@@ -486,7 +488,7 @@ ol {
 
 .single-progress-item p {
 	font-size: 16px;
-	color: #000000;
+	color: #ffffff;
 	line-height: 1;
 	margin-bottom: 15px;
 }
@@ -509,7 +511,7 @@ ol {
 	bottom: 100%;
 	right: 0;
 	font-size: 16px;
-	color: #000;
+	color: #ffffff;
 	line-height: 1;
 	margin-bottom: 15px;
 }
@@ -813,6 +815,8 @@ ol {
 .site-breadcrumb a {
 	color: #fff;
 }
+
+
 
 
 /*АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТ*/

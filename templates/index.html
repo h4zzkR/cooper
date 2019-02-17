@@ -4,8 +4,30 @@
 {% include 'patterns/header.html' %}
 
 <body>
+
+
+    <section class="hero-section set-bg" data-setbg="{{ MEDIA_URL }}bg.svg">
+		<div class="container h-100">
+			<div class="hero-content text-white">
+				<div class="row">
+                    <div class="logotype">
+                        <img src="{{ MEDIA_URL }}logo.png" alt="это наше лого, познакомьтесь">
+                    </div>
+					<div class="col-lg-6 pr-0">
+						<h2 class="hero-main">coDev </h2> <h2 class="hero-alpha">alpha</h2>
+                        <br>
+                        <h2>Для тех, кто меняет мир.</h2><br>
+						<p>Сервис для поиска разработчиков</p>
+						<a href="#" class="site-btn">Начать путешествие</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <br>
     <div class="section-title">
-        <h2>CooperationDevelopmentService - coDev</h2>
+        <h2>Cooperation Development Network - coDev</h2>
         <p>Шаблон дизайна для наглядности, внизу лого</p>
     </div>
 
@@ -14,9 +36,6 @@
 		<div class="loader"></div>
 	</div>
 
-    <div class="section-title">
-    <img src="{{ MEDIA_URL }}logo.png" alt="это наше лого, познакомьтесь">
-    </div>
 	<!-- Header section -->
     <div class="section-title">
         <h3>Тут что-нибудь красивое для заголовка, мы же профессионалы</h3>

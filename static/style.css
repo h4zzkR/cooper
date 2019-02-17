@@ -119,6 +119,15 @@ ol {
 	color: #fff;
 }
 
+.logotype{
+	width: 14%;
+	height: 14%;
+ 	position: absolute;
+  	top: 21%;
+  	left: 35%;
+  	padding: 10px
+}
+
 .set-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -819,13 +828,60 @@ ol {
 
 
 
+.hero-section {
+	height: 835px;
+	overflow: hidden;
+}
+
+.hero-content {
+	display: -ms-flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	height: 100%;
+	position: relative;
+}
+
+.hero-content .hero-main{
+	color: #162551;
+	font-size: 70px;
+	font-weight: 550;
+}
+
+.hero-content .hero-alpha{
+	color: #959fbc;
+	font-size: 50px;
+	font-weight: 300;
+	margin-left: 200px;
+	margin-top: -30px;
+}
+
+.hero-content h2 {
+	font-size: 90px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	line-height: 1;
+}
+
+.hero-content P {
+	font-size: 18px;
+	line-height: 1.7;
+	margin-bottom: 40px;
+}
+
+
+
+
 /*АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТ*/
 /* Medium screen : 992px. */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.hero-rocket {
-		width: 500px;
-	}
 	.pricing-plan .pricing-body {
 		padding: 54px 45px 52px;
 	}
@@ -847,9 +903,6 @@ ol {
 	.main-menu li a {
 		font-size: 15px;
 		margin-left: 20px;
-	}
-	.hero-rocket {
-		display: none;
 	}
 	.feature-item.fi-center-top .ft-icon {
 		-webkit-transform: scale(1);

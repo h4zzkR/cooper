@@ -256,7 +256,7 @@ ol {
 	line-height: 1;
     border-color: transparent;
 	border-radius: 14px;
-    width: 13%;
+    min-width: 5%;
      -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.5s;
     cursor: pointer;

@@ -27,16 +27,16 @@
 <div class="menu-bar">
             {% if not user.is_authenticated %}
 {#			<a href="#"><div class="user-panel">Войти / Регистрация</div></a>#}
-                <a href="#"><button class="button-menu">Войти / Регистрация</button></a>
+                <a href="user/login"><button class="button-menu">Войти / Регистрация</button></a>
             {% else %}
             <a href="#"><div class="user-panel">Выйти</div></a>
             {% endif %}
-{#            {% if user.is_authenticated %}#}
 			<ul class="main-menu">
+                {% if user.is_authenticated %}
 				<li><a href="./index.html">Разместить таск</a></li>
+                <li><a href="./service.html">Профиль</a></li>
+                {% endif %}
 				<li><a href="./about.html">О нас</a></li>
-				<li><a href="./service.html">Профиль</a></li>
 				<li><a href="./blog.html">Контакты</a></li>
 			</ul>
-{#             {% endif %}#}
 </div>

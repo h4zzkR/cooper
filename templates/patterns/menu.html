@@ -1,0 +1,42 @@
+<style>
+
+    .main-menu li {
+	display: inline;
+        float: right;
+        margin-top: 1.6%;
+}
+
+.main-menu li a {
+	display: inline-block;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 50px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.main-menu li a:hover {
+	color: #df313c;
+    text-decoration:  none;
+}
+
+
+</style>
+
+<div class="menu-bar">
+            {% if not user.is_authenticated %}
+{#			<a href="#"><div class="user-panel">Войти / Регистрация</div></a>#}
+                <a href="#"><button class="button-menu">Войти / Регистрация</button></a>
+            {% else %}
+            <a href="#"><div class="user-panel">Выйти</div></a>
+            {% endif %}
+{#            {% if user.is_authenticated %}#}
+			<ul class="main-menu">
+				<li><a href="./index.html">Разместить таск</a></li>
+				<li><a href="./about.html">О нас</a></li>
+				<li><a href="./service.html">Профиль</a></li>
+				<li><a href="./blog.html">Контакты</a></li>
+			</ul>
+{#             {% endif %}#}
+</div>

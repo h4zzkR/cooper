@@ -491,6 +491,11 @@ ol {
 	transform: scale(1.65);
 }
 
+.form-group
+{
+    margin-left: 10%;
+}
+
 .feature-item.fi-center-top .ft-icon i {
 	-webkit-transform: scale(0.8);
 	-ms-transform: scale(0.8);

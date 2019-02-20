@@ -27,9 +27,9 @@
 <div class="menu-bar">
             {% if not user.is_authenticated %}
 {#			<a href="#"><div class="user-panel">Войти / Регистрация</div></a>#}
-                <a href="user/login"><button class="button-menu">Войти / Регистрация</button></a>
+                <a href="user/login_page"><button class="button-menu">Войти / Регистрация</button></a>
             {% else %}
-            <a href="#"><div class="user-panel">Выйти</div></a>
+            <a href="user/logout/"><div class="user-panel">Выйти</div></a>
             {% endif %}
 			<ul class="main-menu">
                 {% if user.is_authenticated %}

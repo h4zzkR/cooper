@@ -12,7 +12,7 @@ def get_context(request, pagename):
         'pagename': pagename,
         'loginform': LoginForm(),
         'user': request.user,
-        'registerform': RegistrationForm()
+        'registerform': RegistrationForm(request.POST)
     }
 
 
@@ -21,20 +21,18 @@ def index(request):
 
 
 def login_page(request):
-    print(request.user)
     return render(request, 'login_page.html', get_context(request, 'login page'))
 
 
 def login(request):
-    print(123445)
     if request.method == 'POST':
         loginform = LoginForm(request.POST)
         if loginform.is_valid():
             username = loginform.data['username']
             password = loginform.data['password']
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(username=username, password=password)
+            print(user)
             if user is not None:
-                print(12345)
                 login(request, user)
                 messages.add_message(request, messages.SUCCESS, "Авторизация успешна")
             else:
@@ -50,12 +48,12 @@ def logout(request):
 
 
 def register(request):
+    print(request.POST)
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            print(123)
 
-    else:
-        form = RegistrationForm()
-    return render(request, get_context(request, 'login page'), form)
+    return redirect("/")
 

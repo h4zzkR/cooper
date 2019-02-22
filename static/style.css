@@ -242,6 +242,26 @@ ol {
 	color: #eb2b63;
 }
 
+.button-profile{
+	display: inline-block;
+    float: right;
+    text-align: center;
+	background: #751389;
+	color: #fff;
+	margin-left: 30px;
+	margin-right: -10px;
+	margin-top: 15px;
+	font-size: 16px;
+	padding: 12px 19px;
+	line-height: 1;
+    border-color: transparent;
+	border-radius: 14px;
+    min-width: 2%;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
 .button-menu {
     display: inline-block;
     float: right;
@@ -273,7 +293,7 @@ ol {
     position: absolute;
 	width: 100%;
 	padding-top: 25px;
-	z-index: 99;
+	z-index: 10;
 }
 
 .user-panel a {

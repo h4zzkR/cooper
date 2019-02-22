@@ -34,12 +34,3 @@ class RegistrationForm(forms.ModelForm):
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль'}),
         }
-
-    '''
-    def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].widget = forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Password from numbers and letters of the Latin alphabet'})
-        self.fields['password2'].widget = forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Password confirmation'})
-    '''

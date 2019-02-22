@@ -2,19 +2,20 @@
 <html lang="en">
 
 {% include 'patterns/header.html' %}
-{% include 'patterns/login_menu.html' %}
+{#{% include 'patterns/login_menu.html' %}#}
 
 <style>
     .formm {
         margin-left: 5%;
-        margin-top: 7%
+        margin-top: 7%;
+        z-index: 99;
     }
 
 </style>
 
 <body>
         <div class="formm">
-            <form action="login/" method="post">
+            <form action="/u/login/" method="post">
                 {% csrf_token %}
                 {% for field in loginform.visible_fields %}
                     <div class="form-group form-inline">{{ field }}</div>
@@ -23,7 +24,7 @@
             </form>
         </div>
         <div class="formm">
-            <form action="register/" method="post">
+            <form action="/u/register/" method="post">
                 {% csrf_token %}
                 {% for field in registerform.visible_fields %}
                     <div class="form-group form-inline">{{ field }}</div>

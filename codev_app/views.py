@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from codev_app.forms import *
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 
 def get_context(request, pagename):
@@ -25,35 +27,29 @@ def login_page(request):
 
 
 def login(request):
-    if request.method == 'POST':
-        loginform = LoginForm(request.POST)
-        if loginform.is_valid():
-            username = loginform.data['username']
-            password = loginform.data['password']
-            user = authenticate(username=username, password=password)
-            print(user)
-            if user is not None:
-                login(request, user)
-                messages.add_message(request, messages.SUCCESS, "Авторизация успешна")
-            else:
-                messages.add_message(request, messages.ERROR, "Неправильный логин или пароль")
-        else:
-            messages.add_message(request, messages.ERROR, "Некорректные данные в форме авторизации")
-    return redirect('/')
-
+    username = request.POST['username']
+    password = request.POST['password']
+    user = auth.authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        # Правильный пароль и пользователь "активен"
+        auth.login(request, user)
+        # Перенаправление на "правильную" страницу
+        return redirect("/")
+    else:
+        # Отображение страницы с ошибкой
+        return Http404
 
 def logout(request):
-    logout(request)
+    auth.logout(request)
+    # Перенаправление на страницу.
     return redirect("/")
 
-
 def register(request):
-    print(request.POST)
     if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print(123)
-
+        name = request.POST.get('username')
+        mail = request.POST.get('mail')
+        password = request.POST.get('password')
+        user = User.objects.create_user(name, mail, password)
+        user.save()
     return redirect("/")
 

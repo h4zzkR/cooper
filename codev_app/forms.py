@@ -1,5 +1,6 @@
 from django import forms
 from .models import User
+from codev_app.models import *
 
 
 class LoginForm(forms.Form):
@@ -34,3 +35,9 @@ class RegistrationForm(forms.ModelForm):
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль'}),
         }
+
+
+class MakeTask(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = '__all__'

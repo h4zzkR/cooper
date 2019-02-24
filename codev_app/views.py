@@ -7,6 +7,7 @@ from django.contrib import auth
 from codev_app.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from codev_app.models import *
 
 
 def get_context(request, pagename):
@@ -52,4 +53,17 @@ def register(request):
         user = User.objects.create_user(name, mail, password)
         user.save()
     return redirect("/")
+
+def test_corner(request):
+    # if request.method == "POST":
+    #TODO заприватьте это дерьмо, нужны права юзеров
+    # else:
+    #     return Http404
+    if request.method == "POST":
+        form = MakeTask(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = MakeTask()
+    return render(request, 'test_corner.html', {'form': form})
 

@@ -8,6 +8,7 @@ from codev_app.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from codev_app.models import *
+import datetime
 
 
 def get_context(request, pagename):
@@ -54,19 +55,28 @@ def register(request):
         user.save()
     return redirect("/")
 
-def test_corner(request):
-    # if request.method == "POST":
-    #TODO заприватьте это, нужны права юзеров
-    # else:
-    #     return Http404
+def add_task(request):
+
+    username = request.user.username
+
     if request.method == "POST":
-        form = MakeTask(request.POST, request.FILES)
-        form.author = request.user.username
+        form = AddTaskForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            task = Task(
+            idea = form.data['idea'],
+            body = form.data['body'],
+            creation_date = datetime.datetime.now(),
+            author = request.user
+            )
+
+            print(form)
+            task.save()
+        else:
+            messages.add_message(request, messages.ERROR, "Некорректные данные в форме")
+            return redirect('add_task')
     else:
-        form = MakeTask()
-    return render(request, 'test_corner.html', {'form': form})
+        form = AddTaskForm()
+    return render(request, 'add_task.html', {'form': form})
 
 
 def my_tasks(request):

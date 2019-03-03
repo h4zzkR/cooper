@@ -56,14 +56,19 @@ def register(request):
 
 def test_corner(request):
     # if request.method == "POST":
-    #TODO заприватьте это дерьмо, нужны права юзеров
+    #TODO заприватьте это, нужны права юзеров
     # else:
     #     return Http404
     if request.method == "POST":
         form = MakeTask(request.POST, request.FILES)
+        form.author = request.user.username
         if form.is_valid():
             form.save()
     else:
         form = MakeTask()
     return render(request, 'test_corner.html', {'form': form})
 
+
+def my_tasks(request):
+    tasks = Task.objects.filter(author=request.user)
+    return render(request, 'tasks.html', {'tasks': tasks})

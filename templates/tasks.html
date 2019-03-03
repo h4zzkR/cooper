@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'patterns/header.html' %}
+{%  include 'patterns/menu.html' %}
+
+<body>
+
+{% for task in tasks %}
+{#                        <a href="task/{{task.id}}">#}
+    {{task.id}}
+    {{ task.idea }}
+    {{ task.body }}
+                            <!--<img src="../static/img/pokemons/pikachu.png" alt="">-->
+{#                        </a>#}
+{% endfor %}
+
+
+</body>
+</html>

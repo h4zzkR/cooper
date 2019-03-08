@@ -16,17 +16,24 @@ import os
 
 
 def get_context(request, pagename):
-    return {
-        'avatar': request.user.userprofile.avatar,
+    context = {
         'pagename': pagename,
         'loginform': LoginForm(),
         'user': request.user,
         'registerform': RegistrationForm(request.POST)
     }
+    if request.user.is_authenticated:
+        context.update({'avatar': request.user.userprofile.avatar})
+
+    return context
 
 
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        context = get_context(request, 'hab')
+        return render(request, 'hab.html', context)
+    else:
+        return render(request, 'index.html')
 
 def get_avatar(hash):
     avatars.Identicon(hash).generate()
@@ -83,17 +90,14 @@ def add_task(request):
             print(form)
             task.save()
         else:
-            messages.add_message(request, messages.ERROR, "Некорректные данные в форме")
             return redirect('add_task')
     else:
-        form = AddTaskForm()
-    return render(request, 'add_task.html', {'form': form})
+        context = get_context(request, 'make_task')
+        context.update({'form' : AddTaskForm()})
+    return render(request, 'add_task.html', context)
 
 
 def my_tasks(request):
-    tasks = Task.objects.filter(author=request.user)
-    return render(request, 'tasks.html', {'tasks': tasks})
-
-def sandbox(request):
-    context = get_context(request, 'hab')
-    return render(request, 'sandbox.html', context)
+    context = get_context(request, 'tasks')
+    context.update({'tasks' : Task.objects.filter(author=request.user)})
+    return render(request, 'tasks.html', context)

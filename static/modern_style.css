@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration:  none;
+}
+
 html, body {
   	height: 100%;
     width: 100%;
@@ -40,7 +44,6 @@ body {
   padding: 50px;
   background: #d9d9db;
   /*background: #2e3030;*/
-  box-shadow: 0 0 5px #000;
   transform: translateX(0);
   transition: transform .3s;
 }
@@ -73,6 +76,8 @@ h1 {
 }
 
 .nav li a {
+  background: #0e0f0f;
+  margin-top: 10px;
   position: relative;
   display: block;
   margin-bottom: 5px;
@@ -81,12 +86,13 @@ h1 {
   border-radius: 4px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.5s;
+  transition: all .2s ease-in-out;
   cursor: pointer;
 }
 
 .nav li a:hover{
-  background: #0e0f0f;
-  box-shadow: 0px 0px 8px rgba(0,0,0,.1);
+  transform: scale(1.07);
+  box-shadow: 0px 0px 5px #751390;
 }
 
 .nav li a.logout{
@@ -94,8 +100,9 @@ h1 {
 }
 
 .nav li a.logout:hover {
-  background-color: #f44336;
-    box-shadow: 0px 0px 8px #f44336;
+  color: white;
+  background-color:  #df313c;
+  box-shadow: 0px 0px 8px #f44336;
 }
 
 .nav li a.active {
@@ -118,3 +125,52 @@ h1 {
 .nav li:nth-child(6) a::before { content: '\f115'; }
 .nav li:nth-child(7) a::before { content: '\f085'; }
 .nav li:nth-child(8) a::before { content: '\f023'; left: 23px; } 
+
+.tasks{
+  list-style: none;
+}
+.tasks li{
+  margin-top: 30px;
+  width: 500px;
+  border-radius: 15px;
+  background: transparent;
+  min-height: 80px;
+  padding-top: 1px;
+}
+
+.tasks li a{
+  margin-top: 10px;
+  color: black;
+  float: left;
+}
+
+.tasks h1{
+  margin-top: 1px;
+  font-size: 30px;
+  text-align-all: center;
+}
+
+.task{
+  display: inline-block;
+    float: left;
+    text-align: center;
+	background: #df313c;
+	color: #fff;
+	margin-top: 15px;
+	font-size: 16px;
+	padding: 12px 19px;
+	line-height: 1;
+    border-color: transparent;
+	border-radius: 14px;
+    min-width: 5%;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.5s;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.task:hover{
+  transform: scale(1.1);
+  background-color: #f44336;
+  box-shadow: 0px 0px 8px #f44336;
+}

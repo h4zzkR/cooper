@@ -1,11 +1,29 @@
+<style>
+
+    button::-moz-focus-inner {
+  border: 0;
+}
+
+:focus {outline:none !important;}
+
+</style>
+
 <div class="wrapper">
   <div class="sidebar">
     <ul class="nav">
-      <li><a>Профиль</a></li>
-      <li><a {% if pagename == 'hab' %}class="active"{% endif %}>Хаб</a></li>
-      <li><a {% if pagename == 'make_task' %}class="active"{% endif %}>Создать таск</a></li>
-      <li><a {% if pagename == 'tasks' %}class="active"{% endif %}>Мои таски</a></li>
+      <li><a>{{ user }}</a></li>
+      <li><a {% if pagename == 'hab' %}class="active"{% endif %} href="/">Хаб</a></li>
+      <li><a {% if pagename == 'make_task' %}class="active"{% endif %} href="/add_task">Создать таск</a></li>
+      <li><a {% if pagename == 'tasks' %}class="active"{% endif %} href="/tasks">Мои таски</a></li>
       <li><a {% if pagename == 'settings' %}class="active"{% endif %}>Настройки</a></li>
-      <li><a class="logout">Выйти</a></li>
+      <li><a class="logout" href="u/logout/">Выйти</a></li>
     </ul>
   </div>
+  <div class="content isOpen">
+          <a class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <line x1="0" y1="20" x2="100" y2="20" />
+        <line x1="0" y1="50" x2="100" y2="50" />
+        <line x1="0" y1="80" x2="100" y2="80" />
+      </svg>
+    </a>

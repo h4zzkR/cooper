@@ -17,6 +17,7 @@ import os
 
 def get_context(request, pagename):
     return {
+        'avatar': request.user.userprofile.avatar,
         'pagename': pagename,
         'loginform': LoginForm(),
         'user': request.user,
@@ -94,5 +95,5 @@ def my_tasks(request):
     return render(request, 'tasks.html', {'tasks': tasks})
 
 def sandbox(request):
-    photo = request.user.userprofile.avatar
-    return render(request, 'sandbox.html', {'photo': photo})
+    context = get_context(request, 'hab')
+    return render(request, 'sandbox.html', context)

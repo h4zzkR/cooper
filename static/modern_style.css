@@ -89,9 +89,13 @@ h1 {
   box-shadow: 0px 0px 8px rgba(0,0,0,.1);
 }
 
+.nav li a.logout{
+  margin-top: 450px;
+}
+
 .nav li a.logout:hover {
-  background-color: #751389;
-    box-shadow: 0px 0px 8px #751390;
+  background-color: #f44336;
+    box-shadow: 0px 0px 8px #f44336;
 }
 
 .nav li a.active {

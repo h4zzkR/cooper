@@ -1,13 +1,11 @@
 <div class="wrapper">
   <div class="sidebar">
     <ul class="nav">
-      <li><a>Dashboard</a></li>
-      <li><a>Charts</a></li>
-      <li><a class="active">Milestones</a></li>
-      <li><a>Lab</a></li>
-      <li><a>Preview</a></li>
-      <li><a>Assets</a></li>
-      <li><a>Settings</a></li>
-      <li><a class="logout">Logout</a></li>
+      <li><a>Профиль</a></li>
+      <li><a {% if pagename == 'hab' %}class="active"{% endif %}>Хаб</a></li>
+      <li><a {% if pagename == 'make_task' %}class="active"{% endif %}>Создать таск</a></li>
+      <li><a {% if pagename == 'tasks' %}class="active"{% endif %}>Мои таски</a></li>
+      <li><a {% if pagename == 'settings' %}class="active"{% endif %}>Настройки</a></li>
+      <li><a class="logout">Выйти</a></li>
     </ul>
   </div>

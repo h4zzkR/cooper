@@ -25,7 +25,6 @@ class LoginForm(forms.Form):
         )
     )
 
-
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
@@ -40,4 +39,21 @@ class RegistrationForm(forms.ModelForm):
 class MakeTask(forms.ModelForm):
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = [field.name for field in model._meta.fields if field.name]
+        fields.remove('creation_date')
+        fields.append('author')
+
+
+class AddTaskForm(forms.Form):
+    idea = forms.CharField(
+        # label='Название',
+        # max_length=200,
+        # widget=forms.TextInput()
+    )
+
+    body = forms.CharField(
+        label='Опишите вашу идею здесь',
+        max_length=10000,
+        widget=forms.Textarea(
+        )
+    )

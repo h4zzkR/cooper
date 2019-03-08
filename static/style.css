@@ -296,6 +296,13 @@ ol {
 	z-index: 10;
 }
 
+.pages .menu-bar{;
+	background-color: transparent;
+	padding-top: 3px;
+	width: 90%;
+	/*margin-left: 50px;*/
+}
+
 .user-panel a {
 	color: #fff;
 }

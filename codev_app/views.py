@@ -8,10 +8,16 @@ from codev_app.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from codev_app.models import *
+import datetime
+import modules.avatars as avatars
+import modules.stuff as stuff
+from django.core.files import File
+import os
 
 
 def get_context(request, pagename):
     return {
+        'avatar': request.user.userprofile.avatar,
         'pagename': pagename,
         'loginform': LoginForm(),
         'user': request.user,
@@ -22,6 +28,8 @@ def get_context(request, pagename):
 def index(request):
     return render(request, 'index.html')
 
+def get_avatar(hash):
+    avatars.Identicon(hash).generate()
 
 def login_page(request):
     return render(request, 'login_page.html', get_context(request, 'login page'))
@@ -51,24 +59,41 @@ def register(request):
         mail = request.POST.get('mail')
         password = request.POST.get('password')
         user = User.objects.create_user(name, mail, password)
-        user.save()
+        #return random avatar from hash
+        get_avatar(stuff.avatar_generator())
+        r = open('media/tmp.png', 'rb')
+        avatar = File(r)
+        user.userprofile.avatar.save(name + '_avatar.png', avatar)
+        r.close(); os.remove('media/tmp.png')
     return redirect("/")
 
-def test_corner(request):
-    # if request.method == "POST":
-    #TODO заприватьте это, нужны права юзеров
-    # else:
-    #     return Http404
+def add_task(request):
+    username = request.user.username
+
     if request.method == "POST":
-        form = MakeTask(request.POST, request.FILES)
-        form.author = request.user.username
+        form = AddTaskForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            task = Task(
+            idea = form.data['idea'],
+            body = form.data['body'],
+            creation_date = datetime.datetime.now(),
+            author = request.user
+            )
+
+            print(form)
+            task.save()
+        else:
+            messages.add_message(request, messages.ERROR, "Некорректные данные в форме")
+            return redirect('add_task')
     else:
-        form = MakeTask()
-    return render(request, 'test_corner.html', {'form': form})
+        form = AddTaskForm()
+    return render(request, 'add_task.html', {'form': form})
 
 
 def my_tasks(request):
     tasks = Task.objects.filter(author=request.user)
     return render(request, 'tasks.html', {'tasks': tasks})
+
+def sandbox(request):
+    context = get_context(request, 'hab')
+    return render(request, 'sandbox.html', context)

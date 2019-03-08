@@ -11,6 +11,7 @@
 <div class="wrapper">
   <div class="sidebar">
     <ul class="nav">
+      <li><img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}"></li>
       <li><a>{{ user }}</a></li>
       <li><a {% if pagename == 'hab' %}class="active"{% endif %} href="/">Хаб</a></li>
       <li><a {% if pagename == 'make_task' %}class="active"{% endif %} href="/add_task">Создать таск</a></li>

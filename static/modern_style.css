@@ -1,0 +1,116 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  	height: 100%;
+    width: 100%;
+	font-family: 'Montserrat', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	background-color: #2a313d;
+}
+
+body {
+  font: 500 .9rem/1 'Avenir Next', sans-serif;
+  color: #333;
+  background: rgb(45,48,58);
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100%;
+  background-color: #181919;
+}
+
+.sidebar {
+  position: absolute;
+  width: 220px;
+  padding: 20px;
+}
+
+.content {
+  flex: 1;
+  padding: 50px;
+  background: #d9d9db;
+  /*background: #2e3030;*/
+  box-shadow: 0 0 5px #000;
+  transform: translateX(0);
+  transition: transform .3s;
+}
+
+.content.isOpen {
+  transform: translateX(220px);
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button svg {
+  width: 40px;
+}
+
+.button line {
+  stroke: black;
+  stroke-width: 5;
+}
+
+h1 {
+  margin-top: 25px;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.nav {
+  list-style: none;
+}
+
+.nav li a {
+  position: relative;
+  display: block;
+  margin-bottom: 5px;
+  padding: 16px 0 16px 50px;
+  color: #fff;
+  border-radius: 4px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+.nav li a:hover{
+  background: #0e0f0f;
+  box-shadow: 0px 0px 8px rgba(0,0,0,.1);
+}
+
+.nav li a.logout:hover {
+  background-color: #751389;
+    box-shadow: 0px 0px 8px #751390;
+}
+
+.nav li a.active {
+    background-color: #751389;
+    box-shadow: 0px 0px 8px #751390;
+}
+
+.nav li a::before {
+  font: 14px fontawesome;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+.nav li:nth-child(1) a::before { content: '\f00a'; }
+.nav li:nth-child(2) a::before { content: '\f012'; }
+.nav li:nth-child(3) a::before { content: '\f0e8'; }
+.nav li:nth-child(4) a::before { content: '\f0c3'; }
+.nav li:nth-child(5) a::before { content: '\f022'; }
+.nav li:nth-child(6) a::before { content: '\f115'; }
+.nav li:nth-child(7) a::before { content: '\f085'; }
+.nav li:nth-child(8) a::before { content: '\f023'; left: 23px; } 

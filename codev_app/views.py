@@ -9,6 +9,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from codev_app.models import *
 import datetime
+import modules.avatars as avatars
+import modules.stuff as stuff
+from django.core.files import File
+import os
 
 
 def get_context(request, pagename):
@@ -23,6 +27,8 @@ def get_context(request, pagename):
 def index(request):
     return render(request, 'index.html')
 
+def get_avatar(hash):
+    avatars.Identicon(hash).generate()
 
 def login_page(request):
     return render(request, 'login_page.html', get_context(request, 'login page'))
@@ -52,11 +58,15 @@ def register(request):
         mail = request.POST.get('mail')
         password = request.POST.get('password')
         user = User.objects.create_user(name, mail, password)
-        user.save()
+        #return random avatar from hash
+        get_avatar(stuff.avatar_generator())
+        r = open('media/tmp.png', 'rb')
+        avatar = File(r)
+        user.userprofile.avatar.save(name + '_avatar.png', avatar)
+        r.close(); os.remove('media/tmp.png')
     return redirect("/")
 
 def add_task(request):
-
     username = request.user.username
 
     if request.method == "POST":
@@ -82,3 +92,7 @@ def add_task(request):
 def my_tasks(request):
     tasks = Task.objects.filter(author=request.user)
     return render(request, 'tasks.html', {'tasks': tasks})
+
+def sandbox(request):
+    photo = request.user.userprofile.avatar
+    return render(request, 'sandbox.html', {'photo': photo})

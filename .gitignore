@@ -1,2 +1,26 @@
 .idea
 .directory
+        codev_app/__pycache__/__init__.cpython-36.pyc
+        codev_app/__pycache__/admin.cpython-36.pyc
+        codev_app/__pycache__/apps.cpython-36.pyc
+        codev_app/__pycache__/forms.cpython-36.pyc
+        codev_app/__pycache__/models.cpython-36.pyc
+        codev_app/__pycache__/views.cpython-36.pyc
+        codev_app/migrations/__pycache__/0001_initial.cpython-36.pyc
+        codev_app/migrations/__pycache__/0002_auto_20190224_2130.cpython-36.pyc
+        codev_app/migrations/__pycache__/0003_remove_task_creation_date.cpython-36.pyc
+        codev_app/migrations/__pycache__/0004_auto_20190303_1645.cpython-36.pyc
+        codev_app/migrations/__pycache__/0005_task_creation_date.cpython-36.pyc
+        codev_app/migrations/__pycache__/0006_auto_20190303_1934.cpython-36.pyc
+        codev_app/migrations/__pycache__/0007_auto_20190303_2033.cpython-36.pyc
+        codev_app/migrations/__pycache__/0008_userprofile.cpython-36.pyc
+        codev_app/migrations/__pycache__/0009_auto_20190308_1815.cpython-36.pyc
+        codev_app/migrations/__pycache__/0010_auto_20190308_1850.cpython-36.pyc
+        codev_app/migrations/__pycache__/0011_auto_20190310_1609.cpython-36.pyc
+        codev_app/migrations/__pycache__/__init__.cpython-36.pyc
+        cooper/__pycache__/__init__.cpython-36.pyc
+        cooper/__pycache__/settings.cpython-36.pyc
+        cooper/__pycache__/urls.cpython-36.pyc
+        cooper/__pycache__/wsgi.cpython-36.pyc
+        modules/__pycache__/avatars.cpython-36.pyc
+        modules/__pycache__/stuff.cpython-36.pyc

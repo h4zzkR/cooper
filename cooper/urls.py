@@ -27,6 +27,7 @@ urlpatterns = [
     path('u/logout/', logout),
     path('tasks', my_tasks),
     path('add_task', add_task),
+    path('remove/<int:id>', delete_task),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

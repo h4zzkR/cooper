@@ -13,10 +13,11 @@
 
 {% if user.is_authenticated %}
     <div>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ profile_edit_form.as_p }}
-                <button type="submit">Save</button>
+            <form method="post">
+              {% csrf_token %}
+              {{ user_form.as_p }}
+              {{ profile_form.as_p }}
+              <button type="submit">Сохранить изменения</button>
             </form>
         </div>
 

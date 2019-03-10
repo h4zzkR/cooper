@@ -1,38 +1,32 @@
-from django.contrib.auth.models import User
 from django.db import models
-import django.utils.timezone as time
+from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
 
 
-class UserProfile(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
     avatar = models.ImageField(upload_to='users')
 
 
-"""
-Sync extended UserProfile with django's User
-"""
-
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
+    instance.profile.save()
 
 
 class Task(models.Model):
     idea = models.CharField(max_length=200)
     body = models.TextField(max_length=10000)
-    creation_date = models.DateTimeField(default=time.now)
+    creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)
 
 

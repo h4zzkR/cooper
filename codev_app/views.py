@@ -24,7 +24,7 @@ def get_context(request, pagename):
         'registerform': RegistrationForm(request.POST)
     }
     if request.user.is_authenticated:
-        context.update({'avatar': request.user.userprofile.avatar})
+        context.update({'avatar': request.user.profile.avatar})
 
     return context
 
@@ -122,17 +122,21 @@ def profile(request, user):
 
 def profile_edit(request, user):
     if request.method == 'POST':
-        userr = User.objects.get(username='abcd')
-        form = ProfileEditForm(request.POST, instance=userr)
-        if form.is_valid():
-            form.save()
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(user_form.is_valid(), profile_form.is_valid())
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             return redirect('/profile/'+user)
-        return redirect('/profile/' + user)
+        else:
+            raise Http404
     else:
         if user == request.user.username:
             context = get_context(request, 'profile_edit')
-            form = ProfileEditForm()
-            context.update({'profile_edit_form': form})
+            form = ProfileForm()
+            form1 = UserForm()
+            context.update({'profile_form': form, 'user_form': form1})
             return render(request, 'profile_edit.html', context)
         else:
             raise PermissionDenied

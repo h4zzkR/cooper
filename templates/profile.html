@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ user_profile }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+</head>
+
+<body>
+{% include 'patterns/modern_menu.html' %}
+{#{% include 'patterns/header.html' %}#}
+{#{% include 'patterns/menu.html' %}#}
+
+{% if user == user_profile %}
+    <h1>Это ваш профайл</h1>
+    <br>
+
+{% else %}
+    <h1>Это профайл юзера {{ user_profile }}</h1>
+    <br>
+{% endif %}
+
+<h2>Avatar:</h2> <img src="{{ MEDIA_URL }}users/{{ user_profile }}_avatar.png">
+<br>
+<br>
+<h2>Bio:</h2> <h3>{{ user.profile.bio }}</h3>
+<br>
+<br>
+
+{% if user == user_profile %}
+    <a href="{{ user }}/edit" class="button">Редактировать профиль</a>
+{% endif %}
+
+{% include 'patterns/modern_footer.html' %}
+</body>
+</html>

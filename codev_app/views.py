@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from codev_app.forms import *
@@ -23,7 +24,7 @@ def get_context(request, pagename):
         'registerform': RegistrationForm(request.POST)
     }
     if request.user.is_authenticated:
-        context.update({'avatar': request.user.userprofile.avatar})
+        context.update({'avatar': request.user.profile.avatar})
 
     return context
 
@@ -35,8 +36,10 @@ def index(request):
     else:
         return render(request, 'index.html')
 
+
 def get_avatar(hash):
     avatars.Identicon(hash).generate()
+
 
 def login_page(request):
     return render(request, 'login_page.html', get_context(request, 'login page'))
@@ -55,10 +58,12 @@ def login(request):
         # Отображение страницы с ошибкой
         return Http404
 
+
 def logout(request):
     auth.logout(request)
     # Перенаправление на страницу.
     return redirect("/")
+
 
 def register(request):
     if request.method == "POST":
@@ -73,6 +78,7 @@ def register(request):
         user.userprofile.avatar.save(name + '_avatar.png', avatar)
         r.close(); os.remove('media/tmp.png')
     return redirect("/")
+
 
 def add_task(request):
     username = request.user.username
@@ -97,6 +103,7 @@ def add_task(request):
 
 def my_tasks(request):
     context = get_context(request, 'tasks')
+<<<<<<< HEAD
     context.update({'tasks' : Task.objects.filter(author=request.user)})
     return render(request, 'tasks.html', context)
 
@@ -104,3 +111,40 @@ def delete_task(request, id):
     #<li class="pokes">{{ p.name }} <a href="/remove/{{ p.id }}">*</a> </li>
     Task.objects.filter(id=id).delete()
     return HttpResponseRedirect("/tasks")
+=======
+    context.update({'tasks': Task.objects.filter(author=request.user)})
+    return render(request, 'tasks.html', context)
+
+
+def profile(request, user):
+    context = get_context(request, 'profile')
+    try:
+        context.update({'user_profile': User.objects.get(username=user)})
+        if context['user_profile'] != request.user:
+            context.update({'pagename': 'other_profile'})
+    except:
+        raise Http404
+    return render(request, 'profile.html', context)
+
+
+def profile_edit(request, user):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(user_form.is_valid(), profile_form.is_valid())
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('/profile/'+user)
+        else:
+            raise Http404
+    else:
+        if user == request.user.username:
+            context = get_context(request, 'profile_edit')
+            form = ProfileForm()
+            form1 = UserForm()
+            context.update({'profile_form': form, 'user_form': form1})
+            return render(request, 'profile_edit.html', context)
+        else:
+            raise PermissionDenied
+>>>>>>> profile

@@ -25,6 +25,7 @@ class LoginForm(forms.Form):
         )
     )
 
+
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
@@ -57,3 +58,15 @@ class AddTaskForm(forms.Form):
         widget=forms.Textarea(
         )
     )
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'location')

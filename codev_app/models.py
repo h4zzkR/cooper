@@ -3,16 +3,14 @@ from django.db import models
 import django.utils.timezone as time
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .managers import PersonManager
 import datetime
 
 
-class Person(User):
-    objects = PersonManager()
-
-    class Meta:
-        proxy = True
-        ordering = ('first_name', )
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    location = models.CharField(max_length=30, blank=True)
+    avatar = models.ImageField(upload_to='users')
 
 
 """

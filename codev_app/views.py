@@ -76,7 +76,7 @@ def register(request):
 
 def add_task(request):
     username = request.user.username
-
+    context = get_context(request, 'make_task')
     if request.method == "POST":
         form = AddTaskForm(request.POST, request.FILES)
         if form.is_valid():
@@ -86,8 +86,6 @@ def add_task(request):
             creation_date = datetime.datetime.now(),
             author = request.user
             )
-
-            print(form)
             task.save()
         else:
             return redirect('add_task')

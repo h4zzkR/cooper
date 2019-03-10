@@ -103,7 +103,6 @@ def add_task(request):
 
 def my_tasks(request):
     context = get_context(request, 'tasks')
-<<<<<<< HEAD
     context.update({'tasks' : Task.objects.filter(author=request.user)})
     return render(request, 'tasks.html', context)
 
@@ -111,7 +110,6 @@ def delete_task(request, id):
     #<li class="pokes">{{ p.name }} <a href="/remove/{{ p.id }}">*</a> </li>
     Task.objects.filter(id=id).delete()
     return HttpResponseRedirect("/tasks")
-=======
     context.update({'tasks': Task.objects.filter(author=request.user)})
     return render(request, 'tasks.html', context)
 
@@ -147,4 +145,3 @@ def profile_edit(request, user):
             return render(request, 'profile_edit.html', context)
         else:
             raise PermissionDenied
->>>>>>> profile

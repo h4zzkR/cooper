@@ -75,7 +75,7 @@ def register(request):
         get_avatar(stuff.avatar_generator())
         r = open('media/tmp.png', 'rb')
         avatar = File(r)
-        user.userprofile.avatar.save(name + '_avatar.png', avatar)
+        user.profile.avatar.save(name + '_avatar.png', avatar)
         r.close(); os.remove('media/tmp.png')
     return redirect("/")
 

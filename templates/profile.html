@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ user_profile }}</title>
+    <title>Профиль</title>
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
 </head>
 
@@ -12,23 +12,24 @@
 {#{% include 'patterns/menu.html' %}#}
 
 {% if user == user_profile %}
-    <h1>Это ваш профайл</h1>
+    <h1 style="margin-bottom: 1%;">Привет, {{ user }}!</h1>
     <br>
 
 {% else %}
-    <h1>Это профайл юзера {{ user_profile }}</h1>
+    <h1>Это профиль юзера {{ user_profile }}</h1>
     <br>
 {% endif %}
-
-<h2>Avatar:</h2> <img src="{{ MEDIA_URL }}users/{{ user_profile }}_avatar.png">
 <br>
-<br>
-<h2>Bio:</h2> <h3>{{ user.profile.bio }}</h3>
+<img src="{{ MEDIA_URL }}users/{{ user_profile }}_avatar.png" width="150" style="border-radius: 14px; position: absolute;">
+<p class="first_name" style="position: relative;">{{ user.first_name }} {{ user.last_name }}</p>
+<p class="email" style="position: relative;">{{ user.email }}</p>
+<p class="location-h">Местоположение: </p><p class="location" style="position: relative;">{{ user.profile.location }}</p>
+<p class="bio-h">О пользователе:</p> <p class="bio">{{ user.profile.bio }}</p>
 <br>
 <br>
 
 {% if user == user_profile %}
-    <a href="{{ user }}/edit" class="button">Редактировать профиль</a>
+    <a href="{{ user }}/edit" class="task">Редактировать профиль</a>
 {% endif %}
 
 {% include 'patterns/modern_footer.html' %}

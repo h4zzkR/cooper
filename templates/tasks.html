@@ -14,11 +14,10 @@
 
 <ul class="tasks">
     {% for task in tasks %}
-          <button class="task">
-          <a href="/remove/{{ task.id }}"></a>
+          <a href="/remove/{{ task.id }}" style="width: 53em;"><div class="task">
           <h1>{{ task.idea }}</h1>
-          <a href="/remove/{{ task.id }}">{{task.body}}</a>
-           </button>
+          <p>{{task.body}}</p>
+           </div></a>
     {% endfor %}
 </ul>
 

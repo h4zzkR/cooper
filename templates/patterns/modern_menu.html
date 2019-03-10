@@ -11,7 +11,6 @@
 <div class="wrapper">
   <div class="sidebar">
     <ul class="nav">
-      {{ pagename }}
       <li><a href="/profile/{{ user }}"><img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}"></a></li>
       <li><a {% if pagename == 'profile' %}class="active"{% endif %}href = "/profile/{{ user }}"> {{ user }} </a></li>
       <li><a {% if pagename == 'hab' %}class="active"{% endif %} href="/">Хаб</a></li>

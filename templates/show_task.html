@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ task.idea }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+</head>
+
+<body>
+{% include 'patterns/modern_menu.html' %}
+{#{% include 'patterns/header.html' %}#}
+{#{% include 'patterns/menu.html' %}#}
+{##}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="Wrapper"><div class="input" style="margin-top: 2.5em; position: relative;">
+                     <input type="text" name="idea" id="input" class="input-text" value="{{ task.idea }}" placeholder="Название" style=" position: relative;">
+{#                    <span class="floating-label">Your email address</span>#}
+                </div></div>
+    <button type="submit" class="edit-button" style="position: inherit; margin-top: -4em; margin-left: 50em;">Удалить</button>
+    <div class="Wrapper"><div class="input" style="padding-top: 2em;">
+                     <textarea type="text" name="body" id="input" class="task-full" maxlength="10000"
+                               placeholder="Расскажите всем, что вы хотите сделать:"
+                               style="width: 70%; height: 40em; padding-top: 0.1em;">{{ task.body }}
+                     </textarea>
+    </div></div>
+    <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
+</form>
+
+{% include 'patterns/modern_footer.html' %}
+</html>

@@ -30,7 +30,8 @@ urlpatterns = [
     path('remove/<int:id>', delete_task),
     path('profile/<str:user>', profile),
     path('profile/<str:user>/edit', profile_edit),
-    path('u/new_user', new_user)
+    path('u/new_user', new_user),
+    path('task/<int:id>', show)
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

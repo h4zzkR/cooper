@@ -157,3 +157,21 @@ def profile_edit(request, user):
             return render(request, 'profile_edit.html', context)
         else:
             raise PermissionDenied
+
+def show(request, id):
+    """SHOW TASK"""
+    task = Task.objects.get(id=id)
+    context = get_context(request, 'show_task')
+    context.update({'task' : task})
+    username = request.user.username
+    if request.method == "POST":
+        if task.idea != request.POST.get('idea'):
+            task.idea = request.POST.get('idea')
+        task.body = request.POST.get('body')
+        task.creation_date = datetime.datetime.now()
+        task.author = request.user
+        task.save()
+    else:
+        context = get_context(request, 'show_task')
+        context.update({'task' : task})
+    return render(request, 'show_task.html', context)

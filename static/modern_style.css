@@ -162,7 +162,6 @@ h1 {
 .task {
   /*position:relative;*/
   width: 50em;
-  display: inline-block
   position: relative;
   min-height: 10em;
   text-align: center;
@@ -394,3 +393,46 @@ h1 {
     visibility 0ms,
     z-index 0ms;
 }
+
+/*TASKS*/
+
+.task-full h1{
+  margin-top: 1px;
+  margin-bottom: 0.5em;
+  font-size: 30px;
+  text-align-all: left;
+  float: left;
+}
+
+.task-full p{
+  margin-top: 3em;
+  padding-bottom: 0.5em;
+  text-align: left;
+  color: black;
+  overflow-wrap: break-spaces;
+}
+
+.task-full {
+  resize: none;
+  display: block;
+  margin: 0;
+  color: inherit;
+  width: 20%;
+  height: 1.3em;
+  font-family: inherit;
+  font-size: 1.5em;
+  padding: 1em;
+    padding-left: 0.5em;
+  font-weight: inherit;
+  line-height: var(--inputLineHeight);
+  border: none;
+  border-radius: 0.4rem;
+  transition: box-shadow var(--transitionDuration);
+    margin-bottom: 0.8em;
+}
+
+/*.task-full:hover{*/
+  /*transform: scale(1.1);*/
+  /*background-color: #f44336;*/
+  /*box-shadow: 0px 0px 8px #f44336;*/
+/*}*/

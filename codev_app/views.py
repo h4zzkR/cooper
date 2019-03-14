@@ -111,7 +111,10 @@ def add_task(request):
 
 def my_tasks(request):
     context = get_context(request, 'tasks')
-    context.update({'tasks' : Task.objects.filter(author=request.user)})
+    tasks = Task.objects.filter(author=request.user)
+    for t in  range(len(tasks)):
+        tasks[t].body = tasks[t].body[0:2000]
+    context.update({'tasks' : tasks})
     return render(request, 'tasks.html', context)
 
 def delete_task(request, id):

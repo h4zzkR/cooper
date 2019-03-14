@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ user_profile }}</title>
+    <title>{{ user.username }}</title>
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
 </head>
 
@@ -13,14 +13,48 @@
 
 {% if user.is_authenticated %}
     <div>
+    <br>
             <form method="post">
               {% csrf_token %}
-              {{ user_form.as_p }}
-              {{ profile_form.as_p }}
-              <button type="submit">Сохранить изменения</button>
+{#              <label for="id_first_name"></label>#}
+{#                <input class='bio_field' type="text" name="first_name" value="{{ user.first_name }}" required id="id_first_name" placeholder="Имя">#}
+{#              <label for="id_last_name"></label>#}
+{#                <input class='bio_field' type="text" name="last_name"#}
+{#                       value="{{ user.last_name }}" required id="id_last_name" placeholder="Фамилия">#}
+{#              <label for="id_email"></label>#}
+{#                <input class='bio_field' type="text" name="email" value="{{ user.email }}" required id="id_email" placeholder="Почта">#}
+{#               <br><label for="id_body"></label>#}
+{#               <textarea class='bio_text_field' name="bio" cols="40" rows="10" maxlength="10000" required id="id_bio"#}
+{#                           placeholder="Расскажите о себе">{{ user.profile.bio }}</textarea>#}
+{#               <label for="id_location"></label>#}
+{#                 <input class='bio_field' type="text" name="location"#}
+{#                        value="{{ user.profile.location }}" required id="id_location" placeholder="Ваша страна, город">#}
+                <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
+                     <input type="text" name="first_name" id="input"
+                            value="{{ user.first_name }}" class="input-text" placeholder="Имя" style=" position: relative;">
+{#                    <span class="floating-label">Your email address</span>#}
+                </div></div>
+                <img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}" style="position: absolute;
+                    margin-left: 25em; width: 10em; height: 10em; margin-top: -4.3em; display: flex;">
+                <div class="Wrapper"><div class="input">
+                     <input type="text" name="last_name" id="input"
+                            value="{{ user.last_name }}" class="input-text" placeholder="Фамилия">
+                </div>
+                <div class="Wrapper"><div class="input">
+                     <input type="text" name="email" id="input"
+                            value="{{ user.email }}" class="input-text" placeholder="Почта">
+                </div></div>
+                <div class="Wrapper"><div class="input">
+                     <textarea type="text" name="bio" id="input" class="input-text" placeholder="Расскажите о себе"
+                               style="width: 33.7%; height: 9em; padding-top: 0.1em;"></textarea>
+                </div></div>
+                 <div class="Wrapper"><div class="input">
+                     <input type="text" name="locationl" id="input"
+                            value="{{ user.profile.location }}" class="input-text" placeholder="Страна, Город">
+                </div></div>
+              <button type="submit" class="edit-button" style="margin-top: 2.5em;">Сохранить изменения</button>
             </form>
         </div>
-
 
 {% else %}
     <h1><a href = "/login">Пожалуйста, авторизуйтесь</a></h1>
@@ -29,4 +63,8 @@
 
 {% include 'patterns/modern_footer.html' %}
 </body>
+
+<style>
+</style>
+
 </html>

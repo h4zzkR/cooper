@@ -40,9 +40,9 @@ class RegistrationForm(forms.ModelForm):
 class MakeTask(forms.ModelForm):
     class Meta:
         model = Task
-        fields = [field.name for field in model._meta.fields if field.name]
-        fields.remove('creation_date')
-        fields.append('author')
+        fields = ['idea', 'body']
+        # fields.remove('creation_date')
+        # fields.append('author')
 
 
 class AddTaskForm(forms.Form):
@@ -55,8 +55,7 @@ class AddTaskForm(forms.Form):
     body = forms.CharField(
         label='Опишите вашу идею здесь',
         max_length=10000,
-        widget=forms.Textarea(
-        )
+        widget=forms.Textarea()
     )
 
 

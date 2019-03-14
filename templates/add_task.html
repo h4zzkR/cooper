@@ -13,10 +13,9 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="id_idea"></label>
-        <input type="text" name="idea" value="swd" required id="id_idea" placeholder="Название">
+        <input type="text" name="idea" required id="id_idea" placeholder="Название">
     <br><label for="id_body"></label>
-        <textarea name="body" cols="40" rows="10" maxlength="10000" required id="id_body" placeholder="Что вы хотите сделать?">
-        </textarea>
+        <textarea name="body" cols="40" rows="10" maxlength="10000" required id="id_body" placeholder="Что вы хотите сделать?"></textarea>
     <button type="submit">Сохранить</button>
 </form>
 

@@ -30,12 +30,17 @@
 {#                 <input class='bio_field' type="text" name="location"#}
 {#                        value="{{ user.profile.location }}" required id="id_location" placeholder="Ваша страна, город">#}
                 <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
+                     <input type="text" name="username" id="input"
+                            value="{{ user.username }}" class="input-text" placeholder="Ник" style=" position: relative;">
+{#                    <span class="floating-label">Your email address</span>#}
+                </div></div>
+                <div class="Wrapper"><div class="input">
                      <input type="text" name="first_name" id="input"
                             value="{{ user.first_name }}" class="input-text" placeholder="Имя" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
                 <img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}" style="position: absolute;
-                    margin-left: 25em; width: 10em; height: 10em; margin-top: -4.3em; display: flex;">
+                    margin-left: 25em; width: 10em; height: 10em; margin-top: -8.5em; display: flex;">
                 <div class="Wrapper"><div class="input">
                      <input type="text" name="last_name" id="input"
                             value="{{ user.last_name }}" class="input-text" placeholder="Фамилия">
@@ -46,10 +51,10 @@
                 </div></div>
                 <div class="Wrapper"><div class="input">
                      <textarea type="text" name="bio" id="input" class="input-text" placeholder="Расскажите о себе"
-                               style="width: 33.7%; height: 9em; padding-top: 0.1em;"></textarea>
+                               style="width: 33.7%; height: 9em; padding-top: 0.1em;">{{ user.profile.bio }}</textarea>
                 </div></div>
                  <div class="Wrapper"><div class="input">
-                     <input type="text" name="locationl" id="input"
+                     <input type="text" name="location" id="input"
                             value="{{ user.profile.location }}" class="input-text" placeholder="Страна, Город">
                 </div></div>
               <button type="submit" class="edit-button" style="margin-top: 2.5em;">Сохранить изменения</button>

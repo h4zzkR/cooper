@@ -30,11 +30,11 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password', 'email')
-        widgets = {
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),
-            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль'}),
-        }
+        # widgets = {
+        #     'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+        #     'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),
+        #     'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль'}),
+        # }
 
 
 class MakeTask(forms.ModelForm):
@@ -62,7 +62,7 @@ class AddTaskForm(forms.Form):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('username', 'first_name', 'last_name', 'email')
 
 
 class ProfileForm(forms.ModelForm):

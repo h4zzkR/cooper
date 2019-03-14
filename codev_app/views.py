@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect, HttpResponseForbidden
 from django.core.exceptions import PermissionDenied
@@ -13,6 +13,7 @@ import datetime
 import modules.avatars as avatars
 import modules.stuff as stuff
 from django.core.files import File
+from django.contrib.auth import login as auth_login
 import os
 
 
@@ -66,19 +67,26 @@ def logout(request):
 
 
 def register(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         name = request.POST.get('username')
-        mail = request.POST.get('mail')
+        mail = request.POST.get('email')
         password = request.POST.get('password')
         user = User.objects.create_user(name, mail, password)
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.save()
         #return random avatar from hash
         get_avatar(stuff.avatar_generator())
         r = open('media/tmp.png', 'rb')
         avatar = File(r)
-        user.profile.avatar.save(name + '_avatar.png', avatar)
+        user.profile.avatar.save(str(user.id) + '_avatar.png', avatar)
+        print(user.first_name)
+        auth_login(request, user)
         r.close(); os.remove('media/tmp.png')
     return redirect("/")
 
+def new_user(request):
+    return render(request, 'register.html', get_context(request, 'register_page'))
 
 def add_task(request):
     username = request.user.username
@@ -115,6 +123,7 @@ def delete_task(request, id):
 
 
 def profile(request, user):
+    print(request.user.email)
     context = get_context(request, 'profile')
     try:
         context.update({'user_profile': User.objects.get(username=user)})
@@ -133,7 +142,7 @@ def profile_edit(request, user):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('/profile/'+user)
+            return redirect('/profile/'+user_form.data['username'])
         else:
             raise Http404
     else:

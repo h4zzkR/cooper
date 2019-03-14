@@ -6,30 +6,35 @@
 
 <style>
     .formm {
-        margin-left: 5%;
+        position: relative;
+        display: block;
+        width: 30em;
+        margin-left: 45%;
         margin-top: 7%;
         z-index: 99;
     }
 
-</style>
+    body{
+        height: 50%;
+        width: 100%;
+    }
 
+</style>
 <body>
         <div class="formm">
-            <form action="/u/login/" method="post">
+            <form action="/u/login/" method="post" style="margin: auto; position: relative;">
                 {% csrf_token %}
-                {% for field in loginform.visible_fields %}
-                    <div class="form-group form-inline">{{ field }}</div>
-                {% endfor %}
-                <button type="submit" class="btn btn-primary">Войти</button>
+                <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
+                     <input type="text" name="username" autocomplete="off" id="input" class="input-text"
+                            placeholder="Ник" style=" position: relative;">
+                </div></div>
+                <div class="Wrapper"><div class="input">
+                     <input type="password" name="password" autocomplete="off" id="input"
+                            class="input-text" placeholder="Пароль" style=" position: relative;">
+{#                    <span class="floating-label">Your email address</span>#}
+                </div></div>
+                <button type="submit" class="edit-button">Войти</button>
             </form>
-        </div>
-        <div class="formm">
-            <form action="/u/register/" method="post">
-                {% csrf_token %}
-                {% for field in registerform.visible_fields %}
-                    <div class="form-group form-inline">{{ field }}</div>
-                {% endfor %}
-                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-            </form>
+                <a href="/u/new_user"><button type="submit" class="signup-button">Зарегестрироваться</button></a>
         </div>
 </body>

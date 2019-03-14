@@ -1208,3 +1208,113 @@ ol {
 		right: 20px;
 	}
 }
+
+
+.edit-button{
+  /*position:relative;*/
+  width: 13.5em;
+  display: inline-block;
+    text-align: center;
+	background: #df313c;
+	color: #fff;
+    margin-right: 100px;
+	font-family: inherit;
+  	font-size: 1em;
+  	font-weight: inherit;
+	line-height: var(--inputLineHeight);
+	padding: 12px 19px;
+	/*line-height: 1;*/
+    border-color: transparent;
+	border-radius: 14px;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.5s;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  z-index: 50;
+}
+
+.edit-button:hover{
+  transform: scale(1.03);
+  background-color: #f44336;
+  box-shadow: 0px 0px 8px #f44336;
+}
+
+.signup-button{
+  /*position:relative;*/
+  width: 13.5em;
+  display: inline-block;
+    text-align: center;
+	background: #28a745;
+	margin-top: 2em;
+	color: #fff;
+    margin-right: 100px;
+	font-family: inherit;
+  	font-size: 1em;
+  	font-weight: inherit;
+	line-height: var(--inputLineHeight);
+	padding: 6px 13px;
+	/*line-height: 1;*/
+    border-color: transparent;
+	border-radius: 14px;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.5s;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  z-index: 50;
+}
+
+.signup-button:hover{
+  transform: scale(1.03);
+  box-shadow: 0px 0px 8px #28a745;
+}
+
+/*FORM FIELDS*/
+
+
+.Wrapper {
+  /*flex: 0 0 80%;*/
+  max-width: 100%;
+}
+
+.input_field{
+  /*position: relative;*/
+}
+
+.input-text{
+  resize: none;
+  /*display: block;*/
+  margin: 0;
+  color: black;
+  width: 9em;
+  height: 1.3em;
+  font-family: inherit;
+  font-size: 1.5em;
+  padding: 1em;
+  padding-left: 0.5em;
+  font-weight: inherit;
+  line-height: var(--inputLineHeight);
+  border: none;
+  border-radius: 0.4rem;
+  transition: box-shadow var(--transitionDuration);
+  margin-bottom: 0.5em;
+}
+
+.input-text::placeholder {
+    display: none;
+    margin-right: 300px;
+  color: #B0BEC5;
+}
+
+.input-text:not(:placeholder-shown) + .input-label,
+.input-text:focus:not(:placeholder-shown) + .input-label {
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
+  transform:
+    translate3d(0, var(--labelTransformedPosY), 0)
+    scale(var(--labelScaleFactor));
+  transition:
+    transform var(--inputTransitionDuration),
+    visibility 0ms,
+    z-index 0ms;
+}

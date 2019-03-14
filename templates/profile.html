@@ -20,9 +20,9 @@
     <br>
 {% endif %}
 <br>
-<img src="{{ MEDIA_URL }}users/{{ user_profile }}_avatar.png" width="150" style="border-radius: 14px; position: absolute;">
+<img src="{{ MEDIA_URL }}{{ avatar }}" width="150" style="border-radius: 14px; position: absolute;">
 <p class="first_name" style="position: relative;">{{ user.first_name }} {{ user.last_name }}</p>
-<p class="email" style="position: relative;">{{ user.email }}</p>
+<p class="email" style="position: relative;">{{ user_profile.email }}</p>
 <p class="location-h">Местоположение: </p><p class="location" style="position: relative;">{{ user.profile.location }}</p>
 <p class="bio-h">О пользователе:</p> <p class="bio">{{ user.profile.bio }}</p>
 <br>

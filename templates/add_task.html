@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Hab</title>
+    <title>Добавить задачу</title>
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
 </head>
 
@@ -12,11 +12,16 @@
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <label for="id_idea"></label>
-        <input type="text" name="idea" required id="id_idea" placeholder="Название">
-    <br><label for="id_body"></label>
-        <textarea name="body" cols="40" rows="10" maxlength="10000" required id="id_body" placeholder="Что вы хотите сделать?"></textarea>
-    <button type="submit">Сохранить</button>
+   <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
+                     <input type="text" name="idea" id="input" class="input-text" placeholder="Название" style=" position: relative;">
+{#                    <span class="floating-label">Your email address</span>#}
+                </div></div>
+    <div class="Wrapper"><div class="input">
+                     <textarea type="text" name="body" id="input" class="input-text" maxlength="10000"
+                               placeholder="Расскажите всем, что вы хотите сделать:"
+                               style="width: 70%; height: 40em; padding-top: 0.1em;"></textarea>
+                </div></div>
+    <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
 </form>
 
 {% include 'patterns/modern_footer.html' %}

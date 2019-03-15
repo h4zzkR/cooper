@@ -17,7 +17,10 @@
                      <input type="text" name="idea" id="input" class="input-text" value="{{ task.idea }}" placeholder="Название" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
-    <button type="submit" class="edit-button" style="position: inherit; margin-top: -4em; margin-left: 50em;">Удалить</button>
+    <a href="/remove/{{ task.id }}">
+        <div class="edit-button" style="position: inherit; width:10em; margin-top: -5em; margin-left: 50em;">
+            Удалить</div>
+        </a>
     <div class="Wrapper"><div class="input" style="padding-top: 2em;">
                      <textarea type="text" name="body" id="input" class="task-full" maxlength="10000"
                                placeholder="Расскажите всем, что вы хотите сделать:"

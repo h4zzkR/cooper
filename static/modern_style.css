@@ -98,7 +98,7 @@ h1 {
 .nav li a.logout{
 padding: 16px 65px 16px 65px;
 position: absolute;
-bottom:   5px;
+bottom:   1.4em;
 }
 
 .nav li a.logout:hover {

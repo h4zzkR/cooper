@@ -7,6 +7,7 @@ import os
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
@@ -37,9 +38,10 @@ def get_context(request, pagename):
 
     return context
 
-def hub(request):
-    # context = Task.objects.all()
+def hab(request):
+    tasks = Task.objects.filter(~Q(author = request.user))
     context = get_context(request, 'hab')
+    context.update({'tasks': tasks})
     return context
 
 def index(request):
@@ -49,7 +51,8 @@ def index(request):
     :return:
     """
     if request.user.is_authenticated:
-        context = hub(request)
+        context = hab(request)
+        print(context['tasks'][0])
         return render(request, 'hab.html', context)
     return render(request, 'index.html')
 

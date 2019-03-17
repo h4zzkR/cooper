@@ -14,7 +14,7 @@
 {% if user.is_authenticated %}
     <div>
     <br>
-            <form method="post">
+            <form method="post" enctype='multipart/form-data'>
               {% csrf_token %}
 {#              <label for="id_first_name"></label>#}
 {#                <input class='bio_field' type="text" name="first_name" value="{{ user.first_name }}" required id="id_first_name" placeholder="Имя">#}
@@ -57,6 +57,8 @@
                      <input type="text" name="location" id="input"
                             value="{{ user.profile.location }}" class="input-text" placeholder="Страна, Город">
                 </div></div>
+
+               {{ profile_form.avatar }}
               <button type="submit" class="edit-button" style="margin-top: 2.5em;">Сохранить изменения</button>
             </form>
         </div>

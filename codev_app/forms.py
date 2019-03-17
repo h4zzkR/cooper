@@ -1,6 +1,10 @@
 from django import forms
 from .models import User
+from django.conf import settings
+from django.core.files import File
 from codev_app.models import *
+import modules.stuff as stuff
+import os
 
 
 class LoginForm(forms.Form):
@@ -59,20 +63,25 @@ class AddTaskForm(forms.Form):
     )
 
 
-class UserForm(forms.ModelForm):
+class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
 
 
-class ProfileForm(forms.ModelForm):
+class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'location')
+        fields = ('bio', 'location', 'avatar')
 
-
-class EditForm(forms.Form):
-    class Meta:
-        model = Profile
-        fields = '__all__'
-
+    def save_avatar(self, request):
+        user = User.objects.get(username=request.user.username)
+        image =  self.cleaned_data['avatar']
+        stuff.image_preproc(image)
+        r = open('media/tmp.png', 'rb')
+        avatar = File(r)
+        path = settings.MEDIA_ROOT + '/users/'
+        os.system('rm -rf {}'.format(path + str(user.id) + '_avatar.png'))
+        user.profile.avatar.save(str(user.id) + '_avatar.png', avatar)
+        user.profile.save()
+        os.system('rm -rf {}tmp.img'.format(settings.MEDIA_ROOT))

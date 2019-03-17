@@ -230,32 +230,25 @@ def profile_edit(request, user):
     :param user:
     :return:
     """
+    context = get_context(request, 'profile_edit')
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = ProfileEditForm(request.POST,  request.FILES, instance=request.user.profile)
         print(user_form.is_valid(), profile_form.is_valid())
         if user_form.is_valid() and profile_form.is_valid():
+            # os.system()
             user_form.save()
             profile_form.save()
+            profile_form.save_avatar(request)
             return redirect('/profile/' + user_form.data['username'])
         raise Http404
     else:
         if user == request.user.username:
-            context = get_context(request, 'profile_edit')
-            form = ProfileForm()
-            form1 = UserForm()
+            form = ProfileEditForm()
+            form1 = UserEditForm()
             context.update({'profile_form': form, 'user_form': form1})
             return render(request, 'profile_edit.html', context)
         raise PermissionDenied
-    # context = get_context(request, 'profile_edit')
-    # if request.method == "POST":
-    #     form = EditForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         print(form.FILE)
-    #         form.save()
-    # else:
-    #     form = EditForm()
-    # context.update({'form': form})
     return render(request, 'profile_edit.html', context)
 
 

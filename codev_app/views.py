@@ -50,7 +50,7 @@ def login(request):
     username = request.POST['username']
     password = request.POST['password']
     user = auth.authenticate(username=username, password=password)
-    if user is not None and user.is_active:
+    if user is not None:
         # Правильный пароль и пользователь "активен"
         auth.login(request, user)
         # Перенаправление на "правильную" страницу
@@ -80,7 +80,6 @@ def register(request):
         r = open('media/tmp.png', 'rb')
         avatar = File(r)
         user.profile.avatar.save(str(user.id) + '_avatar.png', avatar)
-        print(user.first_name)
         auth_login(request, user)
         r.close(); os.remove('media/tmp.png')
     return redirect("/")
@@ -126,7 +125,6 @@ def delete_task(request, id):
 
 
 def profile(request, user):
-    print(request.user.email)
     context = get_context(request, 'profile')
     try:
         context.update({'user_profile': User.objects.get(username=user)})

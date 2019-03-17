@@ -16,3 +16,5 @@ def image_preproc(img):
     image = image.crop((left, top, right, bottom))
     with open(settings.MEDIA_ROOT + '/tmp.png', 'wb') as out:
         image.save(out, 'PNG')
+
+

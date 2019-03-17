@@ -1,0 +1,104 @@
+<style>
+
+    .main-menu li {
+	display: inline;
+        float: right;
+        margin-top: 1.6%;
+}
+
+.main-menu li a {
+	display: inline-block;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 50px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.main-menu li a:hover {
+	color: #df313c;
+    text-decoration:  none;
+}
+
+</style>
+
+<div class="menu-bar">
+{#			<a href="#"><div class="user-panel">Войти / Регистрация</div></a>#}
+                <a href="u/login_page"><button class="button-menu">На главную</button></a>
+</div>
+
+
+<style>
+
+nav {
+  width: 50px;
+    float: right;
+    margin-right: 40px;
+    margin-top: -20px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.topmenu > li {
+  display: inline-block;
+  position: absolute;
+    z-index: 90;
+}
+
+a {
+    font-size: 13px;
+  text-align: center;
+  display: block;
+  padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+  text-decoration: none;
+  outline: none;
+  transition: .5s linear;
+}
+
+
+.submenu {
+  display: list-item;
+  margin-left: 37px;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 90%;
+  z-index: 10;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.four .submenu {
+  -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    transform: scaleY(0);
+  -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+  border-radius: 10px;
+  border-width: 1px;
+  background: #df313c;
+}
+.four .submenu li a:hover{
+    text-decoration:  none;
+    color: black;
+    text-shadow: 0px 0px 8px #b881c4;
+}
+.four ul :hover .submenu {
+  -webkit-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    transform: scaleY(1);
+}
+.four ul a {
+  color: ghostwhite;
+}
+
+</style>

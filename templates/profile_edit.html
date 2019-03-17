@@ -14,7 +14,7 @@
 {% if user.is_authenticated %}
     <div>
     <br>
-     <form method="post">
+            <form method="post">
               {% csrf_token %}
 {#              <label for="id_first_name"></label>#}
 {#                <input class='bio_field' type="text" name="first_name" value="{{ user.first_name }}" required id="id_first_name" placeholder="Имя">#}
@@ -58,8 +58,6 @@
                             value="{{ user.profile.location }}" class="input-text" placeholder="Страна, Город">
                 </div></div>
               <button type="submit" class="edit-button" style="margin-top: 2.5em;">Сохранить изменения</button>
-            </form>
-            <form>
             </form>
         </div>
 

@@ -10,20 +10,9 @@
 {% include 'patterns/modern_menu.html' %}
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
+
 <h1>Это хаб.</h1>
  <br>
-<ul class="hab-tasks">
-    {% for task in tasks %}
-        {% if task.author != user.get_username %}
-          <a href="/task/{{ task.id }}" style="width: 53em;"><div class="hab-task">
-          <h1>{{ task.idea }}</h1>
-          <p>{{ task.body }}...</p>
-          <img class="hab-avatar" src="{{ MEDIA_URL }}{{ task.author.profile.avatar }}"
-               width="70" style="border-radius: 14px;">
-           </div></a>
-        {% endif %}
-    {% endfor %}
-</ul>
 
 {% include 'patterns/modern_footer.html' %}
 </body>

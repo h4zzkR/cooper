@@ -50,6 +50,7 @@ def login(request):
     username = request.POST['username']
     password = request.POST['password']
     user = auth.authenticate(username=username, password=password)
+    print(user)
     if user is not None:
         # Правильный пароль и пользователь "активен"
         auth.login(request, user)
@@ -57,7 +58,7 @@ def login(request):
         return redirect("/")
     else:
         # Отображение страницы с ошибкой
-        return Http404
+        raise Http404
 
 
 def logout(request):

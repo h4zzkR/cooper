@@ -39,12 +39,12 @@ def get_context(request, pagename):
 
     return context
 
-# def hab(request):
-#     tasks = Task.objects.filter(~Q(author = request.user))
-#     context = get_context(request, 'hab')
-#     context.update({'tasks': tasks})
-#     return context
-#
+def hab(request):
+    tasks = Task.objects.filter(~Q(author = request.user))
+    context = get_context(request, 'hab')
+    context.update({'tasks': tasks})
+    return context
+
 def index(request):
     """
     main page
@@ -52,7 +52,7 @@ def index(request):
     :return:
     """
     if request.user.is_authenticated:
-        # context = hab(request)
+        context = hab(request)
         context = get_context(request, 'index')
         return render(request, 'hab.html', context)
     return render(request, 'index.html')
@@ -161,131 +161,129 @@ def new_user(request):
     return render(request, 'register.html', get_context(request, 'register_page'))
 
 
-# def add_task(request):
-#     """
-#     Add task. Task have title (idea), body (about)
-#     and creation date wirh auto filling.
-#     All tasks have own authors.
-#     :param request:
-#     :return:
-#     """
-#     username = request.user.username
-#     context = get_context(request, 'make_task')
-#     if request.method == "POST":
-#         form = AddTaskForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             task = Task(
-#                 idea=form.data['idea'],
-#                 body=form.data['body'],
-#                 creation_date=datetime.datetime.now(),
-#                 author=request.user
-#             )
-#             task.save()
-#         else:
-#             return redirect('add_task')
-#     else:
-#         context = get_context(request, 'make_task')
-#         context.update({'form': AddTaskForm()})
-#     return render(request, 'add_task.html', context)
+def add_task(request):
+    """
+    Add task. Task have title (idea), body (about)
+    and creation date wirh auto filling.
+    All tasks have own authors.
+    :param request:
+    :return:
+    """
+    username = request.user.nickname
+    context = get_context(request, 'make_task')
+    if request.method == "POST":
+        form = AddTaskForm(request.POST, request.FILES)
+        if form.is_valid():
+            task = Task(
+                idea=form.data['idea'],
+                body=form.data['body'],
+                creation_date=datetime.datetime.now(),
+                author=request.user
+            )
+            task.save()
+        else:
+            return redirect('add_task')
+    else:
+        context = get_context(request, 'make_task')
+        context.update({'form': AddTaskForm()})
+    return render(request, 'add_task.html', context)
 
 
-# def my_tasks(request):
-#     """
-#     func for displaying all user's task
-#     :param request:
-#     :return:
-#     """
-#     context = get_context(request, 'tasks')
-#     tasks = Task.objects.filter(author=request.user)
-#     for t in range(len(tasks)):
-#         tasks[t].body = tasks[t].body[0:2000]
-#     context.update({'tasks': tasks})
-#     return render(request, 'tasks.html', context)
-
-#
-# def delete_task(request, id):
-#     """
-#     delete task function
-#     :param request:
-#     :param id:
-#     :return:
-#     """
-#     Task.objects.filter(id=id).delete()
-#     context = get_context(request, 'my_tasks')
-#     context.update({'tasks': Task.objects.filter(author=request.user)})
-#     return render(request, 'tasks.html', context)
+def my_tasks(request):
+    """
+    func for displaying all user's task
+    :param request:
+    :return:
+    """
+    context = get_context(request, 'tasks')
+    tasks = Task.objects.filter(author=request.user)
+    for t in range(len(tasks)):
+        tasks[t].body = tasks[t].body[0:2000]
+    context.update({'tasks': tasks})
+    return render(request, 'tasks.html', context)
 
 
-# def profile(request, user):
-#     """
-#     func for displaying profile
-#     getting user object and avatar if request user == profile's user
-#     You can show as profile for current user, as profile for another user
-#     (without editing).
-#     :param request:
-#     :param user:
-#     :return:
-#     """
-#     context = get_context(request, 'profile')
-#     if request.user.username == user:
-#         context = get_context(request, 'profile')
-#         try:
-#             context.update({'user_profile': User.objects.get(username=user)})
-#             if context['user_profile'] != request.user:
-#                 context.update({'pagename': 'other_profile'})
-#         except:
-#             raise Http404
-#     else:
-#         request_user = User.objects.get(username=user)
-#         context.update({'request_avatar': request_user.profile.avatar})
-#         context.update({'user_profile': request_user})
-#     return render(request, 'profile.html', context)
-#
-#
-# def profile_edit(request, user):
-#     """
-#     :param request:
-#     :param user:
-#     :return:
-#     """
-#     context = get_context(request, 'profile_edit')
-#     if request.method == 'POST':
-#         user_form = UserEditForm(request.POST, instance=request.user)
-#         profile_form = ProfileEditForm(request.POST,  request.FILES, instance=request.user.profile)
-#         print(user_form.is_valid(), profile_form.is_valid())
-#         if user_form.is_valid() and profile_form.is_valid():
-#             # os.system()
-#             user_form.save()
-#             profile_form.save()
-#             profile_form.save_avatar(request)
-#             return redirect('/profile/' + user_form.data['username'])
-#         raise Http404
-#     else:
-#         if user == request.user.username:
-#             form = ProfileEditForm()
-#             form1 = UserEditForm()
-#             context.update({'profile_form': form, 'user_form': form1})
-#             return render(request, 'profile_edit.html', context)
-#         raise PermissionDenied
-#     return render(request, 'profile_edit.html', context)
+def delete_task(request, id):
+    """
+    delete task function
+    :param request:
+    :param id:
+    :return:
+    """
+    Task.objects.filter(id=id).delete()
+    context = get_context(request, 'my_tasks')
+    context.update({'tasks': Task.objects.filter(author=request.user)})
+    return render(request, 'tasks.html', context)
 
-#
-# def show(request, task_id):
-#     """
-#     :param request:
-#     :param id:
-#     :return:
-#     """
-#     task = Task.objects.get(id=task_id)
-#     context = get_context(request, 'show_task')
-#     context.update({'task': task})
-#     if task.author == request.user.username:
-#         if request.method == "POST":
-#             task.idea = request.POST.get('idea')
-#             task.body = request.POST.get('body')
-#             task.creation_date = datetime.datetime.now()
-#             task.author = request.user
-#             task.save()
-#     else:
-#         context.update({'author': task.author.username})
+
+def profile(request, user):
+    """
+    func for displaying profile
+    getting user object and avatar if request user == profile's user
+    You can show as profile for current user, as profile for another user
+    (without editing).
+    :param request:
+    :param user:
+    :return:
+    """
+    context = get_context(request, 'profile')
+    if request.user.nickname == user:
+        context = get_context(request, 'profile')
+        try:
+            context.update({'user_profile': User.objects.get(nickname=user)})
+            if context['user_profile'] != request.user:
+                context.update({'pagename': 'other_profile'})
+        except:
+            raise Http404
+    else:
+        request_user = User.objects.get(nickname=user)
+        context.update({'request_avatar': request_user.profile.avatar})
+        context.update({'user_profile': request_user})
+    return render(request, 'profile.html', context)
+
+
+def profile_edit(request, user):
+    """
+    :param request:
+    :param user:
+    :return:
+    """
+    context = get_context(request, 'profile_edit')
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)
+        print(user_form.is_valid())
+        print(user_form.errors)
+        if user_form.is_valid():
+            # os.system()
+            user_form.save()
+            user_form.save_avatar(request)
+            return redirect('/profile/' + user_form.data['nickname'])
+        raise Http404
+    else:
+        if user == request.user.nickname:
+            form1 = UserEditForm()
+            context.update({'user_form': form1})
+            return render(request, 'profile_edit.html', context)
+        raise PermissionDenied
+    return render(request, 'profile_edit.html', context)
+
+
+def show(request, task_id):
+    """
+    :param request:
+    :param id:
+    :return:
+    """
+    task = Task.objects.get(id=task_id)
+    context = get_context(request, 'show_task')
+    context.update({'task': task})
+    if task.author == request.user.nickname:
+        if request.method == "POST":
+            task.idea = request.POST.get('idea')
+            task.body = request.POST.get('body')
+            task.creation_date = datetime.datetime.now()
+            task.author = request.user
+            task.save()
+    else:
+        context.update({'author': task.author.nickname})
 #     return render(request, 'show_task.html', context)

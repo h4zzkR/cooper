@@ -16,22 +16,9 @@
     <br>
             <form method="post" enctype='multipart/form-data'>
               {% csrf_token %}
-{#              <label for="id_first_name"></label>#}
-{#                <input class='bio_field' type="text" name="first_name" value="{{ user.first_name }}" required id="id_first_name" placeholder="Имя">#}
-{#              <label for="id_last_name"></label>#}
-{#                <input class='bio_field' type="text" name="last_name"#}
-{#                       value="{{ user.last_name }}" required id="id_last_name" placeholder="Фамилия">#}
-{#              <label for="id_email"></label>#}
-{#                <input class='bio_field' type="text" name="email" value="{{ user.email }}" required id="id_email" placeholder="Почта">#}
-{#               <br><label for="id_body"></label>#}
-{#               <textarea class='bio_text_field' name="bio" cols="40" rows="10" maxlength="10000" required id="id_bio"#}
-{#                           placeholder="Расскажите о себе">{{ user.profile.bio }}</textarea>#}
-{#               <label for="id_location"></label>#}
-{#                 <input class='bio_field' type="text" name="location"#}
-{#                        value="{{ user.profile.location }}" required id="id_location" placeholder="Ваша страна, город">#}
                 <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
-                     <input type="text" name="username" id="input"
-                            value="{{ user.username }}" class="input-text" placeholder="Ник" style=" position: relative;">
+                     <input type="text" name="nickname" id="input"
+                            value="{{ user.nickname }}" class="input-text" placeholder="Ник" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
                 <div class="Wrapper"><div class="input">

@@ -20,11 +20,15 @@
     <br>
 {% endif %}
 <br>
+{% if user == user_profile %}
 <img src="{{ MEDIA_URL }}{{ avatar }}" width="150" style="border-radius: 14px; position: absolute;">
-<p class="first_name" style="position: relative;">{{ user.first_name }} {{ user.last_name }}</p>
+{% else %}
+<img src="{{ MEDIA_URL }}{{ request_avatar }}" width="150" style="border-radius: 14px; position: absolute;">
+{% endif %}
+<p class="first_name" style="position: relative;">{{  user_profile.first_name }} {{ user.last_name }}</p>
 <p class="email" style="position: relative;">{{ user_profile.email }}</p>
-<p class="location-h">Местоположение: </p><p class="location" style="position: relative;">{{ user.profile.location }}</p>
-<p class="bio-h">О пользователе:</p> <p class="bio">{{ user.profile.bio }}</p>
+<p class="location-h">Местоположение: </p><p class="location" style="position: relative;">{{  user_profile.profile.location }}</p>
+<p class="bio-h">О пользователе:</p> <p class="bio">{{  user_profile.profile.bio }}</p>
 <br>
 <br>
 

@@ -126,13 +126,20 @@ def delete_task(request, id):
 
 
 def profile(request, user):
+    print(user)
     context = get_context(request, 'profile')
-    try:
-        context.update({'user_profile': User.objects.get(username=user)})
-        if context['user_profile'] != request.user:
-            context.update({'pagename': 'other_profile'})
-    except:
-        raise Http404
+    if request.user.username == user:
+        context = get_context(request, 'profile')
+        try:
+            context.update({'user_profile': User.objects.get(username=user)})
+            if context['user_profile'] != request.user:
+                context.update({'pagename': 'other_profile'})
+        except:
+            raise Http404
+    else:
+        request_user = User.objects.get(username=user)
+        context.update({'request_avatar': request_user.profile.avatar})
+        context.update({'user_profile':  request_user})
     return render(request, 'profile.html', context)
 
 
@@ -162,15 +169,13 @@ def show(request, id):
     task = Task.objects.get(id=id)
     context = get_context(request, 'show_task')
     context.update({'task' : task})
-    username = request.user.username
-    if request.method == "POST":
-        if task.idea != request.POST.get('idea'):
+    if task.author == request.user.username:
+        if request.method == "POST":
             task.idea = request.POST.get('idea')
-        task.body = request.POST.get('body')
-        task.creation_date = datetime.datetime.now()
-        task.author = request.user
-        task.save()
+            task.body = request.POST.get('body')
+            task.creation_date = datetime.datetime.now()
+            task.author = request.user
+            task.save()
     else:
-        context = get_context(request, 'show_task')
-        context.update({'task' : task})
+        context.update({'author': task.author.username})
     return render(request, 'show_task.html', context)

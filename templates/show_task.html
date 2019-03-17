@@ -11,6 +11,7 @@
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
 {##}
+{% if user.get_username == author %}
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="Wrapper"><div class="input" style="margin-top: 2.5em; position: relative;">
@@ -29,6 +30,12 @@
     </div></div>
     <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
 </form>
+
+{% else %}
+    <a href="/profile/{{ task.author.username }}"><div type="submit" class="field" style="">{{ task.author }}</div></a>
+    <h1>{{ task.idea }}</h1>
+    <h1>{{ task.body }}</h1>
+{% endif %}
 
 {% include 'patterns/modern_footer.html' %}
 </html>

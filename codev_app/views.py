@@ -14,6 +14,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.core.files import File
 from django.contrib.auth import login as auth_login
+from django.shortcuts import render_to_response
 import modules.avatars as avatars
 import modules.stuff as stuff
 from codev_app.forms import *
@@ -247,6 +248,16 @@ def profile_edit(request, user):
             context.update({'profile_form': form, 'user_form': form1})
             return render(request, 'profile_edit.html', context)
         raise PermissionDenied
+    # context = get_context(request, 'profile_edit')
+    # if request.method == "POST":
+    #     form = EditForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         print(form.FILE)
+    #         form.save()
+    # else:
+    #     form = EditForm()
+    # context.update({'form': form})
+    return render(request, 'profile_edit.html', context)
 
 
 def show(request, task_id):

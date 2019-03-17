@@ -69,3 +69,10 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('bio', 'location')
+
+
+class EditForm(forms.Form):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+

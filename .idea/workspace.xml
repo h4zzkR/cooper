@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dd326f2-bd69-4871-9754-20eaa27d1519" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codev_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/codev_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooper/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cooper/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/modern_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/modern_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/show_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/show_task.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/cooper$manage.coverage" NAME="manage Coverage Results" MODIFIED="1552832853587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cooper$manage.coverage" NAME="manage Coverage Results" MODIFIED="1552836251231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cooper$views.coverage" NAME="views Coverage Results" MODIFIED="1551621291059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/codev_app" />
   </component>
   <component name="FileEditorManager">
@@ -27,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/cooper/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
-              <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+              <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
               <folding>
                 <element signature="e#630#658#0" expanded="true" />
               </folding>
@@ -38,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/codev_app/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="105">
+              <caret line="5" column="16" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="16" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
                 <element signature="e#116#598#0" />
@@ -52,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/codev_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="10" />
+            <state relative-caret-position="609">
+              <caret line="29" column="10" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="10" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -61,23 +60,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/codev_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="140" column="25" lean-forward="true" selection-start-line="140" selection-start-column="25" selection-end-line="140" selection-end-column="39" />
+            <state relative-caret-position="252">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#34#49#0" expanded="true" />
+                <element signature="e#645#1011#0" />
+                <element signature="e#1354#1395#0" />
+                <element signature="e#1517#1601#0" />
+                <element signature="e#1687#2117#0" />
+                <element signature="e#2222#2309#0" />
+                <element signature="e#2399#3095#0" />
+                <element signature="e#3307#3392#0" />
+                <element signature="e#3504#4159#0" />
+                <element signature="e#4357#4621#0" />
+                <element signature="e#4742#5091#0" />
+                <element signature="e#5054#5694#0" />
+                <element signature="e#5977#6811#0" />
+                <element signature="e#6903#7444#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+            <state relative-caret-position="596">
+              <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
               <folding>
                 <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -88,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/show_task.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="714">
               <caret line="34" column="119" selection-start-line="34" selection-start-column="119" selection-end-line="34" selection-end-column="119" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#a#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -100,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/modern_style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="455" column="20" lean-forward="true" selection-start-line="455" selection-start-column="20" selection-end-line="455" selection-end-column="20" />
+            <state relative-caret-position="239">
+              <caret line="445" column="16" lean-forward="true" selection-start-line="445" selection-start-column="16" selection-end-line="446" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -109,7 +121,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/login_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="609">
               <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
             </state>
           </provider>
@@ -202,14 +214,14 @@
         <option value="$PROJECT_DIR$/templates/login_page.html" />
         <option value="$PROJECT_DIR$/templates/register.html" />
         <option value="$PROJECT_DIR$/templates/add_task.html" />
-        <option value="$PROJECT_DIR$/cooper/urls.py" />
         <option value="$PROJECT_DIR$/templates/tasks.html" />
         <option value="$PROJECT_DIR$/templates/profile_edit.html" />
         <option value="$PROJECT_DIR$/codev_app/forms.py" />
         <option value="$PROJECT_DIR$/static/modern_style.css" />
         <option value="$PROJECT_DIR$/templates/show_task.html" />
-        <option value="$PROJECT_DIR$/codev_app/views.py" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
+        <option value="$PROJECT_DIR$/cooper/urls.py" />
+        <option value="$PROJECT_DIR$/codev_app/views.py" />
       </list>
     </option>
   </component>
@@ -392,18 +404,19 @@
       <workItem from="1552589218664" duration="12674000" />
       <workItem from="1552628089526" duration="997000" />
       <workItem from="1552653067079" duration="2350000" />
-      <workItem from="1552829866143" duration="3111000" />
+      <workItem from="1552829866143" duration="3171000" />
+      <workItem from="1552833809201" duration="2304000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125958000" />
+    <option name="totallyTimeSpent" value="128322000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33204633" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33655083" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -585,15 +598,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/codev_app/forms.py">
+    <entry file="file://$PROJECT_DIR$/templates/profile_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="476">
+          <caret line="64" column="21" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/show_task.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="34" column="119" selection-start-line="34" selection-start-column="119" selection-end-line="34" selection-end-column="119" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <element signature="e#116#598#0" />
-            <marker date="1552654657437" expanded="true" signature="1309:1397" ph="..." />
+            <element signature="n#style#0;n#div#0;n#a#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -611,10 +636,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="596">
+          <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codev_app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#116#598#0" />
+            <marker date="1552654657437" expanded="true" signature="1309:1397" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/modern_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="445" column="16" lean-forward="true" selection-start-line="445" selection-start-column="16" selection-end-line="446" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cooper/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
           <folding>
             <element signature="e#630#658#0" expanded="true" />
           </folding>
@@ -623,61 +677,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/codev_app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="10" />
+        <state relative-caret-position="609">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="10" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/profile_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="64" column="21" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/modern_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="455" column="20" lean-forward="true" selection-start-line="455" selection-start-column="20" selection-end-line="455" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/show_task.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="34" column="119" selection-start-line="34" selection-start-column="119" selection-end-line="34" selection-end-column="119" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#a#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/codev_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="140" column="25" lean-forward="true" selection-start-line="140" selection-start-column="25" selection-end-line="140" selection-end-column="39" />
+        <state relative-caret-position="252">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#34#49#0" expanded="true" />
+            <element signature="e#645#1011#0" />
+            <element signature="e#1354#1395#0" />
+            <element signature="e#1517#1601#0" />
+            <element signature="e#1687#2117#0" />
+            <element signature="e#2222#2309#0" />
+            <element signature="e#2399#3095#0" />
+            <element signature="e#3307#3392#0" />
+            <element signature="e#3504#4159#0" />
+            <element signature="e#4357#4621#0" />
+            <element signature="e#4742#5091#0" />
+            <element signature="e#5054#5694#0" />
+            <element signature="e#5977#6811#0" />
+            <element signature="e#6903#7444#0" />
           </folding>
         </state>
       </provider>

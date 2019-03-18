@@ -26,7 +26,7 @@ def get_context(request, pagename):
     function for getting standart context
     :param request:
     :param pagename:
-    :return:
+    :return:r
     """
     context = {
         'pagename': pagename,
@@ -201,7 +201,7 @@ def my_tasks(request):
     tasks = Task.objects.filter(author=request.user)
     for t in range(len(tasks)):
         tasks[t].body = tasks[t].body[0:2000]
-    context.update({'tasks': tasks})
+    context.update({'tasks': tasks, 'len':len(tasks)})
     return render(request, 'tasks.html', context)
 
 
@@ -258,7 +258,7 @@ def profile_edit(request, user):
         if user_form.is_valid():
             # os.system()
             user_form.save()
-            user_form.save_avatar(request)
+            # user_form.save_avatar(request)
             return redirect('/profile/' + user_form.data['nickname'])
         raise Http404
     else:

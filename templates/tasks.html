@@ -11,7 +11,9 @@
 <h1>Ваши задачи:</h1>
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
-
+{% if len == 0 %}
+    <a href="/add_task"><button type="submit" class="edit-button" style="margin-top: 2.5em;">Создать задачу!</button></a>
+{% endif %}
 <ul class="tasks">
     {% for task in tasks %}
           <a href="/task/{{ task.id }}" style="width: 53em;"><div class="task">

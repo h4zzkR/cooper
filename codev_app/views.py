@@ -21,6 +21,7 @@ from codev_app.models import *
 from django.contrib.auth.tokens import default_token_generator
 # from codev_app.models import User
 from django.core.mail import send_mail
+from django.contrib.auth.hashers import make_password
 
 
 def get_context(request, pagename):
@@ -80,6 +81,7 @@ def login_page(request):
     :param request:
     :return:
     """
+    #print(User.objects.get(nickname='m0r0zk01').password)
     return render(request, 'login_page.html', get_context(request, 'login page'))
 
 
@@ -90,9 +92,10 @@ def login(request):
     :param request:
     :return:
     """
+    print(request.POST)
     username = request.POST['username']
     password = request.POST['password']
-    user = auth.authenticate(username=username, password=password)
+    user = auth.authenticate(nickname=username, password=password)
     print(user)
     if user is not None:
         # Правильный пароль и пользователь "активен"
@@ -255,7 +258,7 @@ def profile_edit(request, user):
             context.update({'user_form': form1})
             return render(request, 'profile_edit.html', context)
         raise PermissionDenied
-    return render(request, 'profile_edit.html', context)
+    #return render(request, 'profile_edit.html', context)
 
 
 def show(request, task_id):
@@ -281,24 +284,32 @@ def show(request, task_id):
 
 def recover_password_page(request):
     if request.method == 'POST':
-        user = request.user
+        user = User.objects.get(email=request.POST.get('email'))
         token = default_token_generator.make_token(user)
         data = """
             Hi, you requested password recovery. Please, press the link
-        """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token
+        """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token + '?email=' + request.POST.get('email')
         send_mail('Password Recover', data, 'codev.no.reply@gmail.com', [request.POST.get('email')], fail_silently=False)
         return redirect('/')
     else:
         return render(request, 'recover_password.html')
 
 
-def new_password(request, token):
-    if request.method == 'POST':
-        pass
+def new_password_token(request, token):
+    user = User.objects.get(email=request.GET.get('email'))
+    if default_token_generator.check_token(user, token):
+        return render(request, 'new_password.html', {'id': User.objects.get(email=request.GET.get('email')).id})
     else:
-        user = request.user
-        print(token)
-        if default_token_generator.check_token(user, token):
-            return render(request, 'new_password.html')
-        else:
-            raise Http404
+        raise Http404
+
+
+def new_password(request):
+    if request.method == 'POST':
+        user = User.objects.get(id=request.GET.get('id'))
+        #print(request.POST.get('password'))
+        user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
+        user.save()
+        #print(11, user.password)
+        return redirect('/')
+    else:
+        raise Http404

@@ -93,6 +93,7 @@ def login(request):
     username = request.POST['username']
     password = request.POST['password']
     user = auth.authenticate(username=username, password=password)
+    print(user)
     if user is not None:
         # Правильный пароль и пользователь "активен"
         auth.login(request, user)
@@ -122,23 +123,6 @@ def register(request):
     :param request:
     :return:
     """
-    # user_form = UserEditForm(request.POST, instance=request.user)
-    #         profile_form = ProfileEditForm(request.POST,  request.FILES, instance=request.user.profile)
-    #         print(user_form.is_valid(), profile_form.is_valid())
-    #         if user_form.is_valid() and profile_form.is_valid():
-    #             # os.system()
-    #             user_form.save()
-    #             profile_form.save()
-    #             profile_form.save_avatar(request)
-    #             return redirect('/profile/' + user_form.data['username'])
-    #         raise Http404
-    #     else:
-    #         if user == request.user.username:
-    #             form = ProfileEditForm()
-    #             form1 = UserEditForm()
-    #             context.update({'profile_form': form, 'user_form': form1})
-    #             return render(request, 'profile_edit.html', context)
-    #         raise PermissionDenied
     if request.method == 'POST':
         name = request.POST.get('username')
         mail = request.POST.get('email')
@@ -292,7 +276,7 @@ def show(request, task_id):
             task.save()
     else:
         context.update({'author': task.author.nickname})
-#     return render(request, 'show_task.html', context)
+    return render(request, 'show_task.html', context)
 
 
 def recover_password_page(request):

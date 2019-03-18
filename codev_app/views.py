@@ -84,7 +84,6 @@ def login_page(request):
     #print(User.objects.get(nickname='m0r0zk01').password)
     return render(request, 'login_page.html', get_context(request, 'login page'))
 
-
 def login(request):
     """
     login user function
@@ -96,13 +95,15 @@ def login(request):
     username = request.POST['username']
     password = request.POST['password']
     user = auth.authenticate(nickname=username, password=password)
-    print(user)
     if user is not None:
         # Правильный пароль и пользователь "активен"
         auth.login(request, user)
         # Перенаправление на "правильную" страницу
         return redirect("/")
         # Отображение страницы с ошибкой
+    elif user is None:
+        context = get_context(request, 'one_more')
+        return redirect("/u/login_page")
     raise Http404
 
 
@@ -290,10 +291,12 @@ def recover_password_page(request):
             Hi, you requested password recovery. Please, press the link
         """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token + '?email=' + request.POST.get('email')
         send_mail('Password Recover', data, 'codev.no.reply@gmail.com', [request.POST.get('email')], fail_silently=False)
-        return redirect('/')
+        return redirect('/awaiting')
     else:
         return render(request, 'recover_password.html')
 
+def awaiting(request):
+    return render(request, 'awaiting.html')
 
 def new_password_token(request, token):
     user = User.objects.get(email=request.GET.get('email'))

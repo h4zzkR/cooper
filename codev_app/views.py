@@ -18,6 +18,7 @@ from django.shortcuts import render_to_response
 import modules.avatars as avatars
 from codev_app.forms import *
 from codev_app.models import *
+from django.contrib.auth.tokens import default_token_generator
 # from codev_app.models import User
 
 
@@ -125,7 +126,7 @@ def register(request):
         password = request.POST.get('password')
         last_name = request.POST.get('last_name')
         first_name = request.POST.get('first_name')
-        user = User.objects.create_user(name, mail, password, first_name, last_name)
+        user = User.objects.create_user(nick=name, email=mail, password=password, first_name=first_name, last_name=last_name)
         # return random avatar from hash
         get_avatar(stuff.avatar_generator())
         r = open('media/tmp.png', 'rb')
@@ -223,7 +224,7 @@ def profile(request, user):
             raise Http404
     else:
         request_user = User.objects.get(nickname=user)
-        context.update({'request_avatar': request_user.profile.avatar})
+        context.update({'request_avatar': request.user.profile.avatar})
         context.update({'user_profile': request_user})
     return render(request, 'profile.html', context)
 
@@ -273,3 +274,26 @@ def show(request, task_id):
     else:
         context.update({'author': task.author.nickname})
     return render(request, 'show_task.html', context)
+
+
+def recover_password_page(request):
+    if request.method == 'POST':
+        print(request.POST)
+        user = request.user
+        token = default_token_generator.make_token(user)
+        data = """
+            Hi, you requested password recovery. Please, press the link
+        """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token
+        user.email_user('HEY!', data, request.POST.get('email'))
+        return redirect('/')
+    else:
+        return render(request, 'recover_password.html')
+
+
+def new_password(request, token):
+    user = request.user
+    if default_token_generator.check_token(user, token):
+        return render(request, 'new_password.html')
+    else:
+        raise Http404
+>>>>>>> 90185b051092c7fdc135efb75e781bc1cfc1cb9a

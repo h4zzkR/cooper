@@ -44,11 +44,11 @@ class User(AbstractBaseUser):
         '''
         return self.nickname
 
-    def email_user(self, subject, message, from_email=None, **kwargs):
+    def email_user(self, subject, message, email_receiver):
         '''
         Отправляет электронное письмо этому пользователю.
         '''
-        send_mail(subject, message, from_email, [self.email], **kwargs)
+        send_mail(subject, message, self.email, email_receiver)
 
 
 class Task(models.Model):

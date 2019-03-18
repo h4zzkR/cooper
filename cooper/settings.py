@@ -127,3 +127,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'codev_app.User'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'codev.no.reply@gmail.com'
+EMAIL_HOST_PASSWORD = 'justcodevemail'
+DEFAULT_FROM_EMAIL = 'Codev BOT'

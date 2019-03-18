@@ -32,6 +32,8 @@ urlpatterns = [
     path('profile/<str:user>/edit', profile_edit),
     path('u/new_user', new_user),
     path('task/<int:task_id>', show),    # path('task/<int:task_id>', show),
+    path('u/recover_password', recover_password_page),
+    path('u/new_password/<str:token>', new_password),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

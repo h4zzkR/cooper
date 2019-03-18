@@ -13,6 +13,9 @@
 
 <h1>Это хаб.</h1>
  <br>
+{% for task in tasks %}
+<h1>{{  task.idea }}</h1>
+{% endfor %}
 
 {% include 'patterns/modern_footer.html' %}
 </body>

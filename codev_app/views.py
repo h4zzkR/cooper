@@ -41,6 +41,7 @@ def get_context(request, pagename):
 
 def hab(request):
     tasks = Task.objects.filter(~Q(author = request.user))
+    print(tasks)
     context = get_context(request, 'hab')
     context.update({'tasks': tasks})
     return context
@@ -52,8 +53,9 @@ def index(request):
     :return:
     """
     if request.user.is_authenticated:
-        context = hab(request)
         context = get_context(request, 'index')
+        context = hab(request)
+        print(context['tasks'])
         return render(request, 'hab.html', context)
     return render(request, 'index.html')
 

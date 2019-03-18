@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from modules.user_manager import UserManager
 import datetime
 
+
 class User(AbstractBaseUser):
 
     email = models.EmailField(_('email'), unique=True)

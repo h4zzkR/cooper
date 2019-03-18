@@ -20,6 +20,7 @@ from codev_app.forms import *
 from codev_app.models import *
 from django.contrib.auth.tokens import default_token_generator
 # from codev_app.models import User
+from django.core.mail import send_mail
 
 
 def get_context(request, pagename):
@@ -40,12 +41,14 @@ def get_context(request, pagename):
 
     return context
 
+
 def hab(request):
     tasks = Task.objects.filter(~Q(author = request.user))
     print(tasks)
     context = get_context(request, 'hab')
     context.update({'tasks': tasks})
     return context
+
 
 def index(request):
     """
@@ -294,21 +297,24 @@ def show(request, task_id):
 
 def recover_password_page(request):
     if request.method == 'POST':
-        print(request.POST)
         user = request.user
         token = default_token_generator.make_token(user)
         data = """
             Hi, you requested password recovery. Please, press the link
         """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token
-        user.email_user('HEY!', data, request.POST.get('email'))
+        send_mail('Password Recover', data, 'codev.no.reply@gmail.com', [request.POST.get('email')], fail_silently=False)
         return redirect('/')
     else:
         return render(request, 'recover_password.html')
 
 
 def new_password(request, token):
-    user = request.user
-    if default_token_generator.check_token(user, token):
-        return render(request, 'new_password.html')
+    if request.method == 'POST':
+        pass
     else:
-        raise Http404
+        user = request.user
+        print(token)
+        if default_token_generator.check_token(user, token):
+            return render(request, 'new_password.html')
+        else:
+            raise Http404

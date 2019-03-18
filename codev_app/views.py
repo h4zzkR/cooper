@@ -288,7 +288,8 @@ def recover_password_page(request):
         user = User.objects.get(email=request.POST.get('email'))
         token = default_token_generator.make_token(user)
         data = """
-            Hi, you requested password recovery. Please, press the link
+            Привет, похоже вы запросили восстановление пароля. Если вы этого не делали, проигнорируйте
+            сообщение! Для восстановления пароля перейдите по ссылке:
         """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token + '?email=' + request.POST.get('email')
         send_mail('Password Recover', data, 'codev.no.reply@gmail.com', [request.POST.get('email')], fail_silently=False)
         return redirect('/awaiting')
@@ -301,14 +302,15 @@ def awaiting(request):
 def new_password_token(request, token):
     user = User.objects.get(email=request.GET.get('email'))
     if default_token_generator.check_token(user, token):
-        return render(request, 'new_password.html', {'id': User.objects.get(email=request.GET.get('email')).id})
+        return render(request, 'new_password.html', {'email': User.objects.get(email=request.GET.get('email'))})
     else:
         raise Http404
 
 
 def new_password(request):
     if request.method == 'POST':
-        user = User.objects.get(id=request.GET.get('id'))
+        print(request)
+        user = User.objects.get(email=request.POST.get('email'))
         #print(request.POST.get('password'))
         user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
         user.save()

@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.contrib import auth
@@ -43,6 +44,7 @@ def get_context(request, pagename):
     return context
 
 
+@login_required
 def hab(request):
     tasks = Task.objects.filter(~Q(author = request.user))
     print(tasks)
@@ -107,6 +109,8 @@ def login(request):
     raise Http404
 
 
+
+@login_required
 def logout(request):
     """
     logout func
@@ -155,6 +159,8 @@ def new_user(request):
     return render(request, 'register.html', get_context(request, 'register_page'))
 
 
+
+@login_required
 def add_task(request):
     """
     Add task. Task have title (idea), body (about)
@@ -183,6 +189,7 @@ def add_task(request):
     return render(request, 'add_task.html', context)
 
 
+@login_required
 def my_tasks(request):
     """
     func for displaying all user's task
@@ -196,7 +203,7 @@ def my_tasks(request):
     context.update({'tasks': tasks, 'len':len(tasks)})
     return render(request, 'tasks.html', context)
 
-
+@login_required
 def delete_task(request, id):
     """
     delete task function
@@ -210,6 +217,7 @@ def delete_task(request, id):
     return render(request, 'tasks.html', context)
 
 
+@login_required
 def profile(request, user):
     """
     func for displaying profile
@@ -236,6 +244,7 @@ def profile(request, user):
     return render(request, 'profile.html', context)
 
 
+@login_required
 def profile_edit(request, user):
     """
     :param request:
@@ -261,7 +270,7 @@ def profile_edit(request, user):
         raise PermissionDenied
     #return render(request, 'profile_edit.html', context)
 
-
+@login_required
 def show(request, task_id):
     """
     :param request:
@@ -286,9 +295,10 @@ def show(request, task_id):
 def recover_password_page(request):
     if request.method == 'POST':
         user = User.objects.get(email=request.POST.get('email'))
-        token = stuff.token_generator(user).token.values[0]
+        token_object = Token.objects.create(user=user)
+        token = token_object.token
         data = """
-            Привет, похоже вы запросили восстановление пароля.\n
+            Привет, похоже вы запросили восстановление/смену пароля.\n
             Если вы этого не делали, проигнорируйте сообщение!\n
             Для восстановления пароля перейдите по ссылке:\n"""\
             + 'http://127.0.0.1:8000/u/reset/' + '?token=' + token
@@ -303,42 +313,18 @@ def awaiting(request):
 def new_password_token(request):
     if request.method == 'GET':
         token = request.GET.get('token')
-        user = stuff.get_user_by_token(token)
         try:
-            model_user = User.objects.get(nickname = user.user.values[0])
-        except IndexError:
+            user = Token.objects.get(token=token)
+        except:
             raise Http404
-        return render(request, 'new_password.html', {'nick': model_user.nickname, 'token': token})
+        return render(request, 'new_password.html', {'nick': user.user.nickname, 'token': user.token})
 
     if request.method == 'POST':
-        user = stuff.get_user_by_token(request.GET.get('token'))
+        user = Token.objects.get(token=request.GET.get('token'))
         print(user)
-        model_user = User.objects.get(nickname = user.user.values[0])
+        model_user = User.objects.get(nickname = user.user.nickname)
         model_user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
         model_user.save()
+        #Delete on reset
+        user.delete()
         return redirect('/')
-
-
-# def new_password(request):
-#     if request.method == 'POST':
-#         print(request)
-#         #request.GET.get
-#         user = User.objects.get(email=request.POST.get('token'))
-#         #print(request.POST.get('password'))
-#         user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
-#         user.save()
-#         #print(11, user.password)
-#         return redirect('/')
-#     else:
-#         raise Http404
-
-def new(request):
-    # if request.method == 'POST':
-    user = User.objects.get(nickname='nicka')
-    token = stuff.token_generator(user).token.values[0]
-    user = stuff.get_user_by_token(token)
-    usr = User.objects.get(nickname=user.user.values[0])
-    print(usr)
-    return redirect('/awaiting')
-    # else:
-    #     return render(request, 'recover_password.html')

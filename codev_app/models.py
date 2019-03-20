@@ -8,6 +8,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
 from modules.user_manager import UserManager
 import datetime
+import modules.stuff as stuff
 
 
 class User(AbstractBaseUser):
@@ -58,16 +59,8 @@ class Task(models.Model):
     creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)
 
-# class PropertyImage(models.Model):
-#     name = models.ForeignKey(Task, related_name='Task', on_delete=models.CASCADE, blank=True, null=True)
-#     image = models.ImageField(upload_to='images')
-#
-#     def __str__(self):  # __unicode__ on Python 2
-#         return self.name
-#
-#     class Meta:
-#         ordering = ('name',)
-
-# class Token(models.Model):
-#     token = models.CharField(max_length=30)
-#     user = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)
+class Token(models.Model):
+    token = models.CharField(max_length=30, default=stuff.token_generator(), null=False)
+    user = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
+    creation_date = models.CharField(max_length=20, default=datetime.datetime.now().time(),
+                                     null=False)

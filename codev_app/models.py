@@ -67,3 +67,7 @@ class Task(models.Model):
 #
 #     class Meta:
 #         ordering = ('name',)
+
+# class Token(models.Model):
+#     token = models.CharField(max_length=30)
+#     user = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)

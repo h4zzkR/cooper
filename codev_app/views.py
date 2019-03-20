@@ -286,11 +286,12 @@ def show(request, task_id):
 def recover_password_page(request):
     if request.method == 'POST':
         user = User.objects.get(email=request.POST.get('email'))
-        token = default_token_generator.make_token(user)
+        token = stuff.token_generator(user).token.values[0]
         data = """
-            Привет, похоже вы запросили восстановление пароля. Если вы этого не делали, проигнорируйте
-            сообщение! Для восстановления пароля перейдите по ссылке:
-        """ + '\n' + 'http://127.0.0.1:8000/u/new_password/' + token + '?email=' + request.POST.get('email')
+            Привет, похоже вы запросили восстановление пароля.\n
+            Если вы этого не делали, проигнорируйте сообщение!\n
+            Для восстановления пароля перейдите по ссылке:\n"""\
+            + 'http://127.0.0.1:8000/u/reset/' + '?token=' + token
         send_mail('Password Recover', data, 'codev.no.reply@gmail.com', [request.POST.get('email')], fail_silently=False)
         return redirect('/awaiting')
     else:
@@ -299,22 +300,45 @@ def recover_password_page(request):
 def awaiting(request):
     return render(request, 'awaiting.html')
 
-def new_password_token(request, token):
-    user = User.objects.get(email=request.GET.get('email'))
-    if default_token_generator.check_token(user, token):
-        return render(request, 'new_password.html', {'email': User.objects.get(email=request.GET.get('email'))})
-    else:
-        raise Http404
+def new_password_token(request):
+    if request.method == 'GET':
+        token = request.GET.get('token')
+        user = stuff.get_user_by_token(token)
+        try:
+            model_user = User.objects.get(nickname = user.user.values[0])
+        except IndexError:
+            raise Http404
+        return render(request, 'new_password.html', {'nick': model_user.nickname, 'token': token})
 
-
-def new_password(request):
     if request.method == 'POST':
-        print(request)
-        user = User.objects.get(email=request.POST.get('email'))
-        #print(request.POST.get('password'))
-        user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
-        user.save()
-        #print(11, user.password)
+        user = stuff.get_user_by_token(request.GET.get('token'))
+        print(user)
+        model_user = User.objects.get(nickname = user.user.values[0])
+        model_user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
+        model_user.save()
         return redirect('/')
-    else:
-        raise Http404
+
+
+# def new_password(request):
+#     if request.method == 'POST':
+#         print(request)
+#         #request.GET.get
+#         user = User.objects.get(email=request.POST.get('token'))
+#         #print(request.POST.get('password'))
+#         user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
+#         user.save()
+#         #print(11, user.password)
+#         return redirect('/')
+#     else:
+#         raise Http404
+
+def new(request):
+    # if request.method == 'POST':
+    user = User.objects.get(nickname='nicka')
+    token = stuff.token_generator(user).token.values[0]
+    user = stuff.get_user_by_token(token)
+    usr = User.objects.get(nickname=user.user.values[0])
+    print(usr)
+    return redirect('/awaiting')
+    # else:
+    #     return render(request, 'recover_password.html')

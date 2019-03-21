@@ -66,7 +66,7 @@ class RegistrationForm(forms.ModelForm):
 class MakeTask(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['idea', 'body']
+        fields = ['idea', 'body', 'simple_about']
         # fields.remove('creation_date')
         # fields.append('author')
 

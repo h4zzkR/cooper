@@ -4,6 +4,10 @@
 <head>
     <title>{{ task.idea }}</title>
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
 </head>
 
 <body>
@@ -23,14 +27,13 @@
             Удалить</div>
         </a>
     <div class="Wrapper"><div class="input" style="padding-top: 2em;">
-                     <textarea type="text" name="body" id="input" class="task-full" maxlength="10000"
+                     <textarea type="text" name="body" id="input" class="task-full" maxlength="20000"
                                placeholder="Расскажите всем, что вы хотите сделать:"
                                style="width: 70%; height: 40em; padding-top: 0.1em;">{{ task.body }}
                      </textarea>
     </div></div>
     <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
 </form>
-
 {% else %}
     <a href="/profile/{{ task.author.username }}"><div type="submit" class="field" style="">{{ task.author }}</div></a>
     <h1>{{ task.idea }}</h1>
@@ -38,4 +41,32 @@
 {% endif %}
 
 {% include 'patterns/modern_footer.html' %}
+
+{% if user.get_username == author %}
+<script> var simplemde = new SimpleMDE({
+    autofocus: true,
+    {#element: document.getElementById("task-full"),#}
+    {#autosave: {#}
+    {#    enabled: false,#}
+    {#    uniqueId: {{ task.id }},#}
+    {#    delay: 1000,#}
+    {#},#}
+    forceSync: true,
+    {#toolbar: false,#}
+    {#status: false,#}
+    renderingConfig: {
+		codeSyntaxHighlighting: true,
+	},
+    });</script>
+{% else %}
+    <script> var simplemde = new SimpleMDE({
+    autofocus: true,
+    forceSync: true,
+    toolbar: false,
+    status: false,
+    renderingConfig: {
+		codeSyntaxHighlighting: true,
+	},
+    });</script>
+{% endif %}
 </html>

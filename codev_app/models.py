@@ -55,7 +55,8 @@ class User(AbstractBaseUser):
 
 class Task(models.Model):
     idea = models.CharField(max_length=200)
-    body = models.TextField(max_length=10000)
+    body = models.TextField(max_length=20000)
+    simple_about = models.TextField(max_length=100, default='Краткое описание')
     creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)
 

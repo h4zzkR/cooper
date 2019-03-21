@@ -4,25 +4,48 @@
 <head>
     <title>Добавить задачу</title>
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
 </head>
 
 <body>
 {% include 'patterns/modern_menu.html' %}
+{#<var>SimpleMDE()</var>#}
 <h1>Добавить задачу:</h1>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-   <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
-                     <input type="text" name="idea" id="input" class="input-text" placeholder="Название" style=" position: relative;">
-{#                    <span class="floating-label">Your email address</span>#}
-                </div></div>
+    <div class="Wrapper" style="margin-top: 3%;">
+    <input type="text" name="idea" id="input" class="input-text" placeholder="Название" style="position: absolute;
+        width: 18%; height: auto;">
     <div class="Wrapper"><div class="input">
-                     <textarea type="text" name="body" id="input" class="input-text" maxlength="10000"
-                               placeholder="Расскажите всем, что вы хотите сделать:"
-                               style="width: 70%; height: 40em; padding-top: 0.1em;"></textarea>
+                     <textarea type="text" class="input-text" name="simple_about" style="width: 50%; height: 20%;
+                      margin-left: 20%;" id="input" maxlength="100" placeholder="Краткое описание:"></textarea>
                 </div></div>
+    <div class="Wrapper" style="width: 70%;">
+                     <textarea type="text" name="body" id="body" maxlength="20000"
+                               placeholder="Расскажите всем, что вы хотите сделать:"
+                               style="width: 70%; height: auto; padding-top: 0.1em;"></textarea>
+                </div>
     <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
+        </div>
 </form>
 
 {% include 'patterns/modern_footer.html' %}
+<script> var simplemde = new SimpleMDE({
+    element: document.getElementById("body"),
+    autofocus: true,
+    autosave: {
+        enabled: true,
+        uniqueId: "MyUniqueID",
+        delay: 1000,
+    },
+    forceSync: true,
+    lineWrapping: false,
+    renderingConfig: {
+		codeSyntaxHighlighting: true,
+	},
+    });</script>
 </html>

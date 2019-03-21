@@ -177,6 +177,7 @@ def add_task(request):
             task = Task(
                 idea=form.data['idea'],
                 body=form.data['body'],
+                simple_about=form.data['simple_about'],
                 creation_date=datetime.datetime.now(),
                 author=request.user
             )

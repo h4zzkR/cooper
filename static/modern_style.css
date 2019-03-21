@@ -1,11 +1,10 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*, *:after, *:before {
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+transition: .5s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
 }
 
 a {
@@ -14,7 +13,7 @@ a {
 
 html, body {
   	height: 100%;
-    width: 100%;
+    width: 100%;content isOpen
 	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
@@ -30,7 +29,10 @@ body {
 .wrapper {
   display: flex;
   min-height: 100%;
+  height:auto;
   background-color: #181919;
+  margin:0 auto;/*Центрирование блока*/
+  width:auto;/*Ширина в зависимости от разрешения экрана*/
 }
 
 .sidebar {
@@ -46,6 +48,9 @@ body {
   /*background: #2e3030;*/
   transform: translateX(0);
   transition: transform .3s;
+  margin:0 auto;/*Центрирование блока*/
+  min-width:940px;/*Минимальная ширина при маленьких разрешениях*/
+  width:auto;/*Ширина в зависимости от разрешения экрана*/
 }
 
 .content.isOpen {
@@ -98,7 +103,7 @@ h1 {
 .nav li a.logout{
 padding: 16px 65px 16px 65px;
 position: absolute;
-bottom:   1.4em;
+bottom:   10px;
 }
 
 .nav li a.logout:hover {
@@ -464,4 +469,37 @@ bottom:   1.4em;
     transition: all .2s ease-in-out;
     cursor: pointer;
   z-index: 50;
+}
+
+.task-card{
+    margin-right: 20px;
+    margint-bottom: 20px;
+    width: 20%;
+    height: 40%;
+    border-radius: 20px;
+    position: sticky;
+    display: inline-block;
+    background-color: #181919;
+}
+.task-card-header{
+    font-size:10px;
+    position: relative;
+    /*height: 10%;*/
+    /*line-height: 1em;*/
+    vertical-align: middle;
+    padding-top: 1px;
+    padding-bottom: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+}
+
+.task-card-header h1{
+    font-size: 200%;
+}
+
+.task-card-author{
+    background-color: white;
 }

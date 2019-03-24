@@ -92,7 +92,7 @@ class UserEditForm(forms.ModelForm):
 
     def save_avatar(self, request):
         user = User.objects.get(nickname=request.user.nickname)
-        image =  self.cleaned_data['avatar']
+        image = self.cleaned_data['avatar']
         stuff.image_preproc(image)
         r = open('media/tmp.png', 'rb')
         avatar = File(r)

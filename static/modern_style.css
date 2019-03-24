@@ -481,6 +481,15 @@ font-weight: 300;
     color: #eaeaea;
 }
 
+.user-link{
+color: #333;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .task-card{
     margin-right: 20px;
     margin-bottom: 20px;

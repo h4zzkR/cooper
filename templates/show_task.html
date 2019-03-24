@@ -36,9 +36,9 @@
 </form>
 {% else %}
 <br><br>
-    <a href="/profile/{{ task.author }}"><div type="submit" class="field" style="">{{ task.author }}</div></a>
-    <h1>{{ task.idea }}</h1>
-    <h1>{{ task.body }}</h1>
+    <h1>{{ task.idea }} от <a href="/profile/{{ task.author }}"><div type="submit" class = "user-link" style="">{{ task.author }}</div></a></h1>
+    <h1>{{ task.simple }}</h1>
+    <h2>{{ task.body }}</h2>
 {% endif %}
 
 {% include 'patterns/modern_footer.html' %}

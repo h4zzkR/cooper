@@ -15,13 +15,14 @@
  <br>
 <div class="Wrapper" style="height: 85%;">
 {% for task in tasks %}
+    <a href="/task/{{  task.id }}">
     <div class="task-card">
     <div class="task-card-header">
     <h1>{{  task.idea }}</h1>
     <h2>От {{  task.author }}</h2>
     </div>
         <h2 class="task-about">{{  task.simple_about }}</h2>
-    </div>
+    </div></a>
 {% endfor %}
 </div>
 </body>

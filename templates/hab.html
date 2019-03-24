@@ -13,19 +13,16 @@
 
 <h1>Это хаб.</h1>
  <br>
-<div class="Wrapper" style="height: 100%;">
+<div class="Wrapper" style="height: 85%;">
 {% for task in tasks %}
     <div class="task-card">
     <div class="task-card-header">
     <h1>{{  task.idea }}</h1>
+    <h2>От {{  task.author }}</h2>
     </div>
-    <div class="task-card-author">
-        <h1>{{  task.author }}</h1>
-    </div>
+        <h2 class="task-about">{{  task.simple_about }}</h2>
     </div>
 {% endfor %}
 </div>
-
-{% include 'patterns/modern_footer.html' %}
 </body>
 </html>

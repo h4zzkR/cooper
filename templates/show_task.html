@@ -23,10 +23,10 @@
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
     <a href="/remove/{{ task.id }}">
-        <div class="edit-button" style="position: inherit; width:10em; margin-top: -5em; margin-left: 50em;">
+        <div class="edit-button" style="position: inherit; width:10em; margin-bottom: -2.5em;">
             Удалить</div>
         </a>
-    <div class="Wrapper"><div class="input" style="padding-top: 2em;">
+    <div class="Wrapper"><div class="input" style="padding-top: 2em; margin-bottom: -2.5em;">
                      <textarea type="text" name="body" id="input" class="task-full" maxlength="20000"
                                placeholder="Расскажите всем, что вы хотите сделать:"
                                style="width: 70%; height: 40em; padding-top: 0.1em;">{{ task.body }}
@@ -35,7 +35,8 @@
     <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
 </form>
 {% else %}
-    <a href="/profile/{{ task.author.username }}"><div type="submit" class="field" style="">{{ task.author }}</div></a>
+<br><br>
+    <a href="/profile/{{ task.author }}"><div type="submit" class="field" style="">{{ task.author }}</div></a>
     <h1>{{ task.idea }}</h1>
     <h1>{{ task.body }}</h1>
 {% endif %}

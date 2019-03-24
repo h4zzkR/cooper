@@ -108,8 +108,8 @@ bottom:   10px;
 
 .nav li a.logout:hover {
   color: white;
-  background-color:  #df313c;
-  box-shadow: 0px 0px 8px #f44336;
+  background-color:  #ef2828;
+  box-shadow: 0px 0px 8px #ff4242;
 }
 
 .nav li a.active {
@@ -172,7 +172,7 @@ bottom:   10px;
   position: relative;
   min-height: 10em;
   text-align: center;
-  background: #df313c;
+  background: #751390;
   color: #fff;
   margin-top: 2%;
   margin-right: 100px;
@@ -245,36 +245,40 @@ bottom:   10px;
 /*PROFILE SECTION*/
 
 .first_name{
-  margin-left: 12%;
+  margin-left: 170px;
   font-size: 30px;
 }
 
 .email{
   padding-top: 1%;
-  margin-left: 12%;
+  margin-left: 170px;
   font-size: 30px;
   color: grey;
 }
 .bio-h{
   position: relative;
-  margin-top: 5%;
+  margin-top: 70px;
   font-size: 35px;
 }
 .location-h{
   margin-top: 1%;
- margin-left: 12%;
+ margin-left: 170px;
   font-size: 15px;
 }
 .location{
   padding-top: 1%;
-  margin-left: 12%;
+  margin-left: 170px;
   font-size: 20px;
   color: grey;
 }
 .bio{
-  margin-top: 2%;
+  margin-top: 70px;
   width: 600px;
   font-size: 30px;
+}
+
+h2{
+font-weight: 300;
 }
 
 .edit-button{
@@ -282,9 +286,10 @@ bottom:   10px;
   width: 15em;
   display: inline-block;
     text-align: center;
-	background: #df313c;
+	background: #751389;
 	color: #fff;
     margin-right: 100px;
+    margin-left: 0px;
 	font-size: 16px;
 	padding: 12px 19px;
 	/*line-height: 1;*/
@@ -456,7 +461,7 @@ bottom:   10px;
   width: 15em;
   display: inline-block;
     text-align: center;
-	background: #df313c;
+	background: #751389;
 	color: #fff;
     margin-right: 100px;
 	font-size: 16px;
@@ -471,15 +476,21 @@ bottom:   10px;
   z-index: 50;
 }
 
+.task-about{
+    margin-top: 10px;
+    color: #eaeaea;
+}
+
 .task-card{
     margin-right: 20px;
-    margint-bottom: 20px;
+    margin-bottom: 20px;
     width: 20%;
     height: 40%;
-    border-radius: 20px;
+    border-radius: 10px;
     position: sticky;
     display: inline-block;
     background-color: #181919;
+    text-align: center;
 }
 .task-card-header{
     font-size:10px;
@@ -489,9 +500,9 @@ bottom:   10px;
     vertical-align: middle;
     padding-top: 1px;
     padding-bottom: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-color: #28a745;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #751390;
     color: white;
     text-align: center;
 }

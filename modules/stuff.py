@@ -2,7 +2,6 @@ import string
 import random
 from PIL import Image
 from django.conf import settings
-import pandas as pd
 import uuid
 import os
 import datetime

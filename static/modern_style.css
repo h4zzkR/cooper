@@ -476,6 +476,11 @@ font-weight: 300;
   z-index: 50;
 }
 
+.text-show-task{
+word-wrap: break-word;
+width: 85%
+}
+
 .task-about{
     margin-top: 10px;
     color: #eaeaea;

@@ -18,10 +18,10 @@
     <a href="/task/{{  task.id }}">
     <div class="task-card">
     <div class="task-card-header">
-    <h1>{{  task.idea }}</h1>
-    <h2>От {{  task.author }}</h2>
+    <h1 class="task-card-text">{{  task.idea }}</h1>
+    <h2 class="task-card-from">От {{  task.author }}</h2>
     </div>
-        <h2 class="task-about">{{  task.simple_about }}</h2>
+        <h2 class="task-about task-card-text">{{  task.simple_about }}</h2>
     </div></a>
 {% endfor %}
 </div>

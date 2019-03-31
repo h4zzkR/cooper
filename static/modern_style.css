@@ -479,6 +479,7 @@ font-weight: 300;
 .task-about{
     margin-top: 10px;
     color: #eaeaea;
+    word-wrap: break-word;
 }
 
 .user-link{
@@ -500,15 +501,32 @@ html, body {
     display: inline-block;
     background-color: #181919;
     text-align: center;
+    word-wrap: break-word;
 }
+
+.task-card-text{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.task-card-from{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+
 .task-card-header{
     font-size:10px;
     position: relative;
+    display: block;
     /*height: 10%;*/
     /*line-height: 1em;*/
     vertical-align: middle;
     padding-top: 1px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #751390;

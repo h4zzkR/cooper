@@ -50,26 +50,26 @@
             <form action="/u/register/" method="post" style="margin: auto; position: relative;">
                 {% csrf_token %}
                 <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
-                     <input type="text" name="username" autocomplete="off" id="input" class="input-text"
+                     <input required type="text" name="username" autocomplete="off" id="input" class="input-text"
                             placeholder="Ник" style=" position: relative;">
                 </div></div>
                 <div class="Wrapper"><div class="input">
-                     <input type="text" name="first_name" autocomplete="off" id="input"
+                     <input required type="text" name="first_name" autocomplete="off" id="input"
                             class="input-text" placeholder="Имя" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
                 <div class="Wrapper"><div class="input">
-                     <input type="text" name="last_name" autocomplete="off" id="input"
+                     <input required type="text" name="last_name" autocomplete="off" id="input"
                             class="input-text" placeholder="Фамилия" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
                 <div class="Wrapper"><div class="input">
-                     <input type="password" name="password" autocomplete="off" id="input"
+                     <input required type="password" name="password" autocomplete="off" id="input"
                             class="input-text" placeholder="Пароль" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
                  <div class="Wrapper"><div class="input">
-                     <input type="text" name="email" autocomplete="off" id="input"
+                     <input required type="text" name="email" autocomplete="off" id="input"
                             class="input-text" placeholder="Почта" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>

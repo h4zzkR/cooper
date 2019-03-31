@@ -33,7 +33,7 @@
 <br>
 
 {% if user == user_profile %}
-    <a href="{{ user }}/edit" class="edit-button">Редактировать профиль</a>
+    <a href="/profile/edit/{{ user }}" class="edit-button">Редактировать профиль</a>
 {% endif %}
 
 {% include 'patterns/modern_footer.html' %}

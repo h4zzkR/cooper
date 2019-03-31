@@ -29,7 +29,7 @@ urlpatterns = [
     path('add_task', add_task),
     path('remove/<int:id>', delete_task),
     path('profile/<str:user>', profile),
-    path('profile/<str:user>/edit', profile_edit),
+    path('profile/edit/<str:user>', profile_edit),
     path('u/new_user', new_user),
     path('task/<int:task_id>', show),    # path('task/<int:task_id>', show),
     path('u/recover_password', recover_password_page),

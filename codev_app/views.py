@@ -240,7 +240,7 @@ def profile(request, user):
             raise Http404
     else:
         request_user = User.objects.get(nickname=user)
-        context.update({'request_avatar': request.user.avatar})
+        context.update({'request_avatar': request_user.avatar})
         context.update({'user_profile': request_user})
     return render(request, 'profile.html', context)
 

@@ -6,14 +6,14 @@
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
 </head>
 
-<body>
+<body class="Wrapper">
 {% include 'patterns/modern_menu.html' %}
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
 
 <h1>Это хаб.</h1>
  <br>
-<div class="Wrapper" style="height: 85%;">
+<div>
 {% for task in tasks %}
     <a href="/task/{{  task.id }}">
     <div class="task-card">
@@ -21,7 +21,7 @@
     <h1 class="task-card-text">{{  task.idea }}</h1>
     <h2 class="task-card-from">От {{  task.author }}</h2>
     </div>
-        <h2 class="task-about task-card-text">{{  task.simple_about }}</h2>
+        <h2 class="task-about">{{  task.simple_about }}</h2>
     </div></a>
 {% endfor %}
 </div>

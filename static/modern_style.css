@@ -480,6 +480,9 @@ font-weight: 300;
     margin-top: 10px;
     color: #eaeaea;
     word-wrap: break-word;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
 }
 
 .user-link{
@@ -502,7 +505,10 @@ html, body {
     background-color: #181919;
     text-align: center;
     word-wrap: break-word;
+    position: flex;
+    vertical-align: top;
 }
+
 
 .task-card-text{
     margin-left: 5px;

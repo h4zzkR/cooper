@@ -46,7 +46,7 @@ def get_context(request, pagename):
 
 @login_required
 def hab(request):
-    tasks = Task.objects.filter(~Q(author = request.user))
+    tasks = Task.objects.all()
     print(tasks)
     context = get_context(request, 'hab')
     context.update({'tasks': tasks})

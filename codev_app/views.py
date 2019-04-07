@@ -230,6 +230,8 @@ def profile(request, user):
     :return:
     """
     context = get_context(request, 'profile')
+    tasks = Task.objects.all()
+    context.update({'tasks': tasks})
     if request.user.nickname == user:
         context = get_context(request, 'profile')
         try:

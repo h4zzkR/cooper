@@ -10,6 +10,12 @@ from modules.user_manager import UserManager
 import datetime
 import modules.stuff as stuff
 
+class Message(models.Model):
+    text = models.CharField(max_length=20000)
+
+class Chat(models.Model):
+    name = models.CharField(max_length=2000)
+    messages = models.ManyToManyField(Message)
 
 class User(AbstractBaseUser):
 
@@ -23,6 +29,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(_('is_active'), default=True)
     avatar = models.ImageField(upload_to='users/avatars/', null=True, blank=True)
     is_superuser = models.BooleanField(default=False)
+    chats = models.ManyToManyField(Chat)
 
     objects = UserManager()
 

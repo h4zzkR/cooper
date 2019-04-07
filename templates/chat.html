@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{  chat.name  }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+</head>
+
+<body>
+{% include 'patterns/modern_menu.html' %}
+<h1 style="position: sticky;">{{  chat.name  }}</h1>
+{#{% include 'patterns/header.html' %}#}
+{#{% include 'patterns/menu.html' %}#}
+<br>
+<br>
+<div>
+    {% for msg in chat.messages %}
+    <div class="chat-card">
+    <div class="chat-card-header">
+        <h1 class="chat-card-text">{{  msg.text }}</h1></div></div></a>
+    {% endfor %}
+</div>
+
+{% include 'patterns/modern_footer.html' %}
+</body>
+</html>

@@ -497,6 +497,15 @@ width: 85%
     margin-bottom: 10px;
 }
 
+.card-about{
+    margin-top: 10px;
+    color: #eaeaea;
+    word-wrap: break-word;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
 .user-link{
 color: #751390;
 }
@@ -520,12 +529,34 @@ html, body {
     vertical-align: top;
 }
 
+.chat-card{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 15%;
+    border-radius: 10px;
+    position: sticky;
+    display: inline-block;
+    background-color: #181919;
+    text-align: center;
+    word-wrap: break-word;
+    position: flex;
+    vertical-align: top;
+}
+
 
 .task-card-text{
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
     margin-top: 15px;
+}
+
+.chat-card-text{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: white;
 }
 
 .task-card-from{
@@ -549,6 +580,28 @@ html, body {
     background-color: #751390;
     color: white;
     text-align: center;
+}
+
+.chat-card-header{
+    font-size:10px;
+    position: relative;
+    display: block;
+    /*height: 10%;*/
+    /*line-height: 1em;*/
+    vertical-align: middle;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #751390;
+    color: white;
+    text-align: center;
+}
+
+.chat-card-header h1{
+    font-size: 200%;
 }
 
 .task-card-header h1{

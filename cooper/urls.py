@@ -34,6 +34,9 @@ urlpatterns = [
     path('task/<int:task_id>', show),    # path('task/<int:task_id>', show),
     path('u/recover_password', recover_password_page),
     path('u/reset/', new_password_token),
+    path('chats/', chats),
+    path('create_chat/', create_chat),
+    path('chat/<int:id>', chat),
     # path('u/new_password', new_password),
     path('awaiting', awaiting),
     path('control', admin_panel)

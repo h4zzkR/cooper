@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hab</title>
+    <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+</head>
+
+<body class="Wrapper">
+{% include 'patterns/modern_menu.html' %}
+
+<h1>Добро пожаловать, {{ user.nickname }}!</h1><br>
+<h2>Если вы смогли сюда зайти, значит вы - администратор. <br>В отличии от обычных пользователей, вы можете изменять<br>
+информацию на сайте независимо от того, являетесь вы ее владельцем или нет. <br>Также вы
+можете удалять/изменять данные обычных пользователей. <br>Помните - с большой силой приходит большая ответственность.</h2>
+
+{% include 'patterns/modern_footer.html' %}
+</body>
+</html>

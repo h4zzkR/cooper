@@ -36,6 +36,7 @@ urlpatterns = [
     path('u/reset/', new_password_token),
     # path('u/new_password', new_password),
     path('awaiting', awaiting),
+    path('control', admin_panel)
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

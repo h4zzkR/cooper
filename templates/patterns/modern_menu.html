@@ -18,8 +18,9 @@
   <div class="sidebar" style="position: fixed;">
     <ul class="nav">
       <img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}">
-       <li class="profile"><a class="profile-button" href = "/profile/{{ user }}"><p> Профиль </p></a></li>
-       <li><a {% if pagename == 'profile' %}class="active"{% endif %} href = "/profile/{{ user }}"> {{ user }} (Вы) </a></li>
+     <li class="profile"><a class="profile-button" href = "/profile/{{ user }}"><p> Профиль </p></a></li>
+     {% if user.is_superuser == True %}<li><a {% if pagename == 'control' %} class="active" {% endif %} href="/control">Управление</a></li>{% endif %}
+     <li><a {% if pagename == 'profile' %}class="active"{% endif %} href = "/profile/{{ user }}"> {{ user }} (Вы) </a></li>
       <li><a {% if pagename == 'hab' %}class="active"{% endif %} href="/">Хаб</a></li>
       <li><a {% if pagename == 'make_task' %}class="active"{% endif %} href="/add_task">Создать таск</a></li>
       <li><a {% if pagename == 'tasks' %}class="active"{% endif %} href="/tasks">Мои таски</a></li>

@@ -47,7 +47,7 @@ def get_context(request, pagename):
 @login_required
 def hab(request):
     tasks = Task.objects.filter(~Q(author = request.user))
-    print(tasks)
+    print(request.user.is_superuser)
     context = get_context(request, 'hab')
     context.update({'tasks': tasks})
     return context
@@ -62,7 +62,6 @@ def index(request):
     if request.user.is_authenticated:
         context = get_context(request, 'index')
         context = hab(request)
-        print(context['tasks'])
         return render(request, 'hab.html', context)
     return render(request, 'index.html')
 
@@ -83,7 +82,6 @@ def login_page(request):
     :param request:
     :return:
     """
-    #print(User.objects.get(nickname='m0r0zk01').password)
     return render(request, 'login_page.html', get_context(request, 'login page'))
 
 def login(request):
@@ -93,7 +91,6 @@ def login(request):
     :param request:
     :return:
     """
-    print(request.POST)
     username = request.POST['username']
     password = request.POST['password']
     user = auth.authenticate(nickname=username, password=password)
@@ -158,8 +155,6 @@ def new_user(request):
     """
     return render(request, 'register.html', get_context(request, 'register_page'))
 
-
-
 @login_required
 def add_task(request):
     """
@@ -189,7 +184,6 @@ def add_task(request):
         context.update({'form': AddTaskForm()})
     return render(request, 'add_task.html', context)
 
-
 @login_required
 def my_tasks(request):
     """
@@ -216,7 +210,6 @@ def delete_task(request, id):
     context = get_context(request, 'my_tasks')
     context.update({'tasks': Task.objects.filter(author=request.user)})
     return render(request, 'tasks.html', context)
-
 
 @login_required
 def profile(request, user):
@@ -292,7 +285,6 @@ def show(request, task_id):
         context.update({'author': task.author.nickname})
     return render(request, 'show_task.html', context)
 
-
 def recover_password_page(request):
     if request.method == 'POST':
         user = User.objects.get(email=request.POST.get('email'))
@@ -322,10 +314,49 @@ def new_password_token(request):
 
     if request.method == 'POST':
         user = Token.objects.get(token=request.GET.get('token'))
-        print(user)
         model_user = User.objects.get(nickname = user.user.nickname)
         model_user.password = make_password(request.POST.get('password'), salt=None, hasher='default')
         model_user.save()
         #Delete on reset
         user.delete()
         return redirect('/')
+
+def admin_panel(request):
+
+    if request.user.is_superuser:
+        context = get_context(request, 'control')
+        if request.method == 'GET':
+            # user = request.GET.get('token')
+            # try:
+            #     user = Token.objects.get(token=token)
+            # except:
+            #     raise Http404
+            return render(request, 'admin_panel.html', context)
+
+        if request.method == 'POST':
+            user = request.GET.get('nick')
+
+
+
+
+
+
+
+# DjangoBash Block
+def create_user(name='test', mail='test@gm.com', password='password',
+                last_name='test_last_name', first_name='test_first_name', is_super=False):
+
+    user = None
+    if not is_super:
+        user = User.objects.create_user(nick=name, email=mail, password=password,
+                                        first_name=first_name, last_name=last_name)
+    else:
+        user = User.objects.create_superuser(nick=name, email=mail, password=password,
+                                        first_name=first_name, last_name=last_name)
+        # return random avatar from hash
+    get_avatar(stuff.avatar_generator())
+    r = open('media/tmp.png', 'rb')
+    avatar = File(r)
+    user.avatar.save(str(user.id) + '_avatar.png', avatar)
+    r.close()
+    os.remove('media/tmp.png')

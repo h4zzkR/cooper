@@ -52,6 +52,9 @@ class User(AbstractBaseUser):
         '''
         send_mail(subject, message, self.email, email_receiver)
 
+    @property
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
 
 class Task(models.Model):
     idea = models.CharField(max_length=200)

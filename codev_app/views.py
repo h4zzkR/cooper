@@ -205,6 +205,43 @@ def my_tasks(request):
     return render(request, 'tasks.html', context)
 
 @login_required
+def chats(request):
+    """
+    func for displaying all user's task
+    :param request:
+    :return:
+    """
+    context = get_context(request, 'chats')
+    chats = request.user.chats.all()
+    context.update({'chats': chats})
+    return render(request, 'chats.html', context)
+
+
+
+@login_required
+def create_chat(request):
+    """
+    func for displaying all user's task
+    :param request:
+    :return:
+    """
+    new_chat = Chat(name = "Новый чат")
+    new_chat.save()
+    request.user.chats.add(new_chat)
+    request.user.save()
+    context = get_context(request, 'chats')
+    chats = request.user.chats.all()
+    context.update({'chats': chats})
+    return render(request, 'chats.html', context)
+
+@login_required
+def chat(request, id):
+    context = get_context(request, 'chat')
+    chat = Chat.objects.get(id = id)
+    context.update({'chat': chat})
+    return render(request, 'chat.html', context)
+
+@login_required
 def delete_task(request, id):
     """
     delete task function

@@ -23,11 +23,11 @@
             <form action="/u/login/" method="post" style="margin: auto; position: relative;">
                 {% csrf_token %}
                 <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
-                     <input type="text" name="username" autocomplete="off" id="input" class="input-text"
+                     <input required type="text" name="username" autocomplete="off" id="input" class="input-text"
                             placeholder="Ник" style=" position: relative;">
                 </div></div>
                 <div class="Wrapper"><div class="input">
-                     <input type="password" name="password" autocomplete="off" id="input"
+                     <input required type="password" name="password" autocomplete="off" id="input"
                             class="input-text" placeholder="Пароль" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div><a href="/u/recover_password" style="margin-left:10%;">Забыли пароль?</a>

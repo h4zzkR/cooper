@@ -48,6 +48,7 @@ def get_context(request, pagename):
 def hab(request):
     tasks = Task.objects.filter(~Q(author = request.user))
     print(request.user.is_superuser)
+    tasks = Task.objects.all()
     context = get_context(request, 'hab')
     context.update({'tasks': tasks})
     return context
@@ -223,6 +224,8 @@ def profile(request, user):
     :return:
     """
     context = get_context(request, 'profile')
+    tasks = Task.objects.all()
+    context.update({'tasks': tasks})
     if request.user.nickname == user:
         context = get_context(request, 'profile')
         try:
@@ -233,7 +236,7 @@ def profile(request, user):
             raise Http404
     else:
         request_user = User.objects.get(nickname=user)
-        context.update({'request_avatar': request.user.avatar})
+        context.update({'request_avatar': request_user.avatar})
         context.update({'user_profile': request_user})
     return render(request, 'profile.html', context)
 

@@ -255,6 +255,13 @@ bottom:   10px;
   font-size: 30px;
   color: grey;
 }
+
+.projects-h{
+  position: relative;
+  margin-top: 20px;
+  font-size: 35px;
+}
+
 .bio-h{
   position: relative;
   margin-top: 70px;
@@ -272,9 +279,9 @@ bottom:   10px;
   color: grey;
 }
 .bio{
-  margin-top: 70px;
+  margin-top: 10px;
   width: 600px;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 h2{
@@ -491,7 +498,7 @@ width: 85%
 }
 
 .user-link{
-color: #333;
+color: #751390;
 }
 
 html, body {
@@ -503,7 +510,6 @@ html, body {
     margin-right: 20px;
     margin-bottom: 20px;
     width: 20%;
-    height: 40%;
     border-radius: 10px;
     position: sticky;
     display: inline-block;

@@ -19,7 +19,6 @@
     <h1>Это профиль юзера {{ user_profile }}</h1>
     <br>
 {% endif %}
-<br>
 {% if user == user_profile %}
 <img src="{{ MEDIA_URL }}{{ avatar }}" width="150" style="border-radius: 14px; position: absolute;">
 {% else %}
@@ -32,8 +31,26 @@
 <br>
 <br>
 
+{% if user != user_profile %}
+<p class="projects-h">Таски пользователя:</p>
+<br>
+<br>
+{% for task in tasks %}
+{% if user_profile == task.author %}
+    <a href="/task/{{  task.id }}">
+    <div class="task-card">
+    <div class="task-card-header">
+    <h1 class="task-card-text">{{  task.idea }}</h1>
+    <h2 class="task-card-from">От {{  task.author }}</h2>
+    </div>
+        <h2 class="task-about">{{  task.simple_about }}</h2>
+    </div></a>
+{% endif %}
+{% endfor %}
+{% endif %}
+
 {% if user == user_profile %}
-    <a href="{{ user }}/edit" class="edit-button">Редактировать профиль</a>
+    <a href="/profile/edit/{{ user }}" class="edit-button">Редактировать профиль</a>
 {% endif %}
 
 {% include 'patterns/modern_footer.html' %}

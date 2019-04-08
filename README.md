@@ -5,7 +5,7 @@
 Web-app for developers searching for the working on projects.
 We continue to write readme, keep in touch.
 
-##Reqs:
+## Reqs:
 ⋅⋅* npm install simplemde --save
 ⋅⋅* pip3 install django_extensions
 ⋅⋅* pip3 install validate_email

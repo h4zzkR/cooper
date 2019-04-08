@@ -9,6 +9,7 @@ We continue to write readme, keep in touch.
 npm install simplemde --save
 django_extensions
 validate_email
+pyDNS
 pillow
 django (ofc)
 https://docs.google.com/document/d/11DQPLyEXO4wGiOjyCECmzDpbmLmXNg7N-2RFP4ph8sQ/edit?usp=sharing

@@ -20,9 +20,9 @@
     <br>
 {% endif %}
 {% if user == user_profile %}
-<img src="{{ MEDIA_URL }}{{ avatar }}" width="150" style="border-radius: 14px; position: absolute;">
+<img src="{{ avatar }}" width="150" style="border-radius: 14px; position: absolute;">
 {% else %}
-<img src="{{ MEDIA_URL }}{{ request_avatar }}" width="150" style="border-radius: 14px; position: absolute;">
+<img src="{{ request_avatar }}" width="150" style="border-radius: 14px; position: absolute;">
 {% endif %}
 <p class="first_name" style="position: relative;">{{  user_profile.first_name }} {{ user_profile.last_name }}</p>
 <p class="email" style="position: relative;">{{ user_profile.email }}</p>

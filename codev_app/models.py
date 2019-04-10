@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
@@ -9,6 +7,13 @@ from django.utils.translation import ugettext_lazy as _
 from modules.user_manager import UserManager
 import datetime
 import modules.stuff as stuff
+from django.db import models
+import django.utils.timezone as time
+from django.core.validators import MinValueValidator, MaxValueValidator
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 class Message(models.Model):
     text = models.CharField(max_length=20000)
@@ -40,25 +45,6 @@ class User(AbstractBaseUser):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
-    def get_full_name(self):
-        '''
-        Возвращает first_name и last_name с пробелом между ними.
-        '''
-        full_name = '{}{}'.format(self.first_name, self.last_name)
-        return full_name.strip()
-
-    def get_nickname(self):
-        '''
-        Возвращает ник пользователя
-        '''
-        return self.nickname
-
-    def email_user(self, subject, message, email_receiver):
-        '''
-        Отправляет электронное письмо этому пользователю.
-        '''
-        send_mail(subject, message, self.email, email_receiver)
-
     @property
     def has_perm(self, perm, obj=None):
         return self.is_superuser
@@ -69,6 +55,12 @@ class Task(models.Model):
     simple_about = models.TextField(max_length=100, default='Краткое описание')
     creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)
+    max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(12)])
+
+class Subscribe(models.Model):
+    user = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True, default=None)
+    task = models.ForeignKey(to=Task, blank=True, on_delete=models.PROTECT, null=True, default=None)
+    time_subscribed = models.DateTimeField(auto_now=True)
 
 class Token(models.Model):
     token = models.CharField(max_length=30, default=stuff.token_generator(), null=False)

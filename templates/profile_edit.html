@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>{{ user.username }}</title>
+    <title>{{ pagename }}</title>
     <link rel="stylesheet" type="text/css" href="/static/modern_style.css">
+    <link rel="stylesheet" href="/static/croppie.css"/>
 </head>
 
 <body>
@@ -14,6 +15,7 @@
 {% if user.is_authenticated %}
     <div>
     <br>
+            <a href="/gen_avatar"><button class="edit-button" style="margin-top: 2.5em;">Сгенерировать аватар</button></a>
             <form method="post" enctype='multipart/form-data'>
               {% csrf_token %}
                 <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
@@ -26,7 +28,7 @@
                             value="{{ user.first_name }}" class="input-text" placeholder="Имя" style=" position: relative;">
 {#                    <span class="floating-label">Your email address</span>#}
                 </div></div>
-                <img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}" style="position: absolute;
+                <img class="avatar" src="{{ avatar }}" style="position: absolute;
                     margin-left: 25em; width: 10em; height: 10em; margin-top: -8.5em; display: flex;">
                 <div class="Wrapper"><div class="input">
                      <input type="text" name="last_name" id="input"
@@ -48,7 +50,6 @@
                {{ user_form.avatar }}
               <button type="submit" class="edit-button" style="margin-top: 2.5em;">Сохранить изменения</button>
             </form>
-        </div>
 
 {% else %}
     <h1><a href = "/u/login">Пожалуйста, авторизуйтесь</a></h1>
@@ -57,8 +58,6 @@
 
 {% include 'patterns/modern_footer.html' %}
 </body>
-
-<style>
-</style>
-
+<script src="/static/js/croppie.js"></script>
+<script>$('.my-image').croppie();</script>
 </html>

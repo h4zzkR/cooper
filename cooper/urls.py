@@ -37,9 +37,11 @@ urlpatterns = [
     path('chats/', chats),
     path('create_chat/', create_chat),
     path('chat/<int:id>', chat),
-    # path('u/new_password', new_password),
+    path('sub/<int:task_id>', subscribe),
+    path('unsub/<int:task_id>', unsubscribe),
     path('awaiting', awaiting),
-    path('control', admin_panel)
+    path('control', admin_panel),
+    path('gen_avatar', gen_avatar_prepare)
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

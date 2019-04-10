@@ -17,7 +17,7 @@
 <div class="wrapper">
   <div class="sidebar" style="position: fixed;">
     <ul class="nav">
-      <img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}">
+     <img class="avatar" src="{{ avatar }}">
      <li class="profile"><a class="profile-button" href = "/profile/{{ user }}"><p> Профиль </p></a></li>
      {% if user.is_superuser == True %}<li><a {% if pagename == 'control' %} class="active" {% endif %} href="/control">Управление</a></li>{% endif %}
      <li><a {% if pagename == 'profile' %}class="active"{% endif %} href = "/profile/{{ user }}"> {{ user }} (Вы) </a></li>

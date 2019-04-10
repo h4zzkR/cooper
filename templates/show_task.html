@@ -15,6 +15,12 @@
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
 {##}
+<br><br><p>Подписчики: {{ subs_count }}</p>
+<ul>
+    {% for sub in subs %}
+    <li>{{ sub.user.nickname }}</li>
+    {% endfor %}
+</ul>
 {% if user.get_username == author %}
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -36,7 +42,14 @@
 </form>
 {% else %}
 <br><br>
-    <h1 class="text-show-task">{{ task.idea }} <a href="/profile/{{ task.author }}"><div type="submit" class = "user-link" style="">от {{ task.author }}</div></a></h1>
+    {% if flag == True%}
+        <p>Вы подписаны. Отписаться?</p>
+        <a href="/unsub/{{ task.id }}">Отписаться</a>
+    {% else %}
+    <a href="/sub/{{ task.id }}">Подписаться</a>
+    {% endif %}
+    <h1 class="text-show-task">{{ task.idea }} <a href="/profile/{{ task.author }}">
+        <div type="submit" class = "user-link" style="">от {{ task.author }}</div></a></h1>
     <h1 class="text-show-task">{{ task.simple }}</h1>
     <h2 class="text-show-task">{{ task.body }}</h2>
 {% endif %}

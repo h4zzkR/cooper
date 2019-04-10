@@ -4,10 +4,12 @@ Views for cooper project
 
 import datetime
 import os
+import django
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from validate_email import validate_email
 from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -17,12 +19,12 @@ from django.core.files import File
 from django.contrib.auth import login as auth_login
 from django.shortcuts import render_to_response
 import modules.avatars as avatars
+# import djansqlite3.IntegrityError as IE
 from codev_app.forms import *
 from codev_app.models import *
-from django.contrib.auth.tokens import default_token_generator
-# from codev_app.models import User
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
+from django.db.utils import IntegrityError
 
 
 def get_context(request, pagename):
@@ -39,16 +41,18 @@ def get_context(request, pagename):
         'registerform': RegistrationForm(request.POST)
     }
     if request.user.is_authenticated:
-        context.update({'avatar': request.user.avatar})
+        avatar = str(request.user.avatar)
+        context.update({'avatar': avatar[avatar.find('/media'):]})
 
     return context
+
+def update_avatar(avatar):
+    return avatar[avatar.find('/media'):]
 
 
 @login_required
 def hab(request):
     tasks = Task.objects.filter(~Q(author = request.user))
-    print(request.user.is_superuser)
-    tasks = Task.objects.all()
     context = get_context(request, 'hab')
     context.update({'tasks': tasks})
     return context
@@ -65,16 +69,6 @@ def index(request):
         context = hab(request)
         return render(request, 'hab.html', context)
     return render(request, 'index.html')
-
-
-def get_avatar(hash):
-    """
-    get random avatar from hash for new
-    user
-    :param hash:
-    :return:
-    """
-    avatars.Identicon(hash).generate()
 
 
 def login_page(request):
@@ -120,6 +114,22 @@ def logout(request):
     return redirect("/")
 
 
+def gen_avatar_prepare(request):
+    user = request.user
+    get_avatar(stuff.avatar_generator(), user)
+    return redirect('/profile/edit/{}'.format(user.nickname))
+
+def get_avatar(hash, user):
+    """
+    get random avatar from hash for new
+    """
+    avatars.Identicon(hash).generate(user.id)
+    path = settings.MEDIA_ROOT + '/users/avatars/' + str(user.id) + '_avatar.png'
+    r = open(path, 'rb')
+    user.avatar = File(r)
+    user.save()
+    r.close()
+
 def register(request):
     """
     Register new user.
@@ -130,21 +140,30 @@ def register(request):
     :return:
     """
     if request.method == 'POST':
-        name = request.POST.get('username')
-        mail = request.POST.get('email')
-        password = request.POST.get('password')
-        last_name = request.POST.get('last_name')
-        first_name = request.POST.get('first_name')
-        user = User.objects.create_user(nick=name, email=mail, password=password, first_name=first_name, last_name=last_name)
+        fields = ['nick', 'email', 'password', 'first_name', 'last_name']
+        data = {field : request.POST.get(field) for field in fields}
+        # if validate_email(data['email'], verify=True):
+        #     #if email exists:
+        #     try:
+        #         user = User.objects.create_user(**data)
+        #     except IntegrityError as err:
+        #         #Existing User Error
+        #         raise Http404
+        #     # return random avatar from hash
+        #     get_avatar(stuff.avatar_generator(), user)
+        #     auth_login(request, user)
+        # else:
+        #     #not founded
+        #     messages.info(request, 'Похоже, такого почтового ящика не существует.')
+        #     return HttpResponseRedirect('/u/new_user')
+        try:
+            user = User.objects.create_user(**data)
+        except IntegrityError as err:
+            # Existing User Error
+            raise Http404
         # return random avatar from hash
-        get_avatar(stuff.avatar_generator())
-        r = open('media/tmp.png', 'rb')
-        avatar = File(r)
-        user.avatar.save(str(user.id) + '_avatar.png', avatar)
+        get_avatar(stuff.avatar_generator(), user)
         auth_login(request, user)
-        r.close()
-        os.remove('media/tmp.png')
-
     return redirect("/")
 
 
@@ -273,7 +292,8 @@ def profile(request, user):
             raise Http404
     else:
         request_user = User.objects.get(nickname=user)
-        context.update({'request_avatar': request_user.avatar})
+        avatar = str(request_user.avatar)
+        context.update({'request_avatar': avatar[avatar.find('/media'):]})
         context.update({'user_profile': request_user})
     return render(request, 'profile.html', context)
 
@@ -285,7 +305,7 @@ def profile_edit(request, user):
     :param user:
     :return:
     """
-    context = get_context(request, 'profile_edit')
+    context = get_context(request, 'Редактирование')
     if request.method == 'POST':
         user_form = UserEditForm(request.POST, instance=request.user)
         print(user_form.is_valid())
@@ -293,16 +313,36 @@ def profile_edit(request, user):
         if user_form.is_valid():
             # os.system()
             user_form.save()
-            # user_form.save_avatar(request)
+            user_form.save_avatar(request)
             return redirect('/profile/' + user_form.data['nickname'])
-        raise Http404
+        else:
+            raise Http404
     else:
+        #Если запрос GET -> переходим на страницу юзера в запросе
         if user == request.user.nickname:
             form1 = UserEditForm()
             context.update({'user_form': form1})
             return render(request, 'profile_edit.html', context)
-        raise PermissionDenied
+        else:
+            raise PermissionDenied
     #return render(request, 'profile_edit.html', context)
+
+def subscribe(request, task_id):
+    sub = Subscribe(user=request.user, task=Task.objects.get(id=task_id))
+    try:
+        sub.save()
+    except IntegrityError:
+        print(Subscribe.objects.all())
+        messages.info(request, 'Похоже, такого почтового ящика не существует.')
+        return redirect('/task/{}'.format(task_id))
+    return redirect('/task/{}'.format(task_id))
+
+def unsubscribe(request, task_id):
+    task = Task.objects.get(id=task_id)
+    user = request.user
+    sub = Subscribe.objects.get(user=user, task=task)
+    sub.delete()
+    return redirect('/task/{}'.format(task_id))
 
 @login_required
 def show(request, task_id):
@@ -313,7 +353,16 @@ def show(request, task_id):
     """
     task = Task.objects.get(id=task_id)
     context = get_context(request, 'show_task')
-    context.update({'task': task})
+    #TODO добавить иконок юзеров и вынести их в шаблон
+
+    subs = [sub for sub in Subscribe.objects.filter(task=task)]
+    avatars = [update_avatar(sub.user.avatar) for sub in subs]
+    print(avatars)
+    is_subscribed = False
+    if request.user.nickname in [sub.user.nickname for sub in subs]:
+        is_subscribed = True
+    context.update({'task': task, 'subs' : subs, 'flag' : is_subscribed,
+                    'subs_count': len(subs), 'avatars' : avatars})
     if task.author == request.user.nickname:
         if request.method == "POST":
             task.idea = request.POST.get('idea')
@@ -378,11 +427,11 @@ def admin_panel(request):
 
 
 
-
-
-
-
 # DjangoBash Block
+
+def get_user(nick):
+    return User.objects.get(nickname=nick)
+
 def create_user(name='test', mail='test@gm.com', password='password',
                 last_name='test_last_name', first_name='test_first_name', is_super=False):
 
@@ -394,9 +443,8 @@ def create_user(name='test', mail='test@gm.com', password='password',
         user = User.objects.create_superuser(nick=name, email=mail, password=password,
                                         first_name=first_name, last_name=last_name)
         # return random avatar from hash
-    get_avatar(stuff.avatar_generator())
-    r = open('media/tmp.png', 'rb')
-    avatar = File(r)
-    user.avatar.save(str(user.id) + '_avatar.png', avatar)
-    r.close()
-    os.remove('media/tmp.png')
+    get_avatar(stuff.avatar_generator(), user)
+    # r = open('media/avatars/{}_avatar.png'.format(str(user.id)), 'rb')
+    # avatar = File(r)
+    # user.avatar.save(str(user.id) + '_avatar.png', avatar)
+    # r.close(); get_avatar(stuff.avatar_generator(), user.id)

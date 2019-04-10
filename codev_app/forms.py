@@ -7,6 +7,13 @@ import modules.stuff as stuff
 import modules.avatars as avatars
 from django.contrib.auth import login as auth_login
 import os
+from codev_app.views import *
+
+from django.db import models
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 
 
@@ -38,29 +45,11 @@ class RegistrationForm(forms.ModelForm):
         model = User
         fields = ('nickname', 'password', 'email', 'first_name', 'last_name')
 
-    def get_avatar(self, hash):
-        """
-        get random avatar from hash for new
-        user
-        :param hash:
-        :return:
-        """
-        avatars.Identicon(hash).generate()
 
     def save_avatar_and_login(self, request, user):
         hash = stuff.avatar_generator()
-        self.get_avatar(hash)
-        r = open('media/tmp.png', 'rb')
-        avatar = File(r)
-        user.avatar.save(str(user.id) + '_avatar.png', avatar)
-        os.remove('media/tmp.png')
-        r.close()
+        get_avatar(hash, user)
         return user
-        # widgets = {
-        #     'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
-        #     'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин'}),
-        #     'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Пароль'}),
-        # }
 
 
 class MakeTask(forms.ModelForm):
@@ -92,12 +81,19 @@ class UserEditForm(forms.ModelForm):
 
     def save_avatar(self, request):
         user = User.objects.get(nickname=request.user.nickname)
-        image = self.cleaned_data['avatar']
-        stuff.image_preproc(image)
-        r = open('media/tmp.png', 'rb')
-        avatar = File(r)
-        path = settings.MEDIA_ROOT + '/users/'
-        os.system('rm -rf {}'.format(path + str(user.id) + '_avatar.png'))
-        user.avatar.save(str(user.id) + '_avatar.png', avatar)
-        user.save()
-        os.system('rm -rf {}tmp.img'.format(settings.MEDIA_ROOT))
+        # os.system('rm -rf {}'.format(user.avatar))
+        try:
+            image = request.FILES['avatar']
+        except KeyError:
+            return None
+        # image = stuff.image_preproc(image)
+        user.avatar = File(image)
+
+        # r = open(path, 'rb')
+        # avatar = File(r)
+        # user.avatar = image
+        # path = settings.MEDIA_ROOT + '/users/'
+        # os.system('rm -rf {}'.format(path + str(user.id) + '_avatar.png'))
+        # user.avatar.save(str(user.id) + '_avatar.png', avatar)
+        # user.save()
+        # os.system('rm -rf {}'.format(path))

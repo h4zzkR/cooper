@@ -20,8 +20,9 @@ def image_preproc(img):
     right = (width + 110) / 2
     bottom = (height + 110) / 2
     image = image.crop((left, top, right, bottom))
-    with open(settings.MEDIA_ROOT + '/tmp.png', 'wb') as out:
-        image.save(out, 'PNG')
+    # with open(settings.MEDIA_ROOT + '/tmp.png', 'wb') as out:
+    #     image.save(out, 'PNG')
+    return image
 
 
 def token_generator():

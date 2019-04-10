@@ -56,12 +56,13 @@ class Identicon(object):
                 square_y = 0
                 square_x += 1
 
-    def generate(self):
+    def generate(self, id):
         """
         Save and show calculated identicon
         """
         self.calculate()
-        with open(settings.MEDIA_ROOT + '/tmp.png', 'wb') as out:
+        print(settings.MEDIA_ROOT + '/users/avatars/' + str(id) + '_avatar.png')
+        with open(settings.MEDIA_ROOT + '/users/avatars/' + str(id) + '_avatar.png', 'wb') as out:
             self.image.save(out, 'PNG')
 
     def base64(self, format='PNG'):

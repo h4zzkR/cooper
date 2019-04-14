@@ -6,7 +6,7 @@ Web-app for developers searching for the working on projects.
 We continue to write readme, keep in touch.
 
 
-##**Инструкция по запуску проекта**
+**Инструкция по запуску проекта**
 
 1). Создаем виртуальное окружение:<br>
     а). `$ sudo apt-get install python3-venv`<br>

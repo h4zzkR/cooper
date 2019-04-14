@@ -23,7 +23,6 @@ class Chat(models.Model):
     messages = models.ManyToManyField(Message)
 
 class User(AbstractBaseUser):
-
     email = models.EmailField(_('email'), unique=True)
     first_name = models.CharField(_('name'), max_length=30, blank=True)
     last_name = models.CharField(_('surname'), max_length=30, blank=True)
@@ -67,3 +66,6 @@ class Token(models.Model):
     user = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
     creation_date = models.CharField(max_length=20, default=datetime.datetime.now().time(),
                                      null=False)
+
+class Category(models.Model):
+    category = models.CharField(max_length=30)

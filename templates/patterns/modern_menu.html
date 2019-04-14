@@ -46,7 +46,8 @@ button::-moz-focus-inner {
       <li><a {% if pagename == 'hab' %}class="active"{% endif %} href="/">Хаб</a></li>
       <li><a {% if pagename == 'make_task' %}class="active"{% endif %} href="/add_task">Создать таск</a></li>
       <li><a {% if pagename == 'tasks' %}class="active"{% endif %} href="/tasks">Мои таски</a></li>
-      <li><a {% if pagename == 'settings' %}class="active"{% endif %} href = "/chats">Настройки</a></li>
+      <li><a {% if pagename == 'settings' %}class="active"{% endif %} href = "/settings">Настройки</a></li>
+      <li><a {% if pagename == 'subscriptions' %}class="active"{% endif %} href = "/subscriptions">Подписки</a></li>
       <li><a class="logout" href="/u/logout/">Выйти</a></li>
     </ul>
   </div>

@@ -44,7 +44,10 @@ We continue to write readme, keep in touch.
 8). Устанавливаем validate_email:<br>
     `(django_venv) ~$ pip install validate_email`
 
-9). Запускаем сервер:<br>
+9). Устанавливаем DNS-библиотеку Python 3: <br>
+    `(django_venv) ~$ pip install py3dns`
+
+10). Запускаем сервер:<br>
     `(django_venv) ~$ python manage.py runserver`
 
 

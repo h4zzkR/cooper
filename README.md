@@ -5,16 +5,8 @@
 Web-app for developers searching for the working on projects.
 We continue to write readme, keep in touch.
 
-## Reqs:
-- npm install simplemde --save
-- pip3 install django_extensions
-- pip3 install validate_email
-- pip3 install py3dns
-- pip3 install pillow
-- pip3 install django
 
-
-**Инструкция по запуску проекта**
+##**Инструкция по запуску проекта**
 
 1). Создаем виртуальное окружение:<br>
     а). `$ sudo apt-get install python3-venv`<br>

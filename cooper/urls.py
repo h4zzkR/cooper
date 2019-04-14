@@ -37,6 +37,7 @@ urlpatterns = [
     path('subscribes/', chats),
     path('create_chat/', create_chat),
     path('chat/<int:id>', chat),
+    path('chat/<int:id>/new_msg', new_msg),
     path('sub/<int:task_id>', subscribe),
     path('unsub/<int:task_id>', unsubscribe),
     path('awaiting', awaiting),

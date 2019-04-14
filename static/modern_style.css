@@ -552,8 +552,7 @@ html, body {
 .chat-card{
     margin-right: 20px;
     margin-bottom: 20px;
-    width: 15%;
-    border-radius: 10px;
+    border-radius: 15px;
     display: inline-block;
     background-color: #181919;
     text-align: center;
@@ -576,6 +575,14 @@ html, body {
     margin-bottom: 5px;
     margin-top: 15px;
     color: white;
+}
+
+.chat-card-text{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: #333;
 }
 
 .task-card-from{
@@ -626,10 +633,9 @@ html, body {
     vertical-align: middle;
     padding-top: 1px;
     padding-bottom: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
     background-color: #751390;
     color: white;
     text-align: center;

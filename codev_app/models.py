@@ -15,12 +15,6 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 
-class Message(models.Model):
-    text = models.CharField(max_length=20000)
-
-class Chat(models.Model):
-    messages = models.ManyToManyField(Message)
-
 class User(AbstractBaseUser):
 
     email = models.EmailField(_('email'), unique=True)
@@ -46,6 +40,13 @@ class User(AbstractBaseUser):
     @property
     def has_perm(self, perm, obj=None):
         return self.is_superuser
+
+class Message(models.Model):
+    text = models.CharField(max_length=20000)
+    author = models.ForeignKey(to=User, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)
+
+class Chat(models.Model):
+    messages = models.ManyToManyField(Message)
 
 class Task(models.Model):
     idea = models.CharField(max_length=1000)

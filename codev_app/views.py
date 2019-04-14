@@ -152,6 +152,21 @@ def register(request):
         auth_login(request, user)
     return redirect("/")
 
+def new_msg(request, id):
+    if request.method == 'POST':
+        chat = Chat.objects.get(id = id)
+        msg = Message(text = request.POST.get('text'), author = request.user)
+        msg.save()
+        chat.messages.add(msg)
+        chat.save()
+    context = get_context(request, 'chat')
+    chat = Chat.objects.get(id=id)
+    context.update({'chat': chat})
+    task = Task.objects.get(chat=chat)
+    context.update({'task': task})
+    return render(request, 'chat.html', context)
+
+
 
 def new_user(request):
     """
@@ -181,7 +196,7 @@ def add_task(request):
                 idea=form.data['idea'],
                 body=form.data['body'],
                 simple_about=form.data['simple_about'],
-                max_subs=form.data['max_subs'],
+                max_subs=int(form.data['max_subs']),
                 creation_date=datetime.datetime.now(),
                 author=request.user,
                 chat=new_chat
@@ -243,6 +258,10 @@ def chat(request, id):
     context = get_context(request, 'chat')
     chat = Chat.objects.get(id = id)
     context.update({'chat': chat})
+    task = Task.objects.get(chat = chat)
+    context.update({'task': task})
+    context.update({'id': id})
+    print(chat, task, id, context)
     return render(request, 'chat.html', context)
 
 @login_required

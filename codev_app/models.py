@@ -19,7 +19,6 @@ class Message(models.Model):
     text = models.CharField(max_length=20000)
 
 class Chat(models.Model):
-    name = models.CharField(max_length=2000)
     messages = models.ManyToManyField(Message)
 
 class User(AbstractBaseUser):
@@ -48,13 +47,17 @@ class User(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=30, unique=True)
+
 class Task(models.Model):
     idea = models.CharField(max_length=1000)
     body = models.TextField(max_length=20000)
     simple_about = models.TextField(max_length=100, default='Краткое описание')
     creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
-    max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(12)])
+    max_subs = models.IntegerField(default=1)
+    tags = models.ManyToManyField(Tag)
 
 class Subscribe(models.Model):
     user = models.ForeignKey(to=User, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)
@@ -66,6 +69,3 @@ class Token(models.Model):
     user = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
     creation_date = models.CharField(max_length=20, default=datetime.datetime.now().time(),
                                      null=False)
-
-class Category(models.Model):
-    category = models.CharField(max_length=30)

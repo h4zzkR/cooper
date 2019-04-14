@@ -123,14 +123,13 @@ bottom:   10px;
   top: 15px;
   left: 20px;
 }
-.nav li:nth-child(4) a::before { content: '\f080'; }
-.nav li:nth-child(5) a::before { content: '\f007'; }
-.nav li:nth-child(6) a::before { content: '\f00b'; }
-.nav li:nth-child(7) a::before { content: '\f055'; }
-.nav li:nth-child(8) a::before { content: '\f0ae'; }
-.nav li:nth-child(9) a::before { content: '\f013'; }
-.nav li:nth-child(10) a::before { content: "\f0b1"; }
-
+.nav li:nth-child(3) a::before { content: '\f080'; }
+.nav li:nth-child(4) a::before { content: '\f007'; }
+.nav li:nth-child(5) a::before { content: '\f00b'; }
+.nav li:nth-child(6) a::before { content: '\f055'; }
+.nav li:nth-child(7) a::before { content: '\f0ae'; }
+.nav li:nth-child(8) a::before { content: '\f013'; }
+.nav li:nth-child(9) a::before { content: "\f0b1"; }
 
 .tasks{
   /*width: 5em;*/

@@ -41,7 +41,8 @@ urlpatterns = [
     path('unsub/<int:task_id>', unsubscribe),
     path('awaiting', awaiting),
     path('control', admin_panel),
-    path('gen_avatar', gen_avatar_prepare)
+    path('gen_avatar', gen_avatar_prepare),
+    path('subscribtions', subscriptions)
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

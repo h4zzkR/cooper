@@ -61,8 +61,8 @@ class Identicon(object):
         Save and show calculated identicon
         """
         self.calculate()
-        print(settings.MEDIA_ROOT + '/users/avatars/' + str(id) + '_avatar.png')
-        with open(settings.MEDIA_ROOT + '/users/avatars/' + str(id) + '_avatar.png', 'wb') as out:
+        print('media/users/avatars/' + str(id) + '_avatar.png')
+        with open('media/users/avatars/' + str(id) + '_avatar.png', 'wb') as out:
             self.image.save(out, 'PNG')
 
     def base64(self, format='PNG'):

@@ -73,6 +73,17 @@ class AddTaskForm(forms.Form):
         widget=forms.Textarea()
     )
 
+    def is_valid(self):
+        idea = self.data['idea']
+        body = self.data['body']
+        simple_about = self.data['simple_about']
+        max_subs = int(self.data['max_subs'])
+        if isinstance(idea, str) and isinstance(body, str) and isinstance(simple_about, str)\
+                and max_subs <= 40 and max_subs >= 1:
+            return True
+        else:
+            return False
+
 
 class UserEditForm(forms.ModelForm):
     class Meta:

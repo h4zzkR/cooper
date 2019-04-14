@@ -25,6 +25,7 @@ from codev_app.models import *
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
 from django.db.utils import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def get_context(request, pagename):
@@ -124,7 +125,7 @@ def get_avatar(hash, user):
     get random avatar from hash for new
     """
     avatars.Identicon(hash).generate(user.id)
-    path = settings.MEDIA_ROOT + '/users/avatars/' + str(user.id) + '_avatar.png'
+    path = 'media/users/avatars/' + str(user.id) + '_avatar.png'
     r = open(path, 'rb')
     user.avatar = File(r)
     user.save()
@@ -184,12 +185,28 @@ def add_task(request):
                 author=request.user
             )
             task.save()
+            tags = form.data['tags']
+            # tags = "pytorch python css"
+            tags = tags.split()
+            for tag in tags:
+                try:
+                    #берем существующий тег, если такой есть в БД
+                    tag_obj = Tag.objects.get(tag=tag)
+                except Tag.DoesNotExist:
+                    tag_obj = Tag.objects.create(tag=tag)
+                    tag_obj.save()
+                task.tags.add(tag_obj)
+            task.save()
         else:
             return redirect('add_task')
     else:
         context = get_context(request, 'make_task')
         context.update({'form': AddTaskForm()})
     return render(request, 'add_task.html', context)
+
+
+def subscriptions():
+    pass
 
 @login_required
 def my_tasks(request):
@@ -429,9 +446,4 @@ def create_user(name='test', mail='test@gm.com', password='password',
     else:
         user = User.objects.create_superuser(nick=name, email=mail, password=password,
                                         first_name=first_name, last_name=last_name)
-        # return random avatar from hash
     get_avatar(stuff.avatar_generator(), user)
-    # r = open('media/avatars/{}_avatar.png'.format(str(user.id)), 'rb')
-    # avatar = File(r)
-    # user.avatar.save(str(user.id) + '_avatar.png', avatar)
-    # r.close(); get_avatar(stuff.avatar_generator(), user.id)

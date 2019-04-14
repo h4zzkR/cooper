@@ -1,6 +1,6 @@
 # CooperationDevelopmentNetwork
 Веб-приложение для поиска разработчиков для работы над проектами.
-описание в процессе.
+Описание в процессе.
 
 Web-app for developers searching for the working on projects.
 We continue to write readme, keep in touch.
@@ -46,6 +46,9 @@ We continue to write readme, keep in touch.
 
 9). Устанавливаем DNS-библиотеку Python 3: <br>
     `(django_venv) ~$ pip install py3dns`
+
+10). Устанавливаем SimpleMDE:<br>
+    `(django_venv) ~$ npm install simplemde --save`
 
 10). Запускаем сервер:<br>
     `(django_venv) ~$ python manage.py runserver`

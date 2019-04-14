@@ -196,6 +196,8 @@ def add_task(request):
                     tag_obj = Tag.objects.create(tag=tag)
                     tag_obj.save()
                 task.tags.add(tag_obj)
+            sub = Subscribe(user=request.user, task=Task.objects.get(id=task.id))
+            sub.save()
             task.save()
         else:
             return redirect('add_task')
@@ -361,7 +363,6 @@ def show(request, task_id):
 
     subs = [sub for sub in Subscribe.objects.filter(task=task)]
     avatars = [update_avatar(sub.user.avatar) for sub in subs]
-    print(avatars)
     is_subscribed = False
     if request.user.nickname in [sub.user.nickname for sub in subs]:
         is_subscribed = True

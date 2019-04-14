@@ -17,6 +17,15 @@
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
 {##}
+<br><br><p>Подписчики: {{ subs_count }}</p>
+<ul>
+    {% for sub in subs %}
+    <li>{{ sub.user.nickname }}</li>
+    {% endfor %}
+    {% for avatar in avatars %}
+    <img class="avatar" src="{{ MEDIA_URL }}/{{ avatar }}">
+    {% endfor %}
+</ul>
 {% if user.get_username == author %}
         <div class="task-title">
         <p>{{ user }}</p>
@@ -25,12 +34,6 @@
         Удалить</div>
         </a>
     </div>
-    <br><br><p>Подписчики: {{ subs_count }}</p>
-<ul>
-    {% for sub in subs %}
-    <li>{{ sub.user.nickname }}</li>
-    {% endfor %}
-</ul>
 
 {#<div class="Wrapper" style="max-width: 70%; max-height: 10%; margin-bottom: 100px;">#}
 {#    <textarea id="simple_about">{{ task.simple_about }}</textarea>#}

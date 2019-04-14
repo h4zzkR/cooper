@@ -29,7 +29,7 @@ We continue to write readme, keep in touch.
 
 4). Устанавливаем Django:<br>
     `(django_venv) ~$ pip install django`<br>
-Если Вы сделали всё правильно, то Вам должно высветиться:
+Если Вы сделали всё правильно, то Вам должно высветиться:<br>
 Successfully installed django-2.1.3
 
 5). Клонируем внешний репозиторий проекта:<br>

@@ -11,3 +11,4 @@ django_extensions
 pillow
 django (ofc)
 https://docs.google.com/document/d/11DQPLyEXO4wGiOjyCECmzDpbmLmXNg7N-2RFP4ph8sQ/edit?usp=sharing
+https://docs.google.com/document/d/1ZeIIt4ALY7MvFpI23MWpzHaIglnV7sHKuklzxL1pE88/edit?usp=sharing (инструкция по запуску)

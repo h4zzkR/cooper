@@ -10,7 +10,7 @@ We continue to write readme, keep in touch.
 
 1). Создаем виртуальное окружение:<br>
     а). `$ sudo apt-get install python3-venv`<br>
-    б). `$ python3 -m venv django_venv`, где django_venv - название    виртуального окружения
+    б). `$ python3 -m venv django_venv`, где django_venv - название виртуального окружения
 
 2). Активируем виртуальное окружение:<br>
     `$ source django_venv/bin/activate`<br>

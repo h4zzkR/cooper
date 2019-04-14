@@ -6,7 +6,7 @@ Web-app for developers searching for the working on projects.
 We continue to write readme, keep in touch.
 
 
-<h1>**Инструкция по запуску проекта**</h1>
+<h2>Инструкция по запуску проекта</h2>
 
 1). Создаем виртуальное окружение:<br>
     а). `$ sudo apt-get install python3-venv`<br>
@@ -42,9 +42,9 @@ We continue to write readme, keep in touch.
 10). Устанавливаем SimpleMDE:<br>
     `(django_venv) ~$ npm install simplemde --save`
 
-10). Запускаем сервер:<br>
+11). Запускаем сервер:<br>
     `(django_venv) ~$ python manage.py runserver`
 
 
-[Documentation(RU)](https://docs.google.com/document/d/11DQPLyEXO4wGiOjyCECmzDpbmLmXNg7N-2RFP4ph8sQ/edit?usp=sharing)
+[Documentation(RU)](https://docs.google.com/document/d/11DQPLyEXO4wGiOjyCECmzDpbmLmXNg7N-2RFP4ph8sQ/edit?usp=sharing)<br>
 [Instruction(RU)](https://docs.google.com/document/d/1ZeIIt4ALY7MvFpI23MWpzHaIglnV7sHKuklzxL1pE88/edit?usp=sharing)

@@ -47,7 +47,7 @@ def get_context(request, pagename):
     return context
 
 def update_avatar(avatar):
-    return avatar[avatar.find('/media'):]
+    return avatar
 
 
 @login_required
@@ -142,20 +142,6 @@ def register(request):
     if request.method == 'POST':
         fields = ['nick', 'email', 'password', 'first_name', 'last_name']
         data = {field : request.POST.get(field) for field in fields}
-        # if validate_email(data['email'], verify=True):
-        #     #if email exists:
-        #     try:
-        #         user = User.objects.create_user(**data)
-        #     except IntegrityError as err:
-        #         #Existing User Error
-        #         raise Http404
-        #     # return random avatar from hash
-        #     get_avatar(stuff.avatar_generator(), user)
-        #     auth_login(request, user)
-        # else:
-        #     #not founded
-        #     messages.info(request, 'Похоже, такого почтового ящика не существует.')
-        #     return HttpResponseRedirect('/u/new_user')
         try:
             user = User.objects.create_user(**data)
         except IntegrityError as err:
@@ -193,6 +179,7 @@ def add_task(request):
                 idea=form.data['idea'],
                 body=form.data['body'],
                 simple_about=form.data['simple_about'],
+                max_subs=form.data['max_subs'],
                 creation_date=datetime.datetime.now(),
                 author=request.user
             )

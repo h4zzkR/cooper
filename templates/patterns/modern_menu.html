@@ -1,12 +1,28 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script async="" src="static/js/fbevents.js"></script><script type="text/javascript" async="" src="static/js/watch.js">
+    </script><script src="static/js/jquery-1.js"></script>
 </head>
 
 <style>
 
-    button::-moz-focus-inner {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+button::-moz-focus-inner {
   border: 0;
 }
 
@@ -19,12 +35,18 @@
     <ul class="nav">
      <img class="avatar" src="{{ avatar }}">
      <li class="profile"><a class="profile-button" href = "/profile/{{ user }}"><p> Профиль </p></a></li>
+    <form action="https://www.google.ru/search?q=site%3Avas3k.ru+" _lpchecked="1">
+            <input type="hidden" name="domains" value="vas3k.ru">
+            <input type="hidden" name="sitesearch" value="vas3k.ru">
+            <input type="text" name="q" class="menu-search__input">
+            <i class="fa fa-search menu-search__icon"></i>
+    </form>
      {% if user.is_superuser == True %}<li><a {% if pagename == 'control' %} class="active" {% endif %} href="/control">Управление</a></li>{% endif %}
      <li><a {% if pagename == 'profile' %}class="active"{% endif %} href = "/profile/{{ user }}"> {{ user }} (Вы) </a></li>
       <li><a {% if pagename == 'hab' %}class="active"{% endif %} href="/">Хаб</a></li>
       <li><a {% if pagename == 'make_task' %}class="active"{% endif %} href="/add_task">Создать таск</a></li>
       <li><a {% if pagename == 'tasks' %}class="active"{% endif %} href="/tasks">Мои таски</a></li>
-      <li><a {% if pagename == 'settings' %}class="active"{% endif %} href = "/chats">Чаты</a></li>
+      <li><a {% if pagename == 'settings' %}class="active"{% endif %} href = "/chats">Настройки</a></li>
       <li><a class="logout" href="/u/logout/">Выйти</a></li>
     </ul>
   </div>

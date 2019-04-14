@@ -1,3 +1,5 @@
+{#TODO#}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,31 +17,31 @@
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
 {##}
-<br><br><p>Подписчики: {{ subs_count }}</p>
+{% if user.get_username == author %}
+        <div class="task-title">
+        <p>{{ user }}</p>
+        <a href="/remove/{{ task.id }}">
+        <div class="remove-button">
+        Удалить</div>
+        </a>
+    </div>
+    <br><br><p>Подписчики: {{ subs_count }}</p>
 <ul>
     {% for sub in subs %}
     <li>{{ sub.user.nickname }}</li>
     {% endfor %}
 </ul>
-{% if user.get_username == author %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="Wrapper"><div class="input" style="margin-top: 2.5em; position: relative;">
-                     <input type="text" name="idea" id="input" class="input-text" value="{{ task.idea }}" placeholder="Название" style=" position: relative;">
-{#                    <span class="floating-label">Your email address</span>#}
-                </div></div>
-    <a href="/remove/{{ task.id }}">
-        <div class="edit-button" style="position: inherit; width:10em; margin-bottom: -2.5em;">
-            Удалить</div>
-        </a>
-    <div class="Wrapper"><div class="input" style="padding-top: 2em; margin-bottom: -2.5em;">
-                     <textarea type="text" name="body" id="input" class="task-full" maxlength="20000"
-                               placeholder="Расскажите всем, что вы хотите сделать:"
-                               style="width: 70%; height: 40em; padding-top: 0.1em;">{{ task.body }}
-                     </textarea>
-    </div></div>
-    <button type="submit" class="edit-button" style="margin-top: 1em;">Разместить</button>
-</form>
+
+{#<div class="Wrapper" style="max-width: 70%; max-height: 10%; margin-bottom: 100px;">#}
+{#    <textarea id="simple_about">{{ task.simple_about }}</textarea>#}
+{#</div>#}
+{#<h1><a id="h1_demo2" class="anchor" href="#h1_demo2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autosaving</h1>#}
+{#<div class="Wrapper" style="max-width: 70%;" >#}
+{#    <textarea id="task-body">{{ task.body }}</textarea>#}
+{#</div>#}
+<h1><a id="h1_demo1" class="anchor" href="#h1_demo1" aria-hidden="true"></a>{{ task.idea }}</h1><br>
+<div class="Wrapper" style="max-width: 70%;">
+<textarea id="demo1">{{ task.body }}</textarea></div>
 {% else %}
 <br><br>
     {% if flag == True%}
@@ -56,31 +58,19 @@
 
 {% include 'patterns/modern_footer.html' %}
 
-{% if user.get_username == author %}
-<script> var simplemde = new SimpleMDE({
-    autofocus: true,
-    {#element: document.getElementById("task-full"),#}
-    {#autosave: {#}
-    {#    enabled: false,#}
-    {#    uniqueId: {{ task.id }},#}
-    {#    delay: 1000,#}
-    {#},#}
-    forceSync: true,
-    {#toolbar: false,#}
-    {#status: false,#}
-    renderingConfig: {
-		codeSyntaxHighlighting: true,
-	},
-    });</script>
-{% else %}
-    <script> var simplemde = new SimpleMDE({
-    autofocus: true,
-    forceSync: true,
-    toolbar: false,
-    status: false,
-    renderingConfig: {
-		codeSyntaxHighlighting: true,
-	},
-    });</script>
-{% endif %}
+<script>
+    	new SimpleMDE({
+		element: document.getElementById("demo1"),
+        autofocus: true,
+        placeholder: "Опишите подробно, как вы видите свой проект:",
+		spellChecker: false,
+	});
+
+    new SimpleMDE({
+		element: document.getElementById("demo2"),
+        autofocus: true,
+        placeholder: "Краткое описание",
+		spellChecker: false,
+	});
+</script>
 </html>

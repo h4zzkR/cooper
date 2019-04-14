@@ -50,16 +50,16 @@ class User(AbstractBaseUser):
         return self.is_superuser
 
 class Task(models.Model):
-    idea = models.CharField(max_length=200)
+    idea = models.CharField(max_length=1000)
     body = models.TextField(max_length=20000)
     simple_about = models.TextField(max_length=100, default='Краткое описание')
     creation_date = models.DateTimeField(default=datetime.datetime.now())
-    author = models.ForeignKey(to=User, blank=True, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
     max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(12)])
 
 class Subscribe(models.Model):
-    user = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True, default=None)
-    task = models.ForeignKey(to=Task, blank=True, on_delete=models.PROTECT, null=True, default=None)
+    user = models.ForeignKey(to=User, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)
+    task = models.ForeignKey(to=Task, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)
     time_subscribed = models.DateTimeField(auto_now=True)
 
 class Token(models.Model):

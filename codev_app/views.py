@@ -212,8 +212,8 @@ def chats(request):
     :param request:
     :return:
     """
-    context = get_context(request, 'chats')
-    chats = request.user.chats.all()
+    context = get_context(request, 'subs')
+    chats = Subscribe.objects.filter()
     context.update({'chats': chats})
     return render(request, 'chats.html', context)
 

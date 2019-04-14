@@ -55,7 +55,7 @@ class Task(models.Model):
     simple_about = models.TextField(max_length=100, default='Краткое описание')
     creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
-    max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(12)])
+    max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(300)])
 
 class Subscribe(models.Model):
     user = models.ForeignKey(to=User, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)

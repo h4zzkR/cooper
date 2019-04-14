@@ -41,7 +41,10 @@ Successfully installed django-2.1.3
 7). Устанавливаем pillow:<br>
     `(django_venv) ~$ pip install  pillow`
 
-8). Запускаем сервер:<br>
+8). Устанавливаем validate_email:<br>
+    `(django_venv) ~$ pip install validate_email`
+
+9). Запускаем сервер:<br>
     `(django_venv) ~$ python manage.py runserver`
 
 

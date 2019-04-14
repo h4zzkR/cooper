@@ -22,7 +22,7 @@ We continue to write readme, keep in touch.
 
 2). Активируем виртуальное окружение:<br>
     `$ source django_venv/bin/activate`<br>
-Примечание: для выхода из виртуального окружения venv наберите: $ deactivate
+Примечание: для выхода из виртуального окружения venv наберите: `$ deactivate`
 
 3). Обновляем pip:<br>
     `(django_venv) ~$ python3 -m pip install --upgrade pip`
@@ -30,7 +30,7 @@ We continue to write readme, keep in touch.
 4). Устанавливаем Django:<br>
     `(django_venv) ~$ pip install django`<br>
 Если Вы сделали всё правильно, то Вам должно высветиться:<br>
-Successfully installed django-2.1.3
+*Successfully installed django-2.1.3*
 
 5). Клонируем внешний репозиторий проекта:<br>
     `$ git clone https://github.com/m0r0zk01/cooper.git`

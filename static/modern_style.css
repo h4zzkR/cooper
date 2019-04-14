@@ -128,7 +128,8 @@ bottom:   10px;
 .nav li:nth-child(6) a::before { content: '\f00b'; }
 .nav li:nth-child(7) a::before { content: '\f055'; }
 .nav li:nth-child(8) a::before { content: '\f0ae'; }
-.nav li:nth-child(9) a::before { content: '\f013'; }
+.nav li:nth-child(9) a::before { content: "\f013"; }
+.nav li:nth-child(10) a::before { content: "\f0b1"; }
 
 
 .tasks{
@@ -653,6 +654,29 @@ html, body {
 .task-input{
     width: 71%;
 }
+
+.subscribe-title{
+            position: absolute;
+            margin-top: 3px;
+            /*top: 8%;*/
+            margin-left: 20px;
+            float: top;
+            display: inline-block;
+            max-width: 90%;
+            box-sizing: border-box;
+            /*background-color: #D90700;*/
+            background-color: #2867a7;
+            border: solid 2px #2867a7;
+            color: #FFF;
+            text-align: center;
+            text-decoration: none;
+            font-size: 100%;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            margin-left: 0px;
+    }
+
 
 .task-title{
             position: absolute;

@@ -44,14 +44,13 @@
 <textarea id="demo1">{{ task.body }}</textarea></div>
 {% else %}
 <br><br>
-    {% if flag == True%}
-        <p>Вы подписаны. Отписаться?</p>
-        <a href="/unsub/{{ task.id }}">Отписаться</a>
-    {% else %}
-    <a href="/sub/{{ task.id }}">Подписаться</a>
-    {% endif %}
     <h1 class="text-show-task">{{ task.idea }} <a href="/profile/{{ task.author }}">
         <div type="submit" class = "user-link" style="">от {{ task.author }}</div></a></h1>
+{% if flag == True%}
+        <a href="/unsub/{{ task.id }}" class="subscribe-title">Отписаться</a>
+    {% else %}
+    <a class="subscribe-title" href="/sub/{{ task.id }}">Подписаться</a>
+    {% endif %}<br><br>
     <h1 class="text-show-task">{{ task.simple }}</h1>
     <h2 class="text-show-task">{{ task.body }}</h2>
 {% endif %}

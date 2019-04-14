@@ -12,14 +12,20 @@
 {#{% include 'patterns/header.html' %}#}
 {#{% include 'patterns/menu.html' %}#}
 <br>
-<a href="/create_chat" class="edit-button">Создать чат</a>
-<br><br>
 <div>
-    {% for chat in chats %}
-          <a href="/chat/{{  chat.id }}">
-    <div class="chat-card">
-    <div class="chat-card-header">
-        <h1 class="chat-card-text">{{  chat.name }}</h1></div></div></a>
+    {% for sub in subs %}
+              <div class="task-card">
+                   <a href="/task/{{  sub.id }}">
+    <div class="task-card-header">
+    <h1 class="task-card-text">{{  sub.task.idea }}</h1>
+    <h2 class="task-card-from">От {{  sub.task.author }}</h2>
+    </div>
+    <h2 class="task-about">{{  sub.task.simple_about }}</h2>
+    </a><a href="/chat/{{  sub.task.chat.id }}">
+    <div class="task-card-footer">
+    <h2 class="task-card-text">Войти в чат</h2>
+    </div></a>
+    </div>
     {% endfor %}
 </div>
 

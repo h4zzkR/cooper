@@ -19,7 +19,6 @@ class Message(models.Model):
     text = models.CharField(max_length=20000)
 
 class Chat(models.Model):
-    name = models.CharField(max_length=2000)
     messages = models.ManyToManyField(Message)
 
 class User(AbstractBaseUser):
@@ -34,7 +33,6 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(_('is_active'), default=True)
     avatar = models.ImageField(upload_to='users/avatars/', null=True, blank=True)
     is_superuser = models.BooleanField(default=False)
-    chats = models.ManyToManyField(Chat)
 
     objects = UserManager()
 
@@ -56,6 +54,7 @@ class Task(models.Model):
     creation_date = models.DateTimeField(default=datetime.datetime.now())
     author = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
     max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(300)])
+    chat = models.ForeignKey(to=Chat, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)
 
 class Subscribe(models.Model):
     user = models.ForeignKey(to=User, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)

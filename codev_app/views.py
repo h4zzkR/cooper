@@ -172,6 +172,8 @@ def add_task(request):
     """
     username = request.user.nickname
     context = get_context(request, 'make_task')
+    new_chat = Chat()
+    new_chat.save()
     if request.method == "POST":
         form = AddTaskForm(request.POST, request.FILES)
         if form.is_valid():
@@ -183,6 +185,8 @@ def add_task(request):
                 creation_date=datetime.datetime.now(),
                 author=request.user
             )
+            task.save()
+            task.chat = new_chat
             task.save()
         else:
             return redirect('add_task')
@@ -213,8 +217,8 @@ def chats(request):
     :return:
     """
     context = get_context(request, 'subs')
-    chats = Subscribe.objects.filter()
-    context.update({'chats': chats})
+    subs = Subscribe.objects.filter(user = request.user).all()
+    context.update({'subs': subs})
     return render(request, 'chats.html', context)
 
 

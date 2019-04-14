@@ -28,7 +28,7 @@
     <br><br><p>Подписчики: {{ subs_count }}</p>
 <ul>
     {% for sub in subs %}
-    <li>{{ sub.user.nickname }}</li>
+    <li><div>{{ sub.user.nickname }} <img src="{{sub.user.avatar}}" width="150" style="border-radius: 14px; position: absolute;"></div></li>
     {% endfor %}
 </ul>
 

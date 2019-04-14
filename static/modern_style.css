@@ -601,6 +601,22 @@ html, body {
     text-align: center;
 }
 
+.task-card-footer{
+    font-size:10px;
+    position: relative;
+    display: block;
+    /*height: 10%;*/
+    /*line-height: 1em;*/
+    vertical-align: middle;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #751390;
+    color: white;
+    text-align: center;
+}
+
 .chat-card-header{
     font-size:10px;
     position: relative;

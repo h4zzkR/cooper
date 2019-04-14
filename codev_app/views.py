@@ -183,10 +183,9 @@ def add_task(request):
                 simple_about=form.data['simple_about'],
                 max_subs=form.data['max_subs'],
                 creation_date=datetime.datetime.now(),
-                author=request.user
+                author=request.user,
+                chat=new_chat
             )
-            task.save()
-            task.chat = new_chat
             task.save()
         else:
             return redirect('add_task')

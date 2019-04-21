@@ -19,15 +19,31 @@ We continue to write readme, keep in touch.
 3). Обновляем pip:<br>
     `(django_venv) ~$ python3 -m pip install --upgrade pip`
 
-4). Устанавливаем все необходимые библиотеки:<br>
-    `pip3 install -r requirements.txt`<br>
+4). Устанавливаем Django:<br>
+    `(django_venv) ~$ pip install django`<br>
+Если Вы сделали всё правильно, то Вам должно высветиться:<br>
+*Successfully installed django-2.1.3*
 
 5). Клонируем внешний репозиторий проекта:<br>
     `$ git clone https://github.com/m0r0zk01/cooper.git`
 
-6). Запускаем сервер:<br>
+6). Устанавливаем django-extensions:<br>
+    `(django_venv) ~$ pip install django-extensions`
+
+7). Устанавливаем pillow:<br>
+    `(django_venv) ~$ pip install  pillow`
+
+8). Устанавливаем validate_email:<br>
+    `(django_venv) ~$ pip install validate_email`
+
+9). Устанавливаем DNS-библиотеку Python 3: <br>
+    `(django_venv) ~$ pip install py3dns`
+
+10). Устанавливаем SimpleMDE:<br>
+    `(django_venv) ~$ npm install simplemde --save`
+
+11). Запускаем сервер:<br>
     `(django_venv) ~$ python manage.py runserver`
 
 
-[Documentation(RU)](https://docs.google.com/document/d/11DQPLyEXO4wGiOjyCECmzDpbmLmXNg7N-2RFP4ph8sQ/edit?usp=sharing)<br>
-[Instruction(RU)](https://docs.google.com/document/d/15N0qXsD3UGp7n-QGkrbwM8OwvEICX4U3ac61v1lfGPs/edit?usp=sharing)
+[Documentation(RU)](https://docs.google.com/document/d/11DQPLyEXO4wGiOjyCECmzDpbmLmXNg7N-2RFP4ph8sQ/edit?usp=sharing)

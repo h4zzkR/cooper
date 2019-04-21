@@ -124,10 +124,11 @@ def get_avatar(hash, user):
     """
     get random avatar from hash for new
     """
-    avatars.Identicon(hash).generate(user.id)
-    path = 'media/users/avatars/' + str(user.id) + '_avatar.png'
+    avatar = avatars.Identicon(hash).generate(user.id)
+    path = settings.MEDIA_ROOT + '/users/avatars/{}'.format(str(user.id)+'_avatar.png')
     r = open(path, 'rb')
     user.avatar = File(r)
+    os.remove(path)
     user.save()
     r.close()
 
@@ -298,8 +299,8 @@ def profile(request, user):
             raise Http404
     else:
         request_user = User.objects.get(nickname=user)
-        avatar = str(request_user.avatar)
-        context.update({'request_avatar': avatar[avatar.find('/media'):]})
+        avatar = request_user.avatar
+        context.update({'request_avatar': avatar})
         context.update({'user_profile': request_user})
     return render(request, 'profile.html', context)
 

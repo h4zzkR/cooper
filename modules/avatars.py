@@ -3,6 +3,7 @@ from base64 import b64encode
 from hashlib import md5
 from io import BytesIO
 from django.conf import settings
+import os
 
 GRID_SIZE = 9
 BORDER_SIZE = 10
@@ -61,8 +62,8 @@ class Identicon(object):
         Save and show calculated identicon
         """
         self.calculate()
-        print('media/users/avatars/' + str(id) + '_avatar.png')
-        with open('media/users/avatars/' + str(id) + '_avatar.png', 'wb') as out:
+        os.chdir(settings.MEDIA_ROOT + '/users/avatars/')
+        with open(str(id) + '_avatar.png', 'wb') as out:
             self.image.save(out, 'PNG')
 
     def base64(self, format='PNG'):

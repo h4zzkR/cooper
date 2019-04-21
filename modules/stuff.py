@@ -9,7 +9,9 @@ import os
 import datetime
 #300s
 
-def avatar_generator(size=10, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
+def avatar_generator():
+    size = 10
+    chars = string.ascii_uppercase + string.digits + string.ascii_lowercase
     return ''.join(random.choice(chars) for _ in range(size))
 
 def image_preproc(img):

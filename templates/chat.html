@@ -23,15 +23,15 @@
     <div class="chat-card-header">
         <h1 class="chat-card-text"> {{  msg.text }}</h1></div></div></a><br><br>
     {% endfor %}
-    <form action="/chat/{{chat.id}}/new_msg" method="post">
-        {% csrf_token %}
-<div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
-                     <input required type="text" name="text" autocomplete="off" id="input" class="input-text"
-                            placeholder="Сообщение" style=" position: relative; display: inline-block;">
-    <button type="submit" class="send-button" style="display: inline-block;">Отправить</button>
-    </form>
 </div>
 
 {% include 'patterns/modern_footer.html' %}
+<div class="bottom-div">
+    <form action="/chat/{{chat.id}}/new_msg" method="post">
+        {% csrf_token %}<div class="input" style="margin-top: 2.5em;">
+                     <input required type="text" name="text" autocomplete="off" id="input" class="input-send"
+                            placeholder="Сообщение" style=" position: relative; display: inline-block;">
+    <button type="submit" class="send-button" style="display: inline-block;">Отправить</button>
+    </form></div>
 </body>
 </html>

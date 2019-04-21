@@ -32,6 +32,8 @@ urlpatterns = [
     path('profile/edit/<str:user>', profile_edit),
     path('u/new_user', new_user),
     path('task/<int:task_id>', show),    # path('task/<int:task_id>', show),
+    #path('task/<int:task_id>/files', files),
+    #path('task/<int:task_id>/upload', upload_files),
     path('u/recover_password', recover_password_page),
     path('u/reset/', new_password_token),
     path('subscribes/', chats),

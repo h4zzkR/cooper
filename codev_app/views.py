@@ -27,6 +27,19 @@ from django.contrib.auth.hashers import make_password
 from django.db.utils import IntegrityError
 
 
+def upload_file_to_task(request, task_id):
+    if request.method == 'POST':
+        form = FileUpload(name = form.data['name'], file = form.data['file'],)
+        if form.is_valid:
+            form.save()
+            task = Task.objects.get(id = task_id)
+            task.files.add(form)
+            task.save()
+
+def files(request, task_id):
+    pass
+
+
 def get_context(request, pagename):
     """
     function for getting standart context

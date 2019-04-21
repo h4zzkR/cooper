@@ -48,6 +48,11 @@ class Message(models.Model):
 class Chat(models.Model):
     messages = models.ManyToManyField(Message)
 
+
+class FileUpload(models.Model):
+    title = models.CharField(max_length=1024)
+    file = models.FileField()
+
 class Task(models.Model):
     idea = models.CharField(max_length=1000)
     body = models.TextField(max_length=20000)
@@ -56,6 +61,7 @@ class Task(models.Model):
     author = models.ForeignKey(to=User, blank=True, on_delete=models.PROTECT, null=True)
     max_subs = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(300)])
     chat = models.ForeignKey(to=Chat, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)
+    files = models.ManyToManyField(FileUpload)
 
 class Subscribe(models.Model):
     user = models.ForeignKey(to=User, blank=True, null=True, on_delete=models.DO_NOTHING, default=None)

@@ -17,8 +17,8 @@
 <br>
 <div>
     {% for msg in chat.messages.all %}
-    <div style="display:inline-block; padding-top:20px;"><h2 class="chat-card-text-2"><a href="/profile/{{ msg.author.id }}" >
-        {{ msg.author }}</a> пишет: </h2></div>
+    <div style="display:inline-block; padding-top:20px;"><h2 class="chat-card-text-2"><a href="/profile/{{ msg.author }}" class = "user-link">
+        {{ msg.author }}</a></h2></div>
     <div  style="display:inline-block;"class="chat-card">
     <div class="chat-card-header">
         <h1 class="chat-card-text"> {{  msg.text }}</h1></div></div></a><br><br>
@@ -27,8 +27,8 @@
         {% csrf_token %}
 <div class="Wrapper"><div class="input" style="margin-top: 2.5em;">
                      <input required type="text" name="text" autocomplete="off" id="input" class="input-text"
-                            placeholder="Сообщение" style=" position: relative;">
-    <button type="submit" class="signup-button">Отправить</button>
+                            placeholder="Сообщение" style=" position: relative; display: inline-block;">
+    <button type="submit" class="send-button" style="display: inline-block;">Отправить</button>
     </form>
 </div>
 

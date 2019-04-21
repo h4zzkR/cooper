@@ -202,6 +202,8 @@ def add_task(request):
                 chat=new_chat
             )
             task.save()
+            sub = Subscribe(user=request.user, task=task)
+            sub.save()
         else:
             return redirect('add_task')
     else:

@@ -15,15 +15,16 @@
 <div>
     {% for sub in subs %}
               <div class="task-card">
-                   <a href="/task/{{  sub.id }}">
+                   <a href="/task/{{  sub.id|add:-4}}">
     <div class="task-card-header">
     <h1 class="task-card-text">{{  sub.task.idea }}</h1>
     <h2 class="task-card-from">От {{  sub.task.author }}</h2>
     </div>
     <h2 class="task-about">{{  sub.task.simple_about }}</h2>
-    </a><a href="/chat/{{  sub.task.chat.id }}">
-    <div class="task-card-footer">
-    <h2 class="task-card-text">Войти в чат</h2>
+    </a><a href="/chat/{{  sub.task.chat.id }}"><div class="task-card-footer-1">
+    <h2 class="task-card-text">Чат проекта</h2>
+    </div></a><a href="/chat/{{  sub.task.chat.id }}"><div class="task-card-footer-2">
+    <h2 class="task-card-text">Файлы проекта</h2>
     </div></a>
     </div>
     {% endfor %}

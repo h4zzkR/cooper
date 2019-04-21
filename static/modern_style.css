@@ -313,6 +313,34 @@ font-weight: 300;
   box-shadow: 0px 0px 8px #f44336;
 }
 
+.send-button{
+  /*position:relative;*/
+  width: 15em;
+  display: inline-block;
+    text-align: center;
+	background: #751389;
+	color: #fff;
+    margin-right: 100px;
+    margin-left: 5px;
+	font-size: 16px;
+	padding: 12px 19px;
+	margin-bottom: 5px;
+	/*line-height: 1;*/
+    border-color: transparent;
+	border-radius: 14px;
+     -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.5s;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+  z-index: 50;
+}
+
+.send-button:hover{
+  transform: scale(1.03);
+  background-color: #f44336;
+  box-shadow: 0px 0px 8px #f44336;
+}
+
 
 /*FORM FIELDS*/
 
@@ -608,7 +636,7 @@ html, body {
     text-align: center;
 }
 
-.task-card-footer{
+.task-card-footer-1{
     font-size:10px;
     position: relative;
     display: block;
@@ -618,10 +646,28 @@ html, body {
     padding-top: 1px;
     padding-bottom: 10px;
     border-bottom-left-radius: 10px;
+    background-color: #751390;
+    color: white;
+    text-align: center;
+    display:inline-block;
+    width:50%
+}
+
+.task-card-footer-2{
+    font-size:10px;
+    position: relative;
+    display: block;
+    /*height: 10%;*/
+    /*line-height: 1em;*/
+    vertical-align: middle;
+    padding-top: 1px;
+    padding-bottom: 10px;
     border-bottom-right-radius: 10px;
     background-color: #751390;
     color: white;
     text-align: center;
+    display:inline-block;
+    width:50%
 }
 
 .chat-card-header{

@@ -15,7 +15,7 @@
 <div>
     {% for sub in subs %}
               <div class="task-card">
-                   <a href="/task/{{  sub.id|add:-4}}">
+                   <a href="/task/{{  sub.task.id  }}">
     <div class="task-card-header">
     <h1 class="task-card-text">{{  sub.task.idea }}</h1>
     <h2 class="task-card-from">От {{  sub.task.author }}</h2>
